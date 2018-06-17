@@ -1,5 +1,6 @@
 package nocompany.examplelayout;
 
+import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
@@ -7,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +39,8 @@ public class Schedulemain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemain);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         dbHelper = new DbHelper(this);
         firstTask = (ListView) findViewById(R.id.firstTask);
@@ -45,6 +49,7 @@ public class Schedulemain extends AppCompatActivity {
 
     private void loadTaskList() {
         ArrayList<String> taskList = dbHelper.getTaskList();
+
         if (mAdapter == null) {
             mAdapter = new ArrayAdapter<String>(this, R.layout.row, R.id.task_title, taskList);
             firstTask.setAdapter(mAdapter);
