@@ -7,13 +7,22 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
+    CardView cd2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        cd2 = (CardView)findViewById(R.id.schedule);
+        cd2.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View view){
+        Intent intent = new Intent(this,Schedulemain.class);
+        startActivity(intent);
     }
 
 
