@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Puneeth Karkera\\Desktop\\Android\\ExampleLayout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rCN\\values-zh-rCN.xml",
+            "outputFile": "/home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\d2f49fe99f570b66086186f2a0b7dc39\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "source": "/home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/940fb5f95bdb46c9a36e2e8d9f9899e5/res/values-zh-rCN/values-zh-rCN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\227e46446d46eeaeeeaf6d1f01b01751\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "source": "/home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/7c52b6a5efdaac07c6422a9219a017bf/res/values-zh-rCN/values-zh-rCN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

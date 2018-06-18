@@ -1,114 +1,114 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\227e46446d46eeaeeeaf6d1f01b01751\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\021252ee5458e6187218654344938559\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.1.aar\7a2fdf32271a4a71a1379f536e93aa31\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\2acd6858659de636e54acd1d2c81392b\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\8ebc151f500c9f42055b0d87205fcbfc\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\0a43c5d47263aae9d46ec4c2053049b6\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\44cc009327da5e97c1aeb1f60b55d661\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\126f42c815ced11e3e3647cf086ed180\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\d2f49fe99f570b66086186f2a0b7dc39\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\e8dc0a1daae6eccd9720621ea2f2e6f0\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5673adb696632dc686f0e67aba7b9d51\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4fe733fc12675227d81ddc2d321320d\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\cf275fa9b9893afde4614c70013eb0e0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/7c52b6a5efdaac07c6422a9219a017bf/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/5a34645980e2006460a049fa6ccbb699/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.1] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.1.aar/96937435fceea095f1fc8c3f0528a28f/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/a4cb97c8987eed1d3c84beaf22dcdc7f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e1cac00ef39d33c49edd62a757699a91/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/09c53f315b7e02031adee544ee63a44e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/e7145d1a7848998e990a9263c8634f3b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/a6155d7cf2283a7bce61741cd5217240/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/940fb5f95bdb46c9a36e2e8d9f9899e5/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d6c5efc2cfd3bc6678bb869ee03d0dee/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/7c49617a7b4fa4f5b7cc13ae3e7890fd/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/2663d8a87737a803d60b0f975ba1001a/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d15c0f02d3259a2b550602f0c621d701/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
 	package
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:3:5-38
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:3:5-38
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:1-23:12
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:1-23:12
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:5:5-21:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.1.aar\7a2fdf32271a4a71a1379f536e93aa31\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.1.aar\7a2fdf32271a4a71a1379f536e93aa31\AndroidManifest.xml:9:5-20
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:5:5-21:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.1] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.1.aar/96937435fceea095f1fc8c3f0528a28f/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.1] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.1.aar/96937435fceea095f1fc8c3f0528a28f/AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:10:9-35
 	android:label
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:8:9-41
 	android:roundIcon
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:9:9-54
 	android:icon
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:7:9-43
 	android:allowBackup
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:11:9-40
 activity#nocompany.examplelayout.MainActivity
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:12:9-18:20
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:12:9-18:20
 	android:name
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:12:19-47
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:12:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:13:13-17:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:14:17-69
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:14:17-69
 	android:name
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:14:25-66
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:16:17-77
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:16:27-74
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:16:27-74
 activity#nocompany.examplelayout.Main2Activity
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:19:9-60
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:19:9-60
 	android:name
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:19:19-48
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:19:19-48
 activity#nocompany.examplelayout.Schedulemain
-ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:20:9-59
+ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:20:9-59
 	android:name
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml:20:19-47
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml:20:19-47
 uses-sdk
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\227e46446d46eeaeeeaf6d1f01b01751\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.0.aar\227e46446d46eeaeeeaf6d1f01b01751\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\021252ee5458e6187218654344938559\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.0.aar\021252ee5458e6187218654344938559\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.1.aar\7a2fdf32271a4a71a1379f536e93aa31\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.1.aar\7a2fdf32271a4a71a1379f536e93aa31\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\2acd6858659de636e54acd1d2c81392b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.0.aar\2acd6858659de636e54acd1d2c81392b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\8ebc151f500c9f42055b0d87205fcbfc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.0.aar\8ebc151f500c9f42055b0d87205fcbfc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\0a43c5d47263aae9d46ec4c2053049b6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.0.aar\0a43c5d47263aae9d46ec4c2053049b6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\44cc009327da5e97c1aeb1f60b55d661\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.0.aar\44cc009327da5e97c1aeb1f60b55d661\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\126f42c815ced11e3e3647cf086ed180\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.0.aar\126f42c815ced11e3e3647cf086ed180\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\d2f49fe99f570b66086186f2a0b7dc39\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.0.aar\d2f49fe99f570b66086186f2a0b7dc39\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\e8dc0a1daae6eccd9720621ea2f2e6f0\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\e8dc0a1daae6eccd9720621ea2f2e6f0\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5673adb696632dc686f0e67aba7b9d51\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\5673adb696632dc686f0e67aba7b9d51\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4fe733fc12675227d81ddc2d321320d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e4fe733fc12675227d81ddc2d321320d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\cf275fa9b9893afde4614c70013eb0e0\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Puneeth Karkera\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\cf275fa9b9893afde4614c70013eb0e0\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/7c52b6a5efdaac07c6422a9219a017bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/7c52b6a5efdaac07c6422a9219a017bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/5a34645980e2006460a049fa6ccbb699/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/5a34645980e2006460a049fa6ccbb699/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.1] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.1.aar/96937435fceea095f1fc8c3f0528a28f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.1] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.1.aar/96937435fceea095f1fc8c3f0528a28f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/a4cb97c8987eed1d3c84beaf22dcdc7f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/a4cb97c8987eed1d3c84beaf22dcdc7f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e1cac00ef39d33c49edd62a757699a91/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e1cac00ef39d33c49edd62a757699a91/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/09c53f315b7e02031adee544ee63a44e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/09c53f315b7e02031adee544ee63a44e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/e7145d1a7848998e990a9263c8634f3b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/e7145d1a7848998e990a9263c8634f3b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/a6155d7cf2283a7bce61741cd5217240/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/a6155d7cf2283a7bce61741cd5217240/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/940fb5f95bdb46c9a36e2e8d9f9899e5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/940fb5f95bdb46c9a36e2e8d9f9899e5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d6c5efc2cfd3bc6678bb869ee03d0dee/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d6c5efc2cfd3bc6678bb869ee03d0dee/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/7c49617a7b4fa4f5b7cc13ae3e7890fd/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/7c49617a7b4fa4f5b7cc13ae3e7890fd/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/2663d8a87737a803d60b0f975ba1001a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/2663d8a87737a803d60b0f975ba1001a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d15c0f02d3259a2b550602f0c621d701/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/mlabsystem2/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d15c0f02d3259a2b550602f0c621d701/AndroidManifest.xml:20:5-44
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Puneeth Karkera\Desktop\Android\ExampleLayout\app\src\main\AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		ADDED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mlabsystem2/MLab-Project/Forget-me-not/AndroidTeam/MainApp/app/src/main/AndroidManifest.xml
