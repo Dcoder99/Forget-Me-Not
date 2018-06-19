@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\work\\Forget-me-not\\AndroidTeam\\MainApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
+            "outputFile": "C:\\Users\\Puneeth Karkera\\Desktop\\Android\\ExampleLayout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fastbum\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\56c5a0b9b4774f56546cc35d68f20d1d\\res\\values-ko\\values-ko.xml",
+                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\227e46446d46eeaeeeaf6d1f01b01751\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fastbum\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\4b26fe6aa1224afcf5a2030ab36e28b4\\res\\values-ko\\values-ko.xml",
+                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\d2f49fe99f570b66086186f2a0b7dc39\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
