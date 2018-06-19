@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\app_icon.png",
+        "source": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\src\\main\\res\\drawable-xxhdpi\\app_icon.png"
+    },
+    {
+        "merged": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\app_icon_round.png",
+        "source": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\src\\main\\res\\drawable-xxhdpi\\app_icon_round.png"
+    },
+    {
+        "merged": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_launcher_foreground.png",
+        "source": "D:\\work\\Forget-me-not\\GameDev\\Exported Projects\\5 birds\\src\\main\\res\\drawable-xxhdpi\\ic_launcher_foreground.png"
+    }
+]

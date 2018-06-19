@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':fivebirds1'
+//D:\work\Forget-me-not\GameDev\Exported Projects\5 birds\build\outputs\aar\5 birds-release.aar
