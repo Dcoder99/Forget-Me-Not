@@ -1,69 +1,211 @@
 package nocompany.schedule;
 
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Schedulemain extends AppCompatActivity {
-    private ArrayList<String> mNames = new ArrayList<>();
+
+    private static final String TAG = "Schedulemain";
+
+    private ArrayList<String> tasks = new ArrayList<>();
+    private ArrayList<String> taskList = new ArrayList<>();
+    DbHelper dbHelper;
+    RecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
+
+    DateFormat formatDateTime = DateFormat.getDateTimeInstance();
+    Calendar dateTime = Calendar.getInstance();
+
+    private int notificationId = 1;
 
     FloatingActionButton fab;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemain);
+
+        dbHelper = new DbHelper(this);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        loadTaskList();
+
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Schedulemain.this);
                 View mView = getLayoutInflater().inflate(R.layout.customdialog,null);
-                EditText addtask = (EditText)mView.findViewById(R.id.Addtask);
+                final EditText addtask = (EditText)mView.findViewById(R.id.Addtask);
                 Button setdate = (Button)mView.findViewById(R.id.setdate);
                 Button settime = (Button)mView.findViewById(R.id.settime);
+                final TextView display = (TextView)mView.findViewById(R.id.display);
+                Button set = (Button)mView.findViewById(R.id.set);
+
+                setdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateDate();
+                        display.setText(formatDateTime.format(dateTime.getTime()));
+                    }
+                });
+
+                settime.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateTime();
+                        display.setText(formatDateTime.format(dateTime.getTime()));
+                    }
+                });
+
+                set.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        display.setText(formatDateTime.format(dateTime.getTime()));
+                        Intent intent = new Intent(Schedulemain.this,AlarmReceiver.class);
+                        intent.putExtra("task", addtask.getText().toString());
+                        intent.putExtra("notificationId", notificationId);
+
+                        PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                        AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                        alarm.set(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),alarmintent);
+
+                        Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+
+
+
+
+                    }
+                });
+
+
+
+               display.setText(formatDateTime.format(dateTime.getTime()));
+
                 mBuilder.setView(mView);
+                mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String task = String.valueOf(addtask.getText());
+                        tasks.add(task);
+                        dbHelper.insertnewTask(task);
+                        loadTaskList();
+                    }
+                });
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
 
             }
         });
 
-        initImageBitmaps();
-
-    }
-
-    private void initImageBitmaps(){
-        mNames.add("Hello");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-        mNames.add("hi");
-
         initRecyclerView();
+
+
+
     }
 
-    private void initRecyclerView(){
-        RecyclerView recyclerview = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames,this);
-        recyclerview.setAdapter(adapter);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+
+    private void loadTaskList() {
+        taskList = dbHelper.getTaskList();
+        if (adapter == null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(taskList,this);
+            recyclerView.setAdapter(adapter);
+
+
+        } else{
+            adapter.notifyDataSetChanged();
+        }
     }
+
+    public void deleteTask (View view){
+        View parent = (View) view.getParent();
+        TextView taskTextView = (TextView) findViewById(R.id.task_name);
+        Log.e("String", (String) taskTextView.getText());
+        String task = String.valueOf(taskTextView.getText());
+        dbHelper.deleteTask(task);
+        loadTaskList();
+    }
+
+    private void updateDate(){
+        new DatePickerDialog(this,d,dateTime.get(Calendar.YEAR),dateTime.get(Calendar.MONTH),dateTime.get(Calendar.DAY_OF_MONTH)).show();
+
+    }
+
+    private void updateTime(){
+        new TimePickerDialog(this,t,dateTime.get(Calendar.HOUR_OF_DAY),dateTime.get(Calendar.MINUTE),true).show();
+    }
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            dateTime.set(Calendar.YEAR,year);
+            dateTime.set(Calendar.MONTH,month);
+            dateTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        }
+    };
+
+    TimePickerDialog.OnTimeSetListener t =new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            dateTime.set(Calendar.HOUR_OF_DAY,hourOfDay);
+            dateTime.set(Calendar.MINUTE,minute);
+            dateTime.set(Calendar.SECOND,0);
+
+        }
+    };
+
+
+ /*   private void AddTask(){
+        tasks.add("Hello");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+        tasks.add("hi");
+
+       // initRecyclerView();
+    }*/
+
+   private void initRecyclerView(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(tasks,this);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+
 }

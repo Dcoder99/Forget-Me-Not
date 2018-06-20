@@ -12,14 +12,48 @@
         android:id="@+id/image"/>
 
     <TextView
-        android:id="@+id/image_name"
+        android:id="@+id/task_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Whatever"
+        android:text="Task"
         android:layout_toRightOf="@+id/image"
         android:textColor="#000"
-        android:textSize="18dp"
+        android:textSize="27dp"
         android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/image"
+        android:text="Date"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@id/task_name"
+        android:layout_marginTop="35dp"/>
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/image"
+        android:text="time"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@id/task_name"
+        android:layout_marginTop="60dp"/>
+
+    <Button
+        android:id="@+id/delete"
+        android:text="delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/time"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20sp"/>
 
 
 

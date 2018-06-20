@@ -1,11 +1,15 @@
 package nocompany.schedule;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,11 +19,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private Context mContext;
+    DbHelper dbHelper;
 
-    public RecyclerViewAdapter(ArrayList<String> mImageNames, Context mContext) {
-        this.mImageNames = mImageNames;
+    private ArrayList<String> taskNames = new ArrayList<>();
+    private Context mContext;
+    private RecyclerViewAdapter adapter = this;
+
+    public RecyclerViewAdapter(ArrayList<String> taskNames, Context mContext) {
+        this.taskNames = taskNames;
         this.mContext = mContext;
     }
 
@@ -27,33 +34,51 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem,parent,false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        ViewHolder vh = new ViewHolder(view);
+        return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageName.setText(mImageNames.get(position));
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.taskname.setText(taskNames.get(position));
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String removable = taskNames.get(position);
+                adapter.notifyDataSetChanged();
+                taskNames.remove(position);
+                //dbHelper.deleteTask(removable);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
-        return mImageNames.size();
+        return taskNames.size();
+    }
+
+    public void delete(int position) { //removes the row
+        taskNames.remove(position);
+        notifyItemRemoved(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         CircleImageView image;
-        TextView imageName;
+        TextView taskname;
+        Button button;
         RelativeLayout parentlayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             image = itemView.findViewById(R.id.image);
-            imageName = itemView.findViewById(R.id.image_name);
+            taskname = itemView.findViewById(R.id.task_name);
+            button  = itemView.findViewById(R.id.delete);
             parentlayout = itemView.findViewById(R.id.parent_layout);
         }
+
     }
 }
