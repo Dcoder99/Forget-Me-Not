@@ -59,7 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\move.cs" />
+    <Compile Include="Assets\Scripts\Collisions.cs" />
+    <Compile Include="Assets\Scripts\Movements.cs" />
+    <Compile Include="Assets\Scripts\SwipeManager.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dhruv/Documents/GitHub/Forget-me-not/GameDev/Pyramid Run/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
