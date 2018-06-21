@@ -19,16 +19,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    DbHelper dbHelper;
-
     private ArrayList<String> taskNames = new ArrayList<>();
     private Context mContext;
     private RecyclerViewAdapter adapter = this;
 
+
     public RecyclerViewAdapter(ArrayList<String> taskNames, Context mContext) {
-        this.taskNames = taskNames;
+        DbHelper dbHelper = new DbHelper(mContext);
+        this.taskNames = dbHelper.getTaskList() ;
         this.mContext = mContext;
     }
+
 
     @NonNull
     @Override
@@ -44,11 +45,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String removable = taskNames.get(position);
                 adapter.notifyDataSetChanged();
                 taskNames.remove(position);
-                //dbHelper.deleteTask(removable);
+                DbHelper dbHelper = new DbHelper(mContext);
+                dbHelper.deleteTask(removable);
             }
         });
     }
@@ -57,11 +58,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return taskNames.size();
-    }
-
-    public void delete(int position) { //removes the row
-        taskNames.remove(position);
-        notifyItemRemoved(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -78,6 +74,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             taskname = itemView.findViewById(R.id.task_name);
             button  = itemView.findViewById(R.id.delete);
             parentlayout = itemView.findViewById(R.id.parent_layout);
+            int pos = getAdapterPosition();
+
         }
 
     }

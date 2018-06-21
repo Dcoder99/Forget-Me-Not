@@ -32,8 +32,9 @@ public class Schedulemain extends AppCompatActivity {
     private ArrayList<String> tasks = new ArrayList<>();
     private ArrayList<String> taskList = new ArrayList<>();
     DbHelper dbHelper;
-    RecyclerViewAdapter adapter;
-    RecyclerView recyclerView;
+    private RecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
 
     DateFormat formatDateTime = DateFormat.getDateTimeInstance();
     Calendar dateTime = Calendar.getInstance();
@@ -50,8 +51,9 @@ public class Schedulemain extends AppCompatActivity {
         setContentView(R.layout.activity_schedulemain);
 
         dbHelper = new DbHelper(this);
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         loadTaskList();
+
+
 
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +98,8 @@ public class Schedulemain extends AppCompatActivity {
 
                         Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
 
-
-
-
                     }
                 });
-
-
 
                display.setText(formatDateTime.format(dateTime.getTime()));
 
@@ -114,7 +111,8 @@ public class Schedulemain extends AppCompatActivity {
                         String task = String.valueOf(addtask.getText());
                         tasks.add(task);
                         dbHelper.insertnewTask(task);
-                        loadTaskList();
+                        adapter = new RecyclerViewAdapter(tasks,Schedulemain.this);
+                        recyclerView.setAdapter(adapter);
                     }
                 });
                 AlertDialog dialog = mBuilder.create();
@@ -123,9 +121,7 @@ public class Schedulemain extends AppCompatActivity {
             }
         });
 
-        initRecyclerView();
-
-
+      //  initRecyclerView();
 
     }
 
@@ -133,23 +129,22 @@ public class Schedulemain extends AppCompatActivity {
     private void loadTaskList() {
         taskList = dbHelper.getTaskList();
         if (adapter == null) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            RecyclerViewAdapter adapter = new RecyclerViewAdapter(taskList,this);
+            recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+            layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(layoutManager);
+            adapter = new RecyclerViewAdapter(taskList,this);
             recyclerView.setAdapter(adapter);
-
-
-        } else{
+            }
+            else{
+            tasks.addAll(taskList);
             adapter.notifyDataSetChanged();
         }
     }
 
-    public void deleteTask (View view){
-        View parent = (View) view.getParent();
-        TextView taskTextView = (TextView) findViewById(R.id.task_name);
-        Log.e("String", (String) taskTextView.getText());
-        String task = String.valueOf(taskTextView.getText());
-        dbHelper.deleteTask(task);
-        loadTaskList();
+    public void deleteTask (String removable){
+        dbHelper.deleteTask(removable);
+
     }
 
     private void updateDate(){
@@ -181,31 +176,11 @@ public class Schedulemain extends AppCompatActivity {
     };
 
 
- /*   private void AddTask(){
-        tasks.add("Hello");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-        tasks.add("hi");
-
-       // initRecyclerView();
-    }*/
-
-   private void initRecyclerView(){
+/*   private void initRecyclerView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(tasks,this);
         recyclerView.setAdapter(adapter);
 
-    }
-
+    } */
 
 }
