@@ -1,0 +1,4 @@
+#Wed Jun 20 03:52:17 TAHT 2018
+base.0=/home/mlabsystem2/AndroidStudioProjects/expt4threadSafeService/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
