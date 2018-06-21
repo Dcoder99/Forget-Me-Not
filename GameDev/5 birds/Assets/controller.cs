@@ -7,19 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class controller : MonoBehaviour {
 
-	// Use this for initialization
+	// Initialization
+
+	// Direction and Orientation
 	int dir = -1, ort = -1;
+	// Scaling Value and Spacing btw them
 	float scaleVal = 0.025f, spacing = 0.5f;
+	// Offset value to move all 5 birds right or left
 	float offsetX = -1, offsetY = -1;
+	// Enumeration for direction
 	int RIGHT = 1, LEFT = 3, DOWN = 0, UP = 2;
+	// Variable to store score
 	public static int sc = -1;
+	// Positive and negative increments to score.
 	int pos = 10, neg = 1;
+	// playTime denotes the total time game wil run for
 	float timeLeft = float.PositiveInfinity, playTime = 30.0f;
-	
+
+	// has Swiped keeps a track of the first Swipe	
 	bool hasSwiped = false;
+	// Text object to dislpay score
 	public Text score, tl;
+	// Transform arrows which stores the arrows
 	public Transform[] arrows;
 
+	// Function to assign a random orientaion
 	int assignOrientation(int orientation)
 	{
 		switch (orientation)
@@ -70,6 +82,7 @@ public class controller : MonoBehaviour {
 		return orientation;
 	}
 
+	// Function to assign a Random direction and Offset
 	void assignDirection()
 	{
 		ort = Random.Range(1, 6);
@@ -124,6 +137,7 @@ public class controller : MonoBehaviour {
 		SceneManager.LoadScene("GameOverScene");
 	}
 
+	// Start is called only once at the start of scene
 	void Start () {
 		sc = 0;
 		scaleSprites();

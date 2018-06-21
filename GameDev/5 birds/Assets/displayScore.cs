@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class displayScore : MonoBehaviour {
-
+	// Use this for initialization	
 	public Text disp, highsc;	
-	// Use this for initialization
+
 	void Start () {
 		disp.text = "Score : " + controller.sc.ToString();
 		highsc.text = "High Score : " + PlayerPrefs.GetInt("highscore", controller.sc);
@@ -16,9 +16,5 @@ public class displayScore : MonoBehaviour {
 	public void BackToMain()
 	{
 		SceneManager.LoadScene("MainScene");
-	}
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
