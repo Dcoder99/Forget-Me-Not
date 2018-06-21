@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 4289603971011622}
   - component: {fileID: 65615367366441950}
   m_Layer: 0
-  m_Name: Turn Prefab!
+  m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

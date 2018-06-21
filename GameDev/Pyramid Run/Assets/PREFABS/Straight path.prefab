@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4907930790565692}
   - component: {fileID: 65652223665011676}
   m_Layer: 0
-  m_Name: Path Prefab!
+  m_Name: Straight path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
