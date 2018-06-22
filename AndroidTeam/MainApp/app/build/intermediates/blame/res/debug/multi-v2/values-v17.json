@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Puneeth Karkera\\Desktop\\Android\\ExampleLayout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
+            "outputFile": "C:\\Users\\Vishnu S Murali\\Documents\\GitHub\\Forget-me-not\\AndroidTeam\\MainApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\227e46446d46eeaeeeaf6d1f01b01751\\res\\values-v17\\values-v17.xml",
+                    "source": "C:\\Users\\Vishnu S Murali\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\12b6725dfb366ebaf387e98fc66fde06\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,26,29,32,35,39,42,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

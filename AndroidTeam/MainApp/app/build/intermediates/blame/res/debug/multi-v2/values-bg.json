@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Puneeth Karkera\\Desktop\\Android\\ExampleLayout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
+            "outputFile": "C:\\Users\\Vishnu S Murali\\Documents\\GitHub\\Forget-me-not\\AndroidTeam\\MainApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\d2f49fe99f570b66086186f2a0b7dc39\\res\\values-bg\\values-bg.xml",
+                    "source": "C:\\Users\\Vishnu S Murali\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\fcd44f85af95a7c324da9e3be355c25f\\res\\values-bg\\values-bg.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Puneeth Karkera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\227e46446d46eeaeeeaf6d1f01b01751\\res\\values-bg\\values-bg.xml",
+                    "source": "C:\\Users\\Vishnu S Murali\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\12b6725dfb366ebaf387e98fc66fde06\\res\\values-bg\\values-bg.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

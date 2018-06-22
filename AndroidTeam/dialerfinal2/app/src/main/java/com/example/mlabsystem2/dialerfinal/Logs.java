@@ -56,4 +56,9 @@ public class Logs extends AppCompatActivity {
         adapter=new RecyclerAdapter1(durations,numbers,this);
         recyclerView.setAdapter(adapter);
     }
+    @Override
+    public  void onBackPressed(){
+        Intent intent=new Intent(this,Dialerfinal.class);
+        startActivity(intent);
+    }
 }

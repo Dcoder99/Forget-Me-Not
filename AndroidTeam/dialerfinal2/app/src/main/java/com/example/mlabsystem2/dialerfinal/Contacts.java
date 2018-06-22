@@ -48,4 +48,9 @@ public class Contacts extends AppCompatActivity {
         adapter=new RecyclerAdapter(contacts,numbers,cursor,this);
         recyclerView.setAdapter(adapter);
     }
+    @Override
+    public  void onBackPressed(){
+        Intent intent=new Intent(this,Dialerfinal.class);
+        startActivity(intent);
+    }
 }

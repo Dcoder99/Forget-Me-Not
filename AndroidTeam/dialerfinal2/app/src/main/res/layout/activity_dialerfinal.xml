@@ -32,4 +32,11 @@
         android:layout_marginLeft="220dp"
         android:id="@+id/logs"
         android:text="Calllogs"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="220dp"
+        android:text="Emergency"
+        android:id="@+id/emerge"/>
 </RelativeLayout>

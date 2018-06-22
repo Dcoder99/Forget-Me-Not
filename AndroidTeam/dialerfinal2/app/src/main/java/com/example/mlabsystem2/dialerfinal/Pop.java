@@ -32,4 +32,9 @@ public class Pop extends AppCompatActivity  implements View.OnClickListener {
         call.setData(Uri.parse("tel:" + number));
         startActivity(call);
     }
+    @Override
+    public  void onBackPressed(){
+        Intent intent=new Intent(this,Dialerfinal.class);
+        startActivity(intent);
+    }
 }
