@@ -60,9 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Collisions.cs" />
+    <Compile Include="Assets\Scripts\GameScript.cs" />
     <Compile Include="Assets\Scripts\generateLevel.cs" />
-    <Compile Include="Assets\Scripts\Movements.cs" />
-    <Compile Include="Assets\Scripts\SwipeManager.cs" />
+    <Compile Include="Assets\Scripts\levelPrefab.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dhruv/Documents/GitHub/Forget-me-not/GameDev/Pyramid Run/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
