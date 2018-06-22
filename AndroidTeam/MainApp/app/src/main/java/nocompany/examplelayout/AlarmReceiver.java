@@ -1,4 +1,4 @@
-package nocompany.schedule;
+package nocompany.examplelayout;
 
 import android.app.Notification;
 import android.app.NotificationManager;

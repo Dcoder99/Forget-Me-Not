@@ -10,12 +10,11 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "Todo";
-    private static final int DB_VER = 1;
+
+    public static final String DB_NAME = "Todo";
+    public static final int DB_VER = 1;
     public static final String DB_TABLE = "Task";
     public static final String DB_COLUMN = "TaskName";
-
-
 
     public DbHelper(Context context) {
 
@@ -46,7 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteTask(String task){
+        public void deleteTask(String task){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_TABLE,DB_COLUMN + " = ?",new String[]{task});
         db.close();
@@ -67,3 +66,5 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 }
+
+

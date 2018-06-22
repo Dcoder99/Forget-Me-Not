@@ -19,6 +19,7 @@
         <activity android:name=".Main2Activity"></activity>
         <activity android:name=".Schedulemain"
             android:exported="true"></activity>
+        <receiver android:name=".AlarmReceiver"></receiver>
     </application>
 
 </manifest>

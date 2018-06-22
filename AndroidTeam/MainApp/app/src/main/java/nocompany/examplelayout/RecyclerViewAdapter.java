@@ -1,4 +1,4 @@
-package nocompany.schedule;
+package nocompany.examplelayout;
 
 import android.content.Context;
 import android.content.Intent;
