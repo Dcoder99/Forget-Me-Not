@@ -5,25 +5,29 @@ using UnityEngine;
 public class GameScript : MonoBehaviour
 {
 
-    public GameObject path40Prefab, path80Prefab, turnPrefab, tPrefab;
+    public GameObject max , path40Prefab, path80Prefab, turnPrefab, tPrefab , deadendPrefab;        
 
     // GameObject getPrefab(int idx)
     // {
-	// 	// enum prefabs {path40, path80, turn, t_junct, coin};
-	// 	switch(idx)
-	// 	{
-	// 		case 0:
-	// 			return path40Prefab;
-	// 		case 1:
-	// 			return path80Prefab;
-	// 		case 3:
-	// 			return turnPrefab;
-	// 		case 4:
-	// 			return tPrefab;
-	// 		default:
-	// 			Debug.Log("Prefab index Out of Bounds");
-	// 			return path40Prefab; // Default prefab
-	// 	}
+    // 	// enum prefabs {max,path40, path80, turn, t_junct, dead_end, coin};
+    // 	switch(idx)
+    // 	{
+    // 		case 0:
+    // 			return max;
+    // 		case 1:
+    // 			return path40Prefab;
+    //      case 2;
+    //          return path80Prefab;
+    // 		case 3:
+    // 			return turnPrefab;
+    // 		case 4:
+    // 			return tPrefab;
+    //      case 5:
+    //          return deadendPrefab;
+    // 		default:
+    // 			Debug.Log("Prefab index Out of Bounds");
+    // 			return path40Prefab; // Default prefab
+    // 	}
     // }
 
     void generateLevel(int currentLevel)
@@ -37,24 +41,44 @@ public class GameScript : MonoBehaviour
 			if(prefab1[4] == -1f)
 			{
 				Debug.Log("Instantiate prefab");
+
+                //Instantiating Max
 				if((int)prefab1[0] == 0){
+					Instantiate(max, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+				}
+
+                //Instantiating Path40
+				if((int)prefab1[0] == 1){
 					Instantiate(path40Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
 				}
-				if((int)prefab1[0] == 1){
+
+                //Instantiating Path80
+				if((int)prefab1[0] == 2){
 					Instantiate(path80Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
 				}
-				if((int)prefab1[0] == 2){
+
+                //Instantiating Turn 
+				if((int)prefab1[0] == 3){
 					Instantiate(turnPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
 				}
-				if((int)prefab1[0] == 3){
-					Instantiate(tPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-				}
-			}
+
+                //Instantiating T Junction
+                if ((int)prefab1[0] == 4)
+                {
+                    Instantiate(tPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                }
+
+                //Instantiating Dead End
+                if ((int)prefab1[0] == 5)
+                {
+                    Instantiate(deadendPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                }
+            }
 		}
     }
     void Start()
     {
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 0));
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
     }
 
     // Update is called once per frame

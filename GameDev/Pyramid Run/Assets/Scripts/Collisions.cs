@@ -18,7 +18,7 @@ public class Collisions : MonoBehaviour {
     {
         if (collision.gameObject.name == "Wall L" || collision.gameObject.name == "Wall R")
         {
-            Movements.runState = false;
+           // Movements.runState = false;
         }
     }
 }
