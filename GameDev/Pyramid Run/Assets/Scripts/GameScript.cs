@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameScript : MonoBehaviour
 {
 
-    public GameObject maxPrefab , path40Prefab, path80Prefab, turnPrefab, tPrefab , deadendPrefab ;        
+    public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab;
 
     // GameObject getPrefab(int idx)
     // {
@@ -32,33 +32,36 @@ public class GameScript : MonoBehaviour
 
     void generateLevel(int currentLevel)
     {
-		Debug.Log("Generating Level..." + currentLevel);
+        Debug.Log("Generating Level..." + currentLevel);
         List<List<float>> level = levelPrefab.array[currentLevel];
 
         //Instantiating Max
-        Instantiate(maxPrefab, new Vector3(0, 0 , 4 ), transform.rotation * Quaternion.Euler(0, 0, 0));
-        
+        Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
+
         // prefab1 = {which_prefab, x_coordinate, z_coordinate, y_rotation, index_of_prefab}
         foreach (List<float> prefab1 in level)
         {
-			if(prefab1[4] == -1f)
-			{
-				Debug.Log("Instantiate prefab");
+            if (prefab1[4] == -1f)
+            {
+                Debug.Log("Instantiate prefab");
 
                 //Instantiating Path40
-				if((int)prefab1[0] == 0){
-					Instantiate(path40Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-				}
+                if ((int)prefab1[0] == 0)
+                {
+                    Instantiate(path40Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                }
 
                 //Instantiating Path80
-				if((int)prefab1[0] == 1){
-					Instantiate(path80Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-				}
+                if ((int)prefab1[0] == 1)
+                {
+                    Instantiate(path80Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                }
 
                 //Instantiating Turn 
-				if((int)prefab1[0] == 2){
-					Instantiate(turnPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-				}
+                if ((int)prefab1[0] == 2)
+                {
+                    Instantiate(turnPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                }
 
                 //Instantiating T Junction
                 if ((int)prefab1[0] == 3)
@@ -72,11 +75,11 @@ public class GameScript : MonoBehaviour
                     Instantiate(deadendPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
                 }
             }
-		}
+        }
     }
     void Start()
     {
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 0));
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 12));
     }
 
     // Update is called once per frame
