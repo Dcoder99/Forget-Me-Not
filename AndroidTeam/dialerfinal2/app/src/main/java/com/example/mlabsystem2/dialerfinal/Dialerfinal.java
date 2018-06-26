@@ -32,6 +32,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
         editText=findViewById(R.id.et);
         bt.setOnClickListener(this);
         contacts.setOnClickListener(this);
+        emerge.setOnClickListener(this);
         logs=findViewById(R.id.logs);
       if(getIntent().getStringExtra("number")!=null) {
           editText.setText(getIntent().getStringExtra("number"));
@@ -89,6 +90,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
                         Intent call = new Intent(Intent.ACTION_CALL);
                         call.setData(Uri.parse("tel:" + number));
                         startActivity(call);
+                        editText.setText(null);
                     }
 
                 }
@@ -105,9 +107,11 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
                     startActivity(log);
                 }
                 break;
-                //case R.id.emerge:{
-                //  Intent emergency=new Intent (this,Emergency.class);
-                //startActivity(emergency);
+                case R.id.emerge:{
+                  Intent emergency=new Intent (this,Emergency.class);
+                  startActivity(emergency);
+            }
+
             }
         }
 

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.card3: {
                 Intent intent = new Intent(this, Main2Activity.class);
                 startActivity(intent);
-            }
+            }break;
             case R.id.callcard: {
                 Intent intent1 = new Intent(this, Dialerfinal.class);
                 startActivity(intent1);
