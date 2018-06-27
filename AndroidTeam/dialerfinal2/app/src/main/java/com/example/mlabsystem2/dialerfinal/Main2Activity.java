@@ -8,25 +8,27 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 
 public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
-CardView cardfeeds;
+CardView cardfeeds,cardmaps;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         cardfeeds=(CardView)findViewById(R.id.cardfeeds);
+        cardmaps=(CardView)findViewById(R.id.cardmaps);
         cardfeeds.setOnClickListener(this);
+        cardmaps.setOnClickListener(this);
 
     }
 
 
 
-//    public void LaunchMap(View view) {
-//        Uri gmmIntentUri = Uri.parse("google.navigation:q=PESIT+Research+center, Hosur+Karnataka&mode=w");
-//        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//        mapIntent.setPackage("com.google.android.apps.maps");
-//        startActivity(mapIntent);
-//
-//    }
+   public void LaunchMap(View view) {
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=PESIT+Research+center, Hosur+Karnataka&mode=w");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -34,6 +36,9 @@ CardView cardfeeds;
             case R.id.cardfeeds:{
                 Intent feed=new Intent(this,FeedActivity.class);
                 startActivity(feed);
+            }break;
+            case R.id.cardmaps:{
+                LaunchMap(v);
             }
         }
 
