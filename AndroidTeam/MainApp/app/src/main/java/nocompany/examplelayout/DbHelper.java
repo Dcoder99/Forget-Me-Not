@@ -15,15 +15,16 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int DB_VER = 1;
     public static final String DB_TABLE = "Task";
     public static final String DB_COLUMN = "TaskName";
+    public static final String DB_COLUMN1 = "Dates";
+    public static final String DB_COLUMN2 = "Times";
 
     public DbHelper(Context context) {
-
         super(context, DB_NAME, null, DB_VER);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL);",DB_TABLE,DB_COLUMN);
+        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL,%s TEXT NOT NULL,%s TEXT NOT NULL);",DB_TABLE,DB_COLUMN,DB_COLUMN1,DB_COLUMN2);
         db.execSQL(query);
 
     }
@@ -37,10 +38,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertnewTask(String task){
+    public void insertnewTask(String task,String date,String time){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DB_COLUMN,task);
+        values.put(DB_COLUMN1,date);
+        values.put(DB_COLUMN2,time);
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
@@ -62,6 +65,33 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return taskList;
+    }
+
+    public ArrayList<String> getDateList(){
+        ArrayList<String>dateList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE,new String[]{DB_COLUMN1},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index = cursor.getColumnIndex(DB_COLUMN1);
+            dateList.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return dateList;
+    }
+
+
+    public ArrayList<String> getTimeList(){
+        ArrayList<String>timeList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE,new String[]{DB_COLUMN2},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index = cursor.getColumnIndex(DB_COLUMN2);
+            timeList.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return timeList;
     }
 
 

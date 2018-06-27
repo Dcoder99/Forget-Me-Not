@@ -14,14 +14,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -30,7 +33,11 @@ public class Schedulemain extends AppCompatActivity {
     private static final String TAG = "Schedulemain";
 
     private ArrayList<String> tasks = new ArrayList<>();
+    private ArrayList<String> dates = new ArrayList<>();
+    private ArrayList<String> times = new ArrayList<>();
     private ArrayList<String> taskList = new ArrayList<>();
+    private ArrayList<String> dateList = new ArrayList<>();
+    private ArrayList<String> timeList = new ArrayList<>();
     DbHelper dbHelper;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
@@ -66,6 +73,15 @@ public class Schedulemain extends AppCompatActivity {
                 Button settime = (Button)mView.findViewById(R.id.settime);
                 final TextView display = (TextView)mView.findViewById(R.id.display);
                 Button set = (Button)mView.findViewById(R.id.set);
+                final Spinner myspinner = (Spinner)mView.findViewById(R.id.spinner);
+
+                ArrayAdapter<String> myadapter = new ArrayAdapter<String>(Schedulemain.this,
+                        android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinnernames));
+                myadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                myspinner.setAdapter(myadapter);
+
+                //final String text = myspinner.getSelectedItem().toString();
+
 
                 setdate.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -91,16 +107,30 @@ public class Schedulemain extends AppCompatActivity {
                             Toast.makeText(Schedulemain.this, "Insert Something", Toast.LENGTH_SHORT).show();
                         }else {
 
+                            int i = 0;
                             Intent intent = new Intent(Schedulemain.this, AlarmReceiver.class);
                             intent.putExtra("task", addtask.getText().toString());
                             intent.putExtra("notificationId", notificationId);
 
-                            PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                            PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, 0, intent, 0);
                             AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                            alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
+                            if(myspinner.getSelectedItem().toString().equals("Every minute")) {
 
-                            Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 1 * 60, alarmintent);
+
+                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                            }
+                            if(myspinner.getSelectedItem().toString().equals("Every two minutes") ){
+                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),1000*2*60, alarmintent);
+
+                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                alarm.set(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),alarmintent);
+
+                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                     }
@@ -118,10 +148,16 @@ public class Schedulemain extends AppCompatActivity {
                             Toast.makeText(Schedulemain.this, "Insert Something", Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            String formatedDate = sdf.format(dateTime.getTime());
+                            SimpleDateFormat sdft = new SimpleDateFormat("HH:mm a");
+                            String formatedTime = sdft.format(dateTime.getTime());
                             String task = String.valueOf(addtask.getText());
                             tasks.add(task);
-                            dbHelper.insertnewTask(task);
-                            adapter = new RecyclerViewAdapter(tasks, Schedulemain.this);
+                            dates.add(formatedDate);
+                            times.add(formatedTime);
+                            dbHelper.insertnewTask(task,formatedDate,formatedTime);
+                            adapter = new RecyclerViewAdapter(tasks,dates,times, Schedulemain.this);
                             recyclerView.setAdapter(adapter);
                         }
                     }
@@ -140,24 +176,27 @@ public class Schedulemain extends AppCompatActivity {
 
     private void loadTaskList() {
         taskList = dbHelper.getTaskList();
+        dateList = dbHelper.getDateList();
+        timeList = dbHelper.getTimeList();
         if (adapter == null) {
             recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
             layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(layoutManager);
-            adapter = new RecyclerViewAdapter(taskList,this);
+            adapter = new RecyclerViewAdapter(taskList,dateList,timeList,this);
             recyclerView.setAdapter(adapter);
             }
             else{
             tasks.addAll(taskList);
+            dates.addAll(dateList);
+            times.addAll(timeList);
             adapter.notifyDataSetChanged();
         }
     }
 
     public void deleteTask (String removable){
         dbHelper.deleteTask(removable);
-
-    }
+        }
 
     private void updateDate(){
         new DatePickerDialog(this,d,dateTime.get(Calendar.YEAR),dateTime.get(Calendar.MONTH),dateTime.get(Calendar.DAY_OF_MONTH)).show();
@@ -165,7 +204,7 @@ public class Schedulemain extends AppCompatActivity {
     }
 
     private void updateTime(){
-        new TimePickerDialog(this,t,dateTime.get(Calendar.HOUR_OF_DAY),dateTime.get(Calendar.MINUTE),true).show();
+        new TimePickerDialog(this,t,dateTime.get(Calendar.HOUR_OF_DAY),dateTime.get(Calendar.MINUTE),false).show();
     }
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
@@ -174,6 +213,7 @@ public class Schedulemain extends AppCompatActivity {
             dateTime.set(Calendar.YEAR,year);
             dateTime.set(Calendar.MONTH,month);
             dateTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
         }
     };
 

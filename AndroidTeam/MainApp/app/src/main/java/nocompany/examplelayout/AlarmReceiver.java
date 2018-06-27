@@ -25,7 +25,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Notification.Builder builder = new Notification.Builder(context);
         builder.setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle("Reminder!!!").setContentText(message)
-                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(contentIntent).setSound(soundUri);
+                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(contentIntent).setSound(soundUri)
+                .setOngoing(true);
 
         myNotificationManager.notify(notificationId, builder.build());
         Vibrator v = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);

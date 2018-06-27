@@ -20,13 +20,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<String> taskNames = new ArrayList<>();
+    private ArrayList<String> taskDates = new ArrayList<>();
+    private ArrayList<String> taskTimes = new ArrayList<>();
     private Context mContext;
     private RecyclerViewAdapter adapter = this;
 
 
-    public RecyclerViewAdapter(ArrayList<String> taskNames, Context mContext) {
+    public RecyclerViewAdapter(ArrayList<String> taskNames,ArrayList<String> taskDates,ArrayList<String> taskTimes, Context mContext) {
         DbHelper dbHelper = new DbHelper(mContext);
         this.taskNames = dbHelper.getTaskList() ;
+        this.taskDates = dbHelper.getDateList();
+        this.taskTimes = dbHelper.getTimeList();
         this.mContext = mContext;
     }
 
@@ -42,12 +46,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.taskname.setText(taskNames.get(position));
+        holder.date.setText(taskDates.get(position));
+        holder.time.setText(taskTimes.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String removable = taskNames.get(position);
                 adapter.notifyDataSetChanged();
                 taskNames.remove(position);
+                taskDates.remove(position);
+                taskTimes.remove(position);
                 DbHelper dbHelper = new DbHelper(mContext);
                 dbHelper.deleteTask(removable);
             }
@@ -64,6 +72,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         CircleImageView image;
         TextView taskname;
+        TextView date;
+        TextView time;
         Button button;
         RelativeLayout parentlayout;
 
@@ -72,6 +82,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             image = itemView.findViewById(R.id.image);
             taskname = itemView.findViewById(R.id.task_name);
+            date = itemView.findViewById(R.id.date);
+            time = itemView.findViewById(R.id.time);
             button  = itemView.findViewById(R.id.delete);
             parentlayout = itemView.findViewById(R.id.parent_layout);
             int pos = getAdapterPosition();
