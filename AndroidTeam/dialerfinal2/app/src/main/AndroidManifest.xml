@@ -32,6 +32,9 @@
         <activity android:name=".DetailsActivity" />
         <activity android:name=".FeedActivity"/>
         <activity android:name=".Emergency"></activity>
+        <activity android:name=".Schedulemain"
+            android:exported="true"></activity>
+        <receiver android:name=".AlarmReceiver"></receiver>
     </application>
 
 </manifest>

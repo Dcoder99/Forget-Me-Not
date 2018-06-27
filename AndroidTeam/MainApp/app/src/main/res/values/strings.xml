@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ExampleLayout</string>
+<<<<<<< HEAD
+=======
+    <string name="no_tasks">No Tasks Scheduled</string>
+    <string-array name="spinnernames">
+        <item>Every minute</item>
+        <item>Every two minutes</item>
+        <item>Every Day</item>
+    </string-array>
+>>>>>>> Puneeth
 </resources>

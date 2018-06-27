@@ -17,7 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity"></activity>
+<<<<<<< HEAD
         <activity android:name=".Schedulemain"></activity>
+=======
+        <activity android:name=".Schedulemain"
+            android:exported="true"></activity>
+        <receiver android:name=".AlarmReceiver"></receiver>
+>>>>>>> Puneeth
     </application>
 
 </manifest>
