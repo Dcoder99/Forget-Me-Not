@@ -7,6 +7,8 @@ public class Collisions : MonoBehaviour
 {
     static int v;
     public Text message;
+    public GameObject ExplodePrefab;
+    GameObject ExplodeObj;
 
     void Start()
     {
@@ -19,6 +21,11 @@ public class Collisions : MonoBehaviour
         Debug.Log("In Delay");
         ButtonsScript.loadSelectedScene("GameOver");
     }
+    
+    void Explode()
+    {
+        Destroy(ExplodeObj);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,7 +33,11 @@ public class Collisions : MonoBehaviour
         {
             if (v == GameScript.targetIdx)
             {
+
+                ExplodeObj = Instantiate(ExplodePrefab, collision.transform.position, new Quaternion(0, 0, 0, 0));
                 Destroy(collision.gameObject);
+                Invoke("Explode", 1.8f);
+
                 Debug.Log("CORRECT ORDER");
                 GameScript.targetIdx++;
                 message.text = "HEAD TO CHECKPOINT " + GameScript.targetIdx;

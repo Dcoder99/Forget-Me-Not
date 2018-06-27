@@ -105,12 +105,10 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         Init();
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 3));
+
+        Debug.Log(PlayerPrefs.GetInt("currentLevel"));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }
