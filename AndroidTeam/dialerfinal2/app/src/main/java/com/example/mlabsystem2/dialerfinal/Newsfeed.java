@@ -1,4 +1,4 @@
-package com.androstock.newsapp;
+package com.example.mlabsystem2.dialerfinal;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -19,10 +19,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class Newsfeed extends AppCompatActivity {
 
     String API_KEY = "3ef9a0a52d4b4d61975877cc0fbb990c"; // ### YOUE NEWS API HERE ###
-    String[] NEWS_SOURCE = {"bbc-news", "abc-news", "axios", "bbc-sport", "blasting-news-br", "bloomberg", "cbc-news", "cnbc", "cnn"};
+    String[] NEWS_SOURCE = {"bbc-news", "abc-news", "axios", "bbc-sport", "blasting-news-br", "bloomberg", "cbc-news", "cnbc", "cnn","daily-mail",
+    "business-insider","espn","financial-times","google-news","fox-news","hacker-news","info-money","mirror","mtv-news","national-geographic","news24",
+    "new-scientist","politico","time","the-hindu"};
     RecyclerView listNews;
     ProgressBar loader;
     private RecyclerAdapterfeed adapter;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_newsfeed);
 
         listNews = (RecyclerView) findViewById(R.id.listNews);
         loader = (ProgressBar) findViewById(R.id.loader);
@@ -54,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
                 newsTask.execute(m);
             } else {
-                Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                if(i==1) {
+                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                    loader.setVisibility(View.GONE);
+                }
             }
         }
 
@@ -101,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         map.put(KEY_URL, jsonObject.optString(KEY_URL).toString());
                         map.put(KEY_URLTOIMAGE, jsonObject.optString(KEY_URLTOIMAGE).toString());
                         map.put(KEY_PUBLISHEDAT, jsonObject.optString(KEY_PUBLISHEDAT).toString());
-                        if ((jsonObject.optString(KEY_TITLE).toString()).indexOf("on") != -1) {
+                        if (((jsonObject.optString(KEY_TITLE).toString()).indexOf("get") != -1)||((jsonObject.optString(KEY_DESCRIPTION).toString()).indexOf("take") != -1)) {
                             dataList.add(map);
                         }
                         if(dataList.size()!=0){
@@ -112,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
                 }
 
-                layoutManager=new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL,false);
+                layoutManager=new LinearLayoutManager(Newsfeed.this, LinearLayoutManager.VERTICAL,false);
                 listNews.setHasFixedSize(true);
                 listNews.setLayoutManager(layoutManager);
-                adapter=new RecyclerAdapterfeed(dataList,MainActivity.this);
+                adapter=new RecyclerAdapterfeed(dataList,Newsfeed.this);
                 listNews.setAdapter(adapter);
               //  RecyclerAdapterfeed adapter = new RecyclerAdapterfeed(dataList,MainActivity.this);
                 //listNews.setAdapter(adapter);
@@ -132,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 Toast.makeText(getApplicationContext(), "No news found", Toast.LENGTH_SHORT).show();
+                loader.setVisibility(View.GONE);
             }
 
 

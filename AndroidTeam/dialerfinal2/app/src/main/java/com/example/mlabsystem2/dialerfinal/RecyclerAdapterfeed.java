@@ -1,4 +1,4 @@
-package com.androstock.newsapp;
+package com.example.mlabsystem2.dialerfinal;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.androstock.newsapp.Newsfeed.KEY_URL;
+
+import static com.example.mlabsystem2.dialerfinal.Newsfeed.KEY_URL;
 
 public class RecyclerAdapterfeed extends RecyclerView.Adapter<RecyclerAdapterfeed.ImageViewHolder> {
     private ArrayList<HashMap<String, String>> data;

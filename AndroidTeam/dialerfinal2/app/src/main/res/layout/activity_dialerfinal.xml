@@ -4,59 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/images"
     tools:context=".Dialerfinal">
 
-    <Button
-
-        android:layout_width="120dp"
-        android:background="@drawable/button_states"
-        android:layout_height="150dp"
-        android:layout_marginLeft="150dp"
-        android:id="@+id/bt"
-        android:layout_marginTop="520dp"
-        android:text="CALL"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/green"
-        />
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_height="400dp"
+        android:background="@drawable/gradientbackground"
+        >
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="65dp"
+            android:background="@color/white"
+            android:id="@+id/et"
+            android:inputType="phone"
+            android:textSize="30dp"
+
+
+        />
+        <Button
+            android:id="@+id/emerge"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Emergency"
+            android:layout_marginLeft="265dp"
+            android:background="@drawable/contactbutton"
+            android:elevation="30dp"/>
+    </RelativeLayout>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="400dp"
         android:background="@color/white"
-        android:id="@+id/et"
-        android:inputType="phone"/>
-    <Button
+        android:orientation="horizontal">
+        <Button
 
-        android:layout_width="200dp"
+            android:layout_width="150dp"
 
-        android:background="@drawable/contactbutton"
-        android:layout_height="160dp"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/contacts"
-        android:text="Contacts"
-        android:textColor="@color/colorPrimary"
-        android:textSize="25dp"/>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="160dp"
-        android:background="@drawable/logscall"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="210dp"
-        android:id="@+id/logs"
-        android:textSize="25dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Calllogs"/>
+            android:background="@drawable/contactbutton"
+            android:layout_height="70dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/contacts"
+            android:text="Contacts"
+            android:elevation="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15dp"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/bt"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="180dp"
 
-    <Button
-        android:id="@+id/emerge"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+            android:clickable="true"
+            app:backgroundTint="@color/startblue"
+            app:elevation="16dp"
+            app:rippleColor="@color/white"
+            app:srcCompat="@drawable/button_states" />
 
-        android:text="Emergency"
-        android:layout_marginLeft="250dp"
-        android:background="@drawable/contactbutton"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:background="@drawable/logscall"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/logs"
+            android:textSize="25dp"
+            android:elevation="40dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Call logs"/>
 
+
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.mlabsystem2.dialerfinal;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.Manifest;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Dialerfinal extends AppCompatActivity  implements View.OnClickListener {
-    Button bt;
+    FloatingActionButton bt;
     Button contacts;
     Cursor cursor;
     String number;
