@@ -1,29 +1,23 @@
 package com.example.mlabsystem2.dialerfinal;
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.CallLog;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ImageViewHolder> {
+public class RecyclerAdaptercont extends RecyclerView.Adapter<RecyclerAdaptercont.ImageViewHolder> {
     ArrayList<String> contacts=new ArrayList<String>();
     ArrayList<String> numbers=new ArrayList<String>();
     Context ctx;
     Cursor cursor;
     Cursor cursor1;
 
-    public RecyclerAdapter(ArrayList<String>contacts,ArrayList<String>numbers,Cursor cursor, Context ctx) {
+    public RecyclerAdaptercont(ArrayList<String>contacts, ArrayList<String>numbers, Cursor cursor, Context ctx) {
         this.contacts = contacts;
         this.numbers= numbers;
         this.cursor=cursor;
