@@ -9,28 +9,6 @@ public class GameScript : MonoBehaviour
     public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin;
     public static int maxCoinIdx = -1, targetIdx = 1;
 
-    // GameObject getPrefab(int idx)
-    // {
-    // 	// enum prefabs {path40, path80, turn, t_junct, dead_end, coin};
-    // 	switch(idx)
-    // 	{
-    // 		case 0:
-    // 			return max;
-    // 		case 1:
-    // 			return path40Prefab;
-    //      case 2;
-    //          return path80Prefab;
-    // 		case 3:
-    // 			return turnPrefab;
-    // 		case 4:
-    // 			return tPrefab;
-    //      case 5:
-    //          return deadendPrefab;
-    // 		default:
-    // 			Debug.Log("Prefab index Out of Bounds");
-    // 			return path40Prefab; // Default prefab
-    // 	}
-    // }
 
     void generateLevel(int currentLevel)
     {
@@ -76,8 +54,9 @@ public class GameScript : MonoBehaviour
             }
             else
             {
+                Debug.Log("Generating Coins!");
                 // It's a coin!
-                string coinName = "coin " + prefab1[4].ToString();
+                string coinName = prefab1[4].ToString();
                 GameObject coinObject = Instantiate(coin, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
                 coinObject.name = coinName;
                 if (prefab1[4] > maxCoinIdx)
@@ -93,10 +72,13 @@ public class GameScript : MonoBehaviour
         Debug.Log("INIT");
         maxCoinIdx = -1;
         targetIdx = 1;
-        
+
         //Instantiating Max
-        GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
-        maxInstance.AddComponent<Collisions>();
+        //GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
+        //maxInstance.AddComponent<Collisions>();
+
+        
+
     }
     void Start()
     {

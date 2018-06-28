@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1901978071953140}
+  m_IsPrefabParent: 1
+--- !u!1 &1901978071953140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4656527782088034}
+  - component: {fileID: 114739136193177364}
+  - component: {fileID: 114980960514970772}
+  m_Layer: 0
+  m_Name: CreateGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4656527782088034
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901978071953140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.724674, y: 214.28098, z: 63.658794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114739136193177364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901978071953140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8e02e047998704480f852725cf3b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPrefab: {fileID: 1884645593056680, guid: 52e77b155c740b14392ede82249f5014, type: 2}
+  path40Prefab: {fileID: 1109037751654144, guid: f3c21b3703b033846adc9748f6d34c17,
+    type: 2}
+  path80Prefab: {fileID: 1158687936304240, guid: 083854e4f761db0419dba4ae8a606f93,
+    type: 2}
+  turnPrefab: {fileID: 1753790271142954, guid: 98c0ffe7aa795e64e8b18c7912ce60c3, type: 2}
+  tPrefab: {fileID: 1014447370804474, guid: 9ba2cc729cd0532448025fc48977f99d, type: 2}
+  deadendPrefab: {fileID: 1405871772604834, guid: 09a184c7ccf14054e9c441d80b3f4b5b,
+    type: 2}
+  coin: {fileID: 1531062528613582, guid: 74798068983053842bb1e6ad5cb02b58, type: 2}
+--- !u!114 &114980960514970772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901978071953140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5b64de59534f44598a97fcca713bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

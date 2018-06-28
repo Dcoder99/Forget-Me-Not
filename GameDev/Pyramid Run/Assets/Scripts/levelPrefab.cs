@@ -11,7 +11,7 @@ public class levelPrefab : MonoBehaviour
 
     public static List<List<List<float>>> array = new List<List<List<float>>>();
     List<List<float>> level;        // a grid reinitialized for each level
-    List<float> prefab1; 	        // prefab1 = {which_prefab, x_coordinate, z_coordinate, y_rotation, index_of_prefab}
+    List<float> prefab1,prefab_cam; 	        // prefab1 = {which_prefab, x_coordinate, z_coordinate, y_rotation, index_of_prefab}
     void Start()
     {
 
@@ -23,10 +23,11 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path80, p_len2 + t_len, p_len2 * 2 + t_len, 90, -1f };
         level.Add(prefab1);
+        
         array.Add(level);
 
 
-        // LEVEL 1: B
+        // LEVEL 1:  B
         level = new List<List<float>>();
         prefab1 = new List<float>() { (float)prefabs.path80, 0, p_len2, 0, -1f };
         level.Add(prefab1);
@@ -42,92 +43,121 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, -(2 * p_len2 + 2 * t_len), p_len2 * 2 + 2 * t_len + p_len, 0, -1f };
         level.Add(prefab1);
+        prefab1= new List<float>() { -1f, -45, 48 ,0, -1f };//camera
+        level.Add(prefab1);
         array.Add(level);
 
 
-        //LEVEL 2C:
+        //LEVEL 2:  C
         level = new List<List<float>>();
         prefab1 = new List<float>() { (float)prefabs.path80, 0, p_len2, 0, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.turn, 0, (p_len2 * 2 + t_len), 0, -1f };
         level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, (p_len2 * 2 + t_len), 0, 1 };
+        level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, (t_len + p_len), (p_len2 * 2 + t_len), 90, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.turn, 2 * (t_len + p_len), (p_len2 * 2 + t_len), 90, -1f };
         level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 2 * (t_len + p_len), (p_len2 * 2 + t_len), 90, 2 };
+        level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, 2 * (t_len + p_len), (p_len2 + p_len), 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 2 * (t_len + p_len), (p_len2 + 2 * p_len - (p_len / 2)), 0, 3 };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, 24, 48 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
 
 
-        //	LEVEL 3D:
+        //	LEVEL 3:    D
         level = new List<List<float>>();
         prefab1 = new List<float>() { (float)prefabs.path80, 0, p_len2, 0, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, p_len2 * 2 + t_len, 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, p_len2, 0, 1 };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, p_len2 * 2 + t_len, 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, p_len2 * 2 + t_len, 90, 2};
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path80, -(p_len2 + t_len), p_len2 * 2 + t_len, 90, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.dead_end, -(2 * p_len2 + t_len + 0.5f), p_len2 * 2 + t_len, 0, -1f };
         level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.dead_end, (2 * p_len2 + t_len + 0.5f), p_len2 * 2 + t_len, 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, -(2 * p_len2 + t_len - p_len/2), p_len2 * 2 + t_len, 0, 3 };
+        level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path80, p_len2 + t_len, p_len2 * 2 + t_len, 90, -1f };
         level.Add(prefab1);
-        array.Add(level);
 
-
-        //  LEVEL 4E:
-        level = new List<List<float>>();
-        prefab1 = new List<float>() { (float)prefabs.path40, 0, p_len, 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, 0, (p_len * 2 + t_len), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path80, (p_len2 + t_len), (p_len * 2 + t_len), 90, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.t_junct, (2 * p_len2 + 2 * t_len), (p_len * 2 + t_len), 90, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, (p_len2 * 2 + t_len * 2), (p_len * 3 + t_len * 2), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, (p_len2 * 2 + t_len * 2), (p_len), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, (p_len2 * 2 + t_len * 2), -(t_len), 270, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, (p_len + p_len2 * 2 + t_len * 3), -(t_len), 90, -1f };
+        prefab1= new List<float>() { -1f, -2.6f, 48 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
 
 
-        //  LEVEL 5A:
+        //  LEVEL 4:    K
+        level = new List<List<float>>();
+        prefab1 = new List<float>() { (float)prefabs.path80, 0, p_len2, 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.turn, 0, (p_len2 * 2 + t_len), 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, (p_len2 * 2 + t_len), 0, 1 };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.path80, (t_len + p_len2), (p_len2 * 2 + t_len), 90, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.turn, 2 * (t_len + p_len2), (p_len2 * 2 + t_len), 90, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 2 * (t_len + p_len2), (p_len2 * 2 + t_len), 90, 2 };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.path80, 2 * (t_len + p_len2), p_len2, 0, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.turn, 2 * (t_len + p_len2), -(t_len), 180, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.path80, (t_len + p_len2), -(t_len), 90, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.turn, 0, -(t_len), 270, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, -(t_len), 270, 3 };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, 40, 27 ,0, -1f };//camera
+        level.Add(prefab1);
+        array.Add(level);
+
+
+        //  LEVEL 5:    G
         level = new List<List<float>>();
         prefab1 = new List<float>() { (float)prefabs.path40, 0, p_len, 0, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, (p_len2 + t_len), 0, -1f };
+        prefab1 = new List<float>() { (float)prefabs.path40, 0, (3 * p_len + 2 * t_len), 0, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, -(p_len + t_len), (p_len2 + t_len), 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, (p_len2 + t_len), 270, -1f };
+        level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, (p_len2 + t_len), 270, 1 };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, (p_len + t_len), (p_len2 + t_len), 90, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, -(p_len2 + 2 * t_len), (p_len2 + t_len), 270, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, (p_len2 + 2 * t_len), (p_len2 + t_len), 180, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, -(p_len2 + 2 * t_len), (3 * p_len + 2 * t_len), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, (p_len2 + 2 * t_len), (3 * p_len + 2 * t_len), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, -(p_len2 + 2 * t_len), (p_len2 * 2 + 3 * t_len), 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.turn, (p_len2 + 2 * t_len), (p_len2 * 2 + 3 * t_len), 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.dead_end, (2 * p_len + t_len), (p_len2 + t_len), 0, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, -(p_len + t_len), (p_len2 * 2 + 3 * t_len), 90, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, -(p_len + t_len), (p_len2 * 2 + 3 * t_len), 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.coin, -(p_len + t_len + p_len - p_len / 2), (p_len2 * 2 + 3 * t_len), 90, 2 };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, (p_len + t_len), (p_len2 * 2 + 3 * t_len), 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, (p_len2 * 2 + 3 * t_len), 90, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.t_junct, 0, (p_len2 * 2 + 3 * t_len), 180, -1f };
+        prefab1 = new List<float>() { (float)prefabs.path40, 0, (5 * p_len + 4 * t_len), 0, -1f };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.path40, 0, (p_len2 * 2 + p_len + 4 * t_len), 0, -1f };
+        prefab1 = new List<float>() { (float)prefabs.coin, 0, (5 * p_len + 4 * t_len - p_len/2), 0, 3 };
         level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.dead_end, -(2 * p_len + t_len), (p_len2 * 2 + 3 * t_len), 0, -1f };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, -2, 48 ,0, -1f };//camera
+        level.Add(prefab1);
+        
         array.Add(level);
 
 
@@ -165,6 +195,9 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, (5 * t_len + 5 * p_len), 6 * p_len + 5 * t_len, 90, -1f };
         level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, 60, 60 ,0, -1f };//camera
+        level.Add(prefab1);
         array.Add(level);
 
 
@@ -187,6 +220,9 @@ public class levelPrefab : MonoBehaviour
         prefab1 = new List<float>() { (float)prefabs.dead_end, -(2 * p_len + t_len), (p_len2 * 2 + 3 * t_len), 0, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.t_junct, 0, (p_len2 * 2 + 3 * t_len), 90, -1f };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, -3, 60 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
 
@@ -221,6 +257,8 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.dead_end, -(p_len2 * 2 + 2.5f * t_len + 1), (4 * p_len + 3 * t_len), 0, -1f };
         level.Add(prefab1);
+        prefab1= new List<float>() { -1f, -1, 60 ,0, -1f };//camera
+        level.Add(prefab1);
         array.Add(level);
 
 
@@ -244,6 +282,8 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path80, (2 * p_len2 + 3f * t_len), (p_len2), 180, -1f };
         level.Add(prefab1);
+        prefab1= new List<float>() { -1f, 55,25 ,0, -1f };//camera
+        level.Add(prefab1);
         array.Add(level);
 
 
@@ -264,6 +304,9 @@ public class levelPrefab : MonoBehaviour
         prefab1 = new List<float>() { (float)prefabs.path80, (t_len + p_len2), -(t_len), 90, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.turn, 0, -(t_len), 270, -1f };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, -45 ,48 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
 
@@ -291,6 +334,8 @@ public class levelPrefab : MonoBehaviour
         prefab1 = new List<float>() { (float)prefabs.turn, -2 * (p_len2 + t_len), (2 * p_len2 + 2 * p_len + 3 * t_len), 0, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path80, -(p_len2 + t_len), (2 * p_len2 + 2 * p_len + 3 * t_len), 90, -1f };
+        level.Add(prefab1);
+        prefab1= new List<float>() { -1f, 42 ,25 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
 
@@ -322,6 +367,9 @@ public class levelPrefab : MonoBehaviour
         prefab1 = new List<float>() { (float)prefabs.path40, -(2 * p_len + 2 * t_len), (3 * p_len + 2 * t_len), 0, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.dead_end, (2 * p_len + 2 * t_len), (4 * p_len + 2 * t_len), 90, -1f };
+        level.Add(prefab1);
+
+        prefab1= new List<float>() { -1f, 7 ,34 ,0, -1f };//camera
         level.Add(prefab1);
         array.Add(level);
     }

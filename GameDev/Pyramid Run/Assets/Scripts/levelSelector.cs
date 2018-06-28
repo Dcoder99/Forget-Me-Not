@@ -9,7 +9,8 @@ public class levelSelector : MonoBehaviour {
     {
         Debug.Log("Current level is:" + currentLevel);
         PlayerPrefs.SetInt("currentLevel",currentLevel);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("ShowMap");
+       // SceneManager.LoadScene("GameScene");
     }
 
 }
