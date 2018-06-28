@@ -72,6 +72,8 @@
     <Compile Include="Assets\Scripts\levelPrefab.cs" />
     <Compile Include="Assets\Scripts\levelSelector.cs" />
     <Compile Include="Assets\Scripts\progressBar.cs" />
+    <Compile Include="Assets\Scripts\progressBarOld.cs" />
+    <Compile Include="Assets\Scripts\starScript.cs" />
     <None Include="Assets\Scripts\levelTemplate.txt" />
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\ColorfulButtons\Credits.txt" />

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour
 {
 
     public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin;
     public static int maxCoinIdx = -1, targetIdx = 1;
+    public Text Levelno;
 
     // GameObject getPrefab(int idx)
     // {
@@ -94,19 +96,20 @@ public class GameScript : MonoBehaviour
         Debug.Log("INIT");
         maxCoinIdx = -1;
         targetIdx = 1;
-
+        Time.timeScale = 1f;
         //Instantiating Max
         //GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
         //maxInstance.AddComponent<Collisions>();
 
-        
+
 
     }
     void Start()
     {
         Init();
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
 
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
+        Levelno.text = "LEVEL: " + PlayerPrefs.GetInt("currentLevel");
         Debug.Log(PlayerPrefs.GetInt("currentLevel"));
     }
 

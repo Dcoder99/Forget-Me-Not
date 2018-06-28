@@ -59,7 +59,8 @@ public class Collisions : MonoBehaviour
                 message.text = "WRONG CHECKPOINT, GO TO " + GameScript.targetIdx;
                 message.color = Color.red;
                 Debug.Log("WRONG ORDER.");
-                //Reduce stars
+
+                starScript.decrementScore(5);
             }
         }
     }

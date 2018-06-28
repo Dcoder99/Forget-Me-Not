@@ -27,7 +27,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		void OnEnable()
 		{
-			CreateVirtualAxes();
+             CreateVirtualAxes();
 		}
 
         void Start()
