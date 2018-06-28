@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour
 {
 
     public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin;
     public static int maxCoinIdx = -1, targetIdx = 1;
+    public Text Levelno;
 
     // GameObject getPrefab(int idx)
     // {
@@ -76,8 +78,9 @@ public class GameScript : MonoBehaviour
             }
             else
             {
+                Debug.Log("Generating Coins!");
                 // It's a coin!
-                string coinName = "coin " + prefab1[4].ToString();
+                string coinName = prefab1[4].ToString();
                 GameObject coinObject = Instantiate(coin, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
                 coinObject.name = coinName;
                 if (prefab1[4] > maxCoinIdx)
@@ -93,20 +96,22 @@ public class GameScript : MonoBehaviour
         Debug.Log("INIT");
         maxCoinIdx = -1;
         targetIdx = 1;
-        
+        Time.timeScale = 1f;
         //Instantiating Max
-        GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
-        maxInstance.AddComponent<Collisions>();
+        //GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
+        //maxInstance.AddComponent<Collisions>();
+
+
+
     }
     void Start()
     {
         Init();
+
         generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
+        Levelno.text = "LEVEL: " + PlayerPrefs.GetInt("currentLevel");
+        Debug.Log(PlayerPrefs.GetInt("currentLevel"));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

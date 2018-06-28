@@ -5,33 +5,62 @@ using UnityEngine.UI;
 
 public class Collisions : MonoBehaviour
 {
+    static int v;
+    public Text message;
+    public GameObject ExplodePrefab;
+    GameObject ExplodeObj;
+
+    void Start()
+    {
+        message.text = "HEAD TO CHECKPOINT " + GameScript.targetIdx;
+        message.color = Color.white;
+    }
+
+    void Delay()
+    {
+        Debug.Log("In Delay");
+        ButtonsScript.loadSelectedScene("GameOver");
+    }
+    
+    void Explode()
+    {
+        Destroy(ExplodeObj);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        string[] strArr = null;
-        char[] splitchar = { ' ' };
-        strArr = (collision.gameObject.name).Split(splitchar);
-
-        // Debug.Log("Collided with " + collision.gameObject.name);
-        if (strArr[0] == "coin")
+        if (int.TryParse((collision.gameObject.name).Trim(), out v))
         {
-            if (strArr[1] == GameScript.targetIdx.ToString())
+            if (v == GameScript.targetIdx)
             {
+
+                ExplodeObj = Instantiate(ExplodePrefab, collision.transform.position, new Quaternion(0, 0, 0, 0));
                 Destroy(collision.gameObject);
+                Invoke("Explode", 1.8f);
+
                 Debug.Log("CORRECT ORDER");
                 GameScript.targetIdx++;
+                message.text = "HEAD TO CHECKPOINT " + GameScript.targetIdx;
+                message.color = Color.green;
 
                 if (GameScript.targetIdx > GameScript.maxCoinIdx)
                 {
                     Debug.Log("LEVEL COMPLETED!");
-                    // Game finished
-                    // Change scene
+
+                    message.text = "LEVEL COMPLETED!";
+                    message.color = Color.green;
+
+                    Invoke("Delay", 2);
                 }
+
             }
-            else
+            else if (v > GameScript.targetIdx)
             {
-                // message.text = "WRONG CHECKPOINT, GO TO " + strArr[1];
+                message.text = "WRONG CHECKPOINT, GO TO " + GameScript.targetIdx;
+                message.color = Color.red;
                 Debug.Log("WRONG ORDER.");
-                //Reduce stars
+
+                starScript.decrementScore(5);
             }
         }
     }
