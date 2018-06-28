@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\progressBar.cs" />
     <None Include="Assets\Scripts\levelTemplate.txt" />
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
+    <None Include="Assets\ColorfulButtons\Credits.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dhruv/Documents/GitHub/Forget-me-not/GameDev/Pyramid Run/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

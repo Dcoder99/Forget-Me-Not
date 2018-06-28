@@ -105,7 +105,7 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         Init();
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 3));
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
 
         Debug.Log(PlayerPrefs.GetInt("currentLevel"));
     }
