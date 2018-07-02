@@ -8,87 +8,96 @@ public class GameScript : MonoBehaviour
 {
 
     public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin;
+    GameObject MAX, MapCamera, MapCanvas, GameCanvas;
+    enum prefabs { path40, path80, turn, t_junct, dead_end, coin };
+    enum atr { prefab_name, x_coordinate, z_coordinate, y_rotation, index_of_prefab };
     public static int maxCoinIdx = -1, targetIdx = 1;
+    float map_x, map_y, map_z, angle_x = 0.4712f, angle_z = 0.3840f;
     public Text Levelno;
 
-    // GameObject getPrefab(int idx)
-    // {
-    // 	// enum prefabs {path40, path80, turn, t_junct, dead_end, coin};
-    // 	switch(idx)
-    // 	{
-    // 		case 0:
-    // 			return max;
-    // 		case 1:
-    // 			return path40Prefab;
-    //      case 2;
-    //          return path80Prefab;
-    // 		case 3:
-    // 			return turnPrefab;
-    // 		case 4:
-    // 			return tPrefab;
-    //      case 5:
-    //          return deadendPrefab;
-    // 		default:
-    // 			Debug.Log("Prefab index Out of Bounds");
-    // 			return path40Prefab; // Default prefab
-    // 	}
-    // }
+    GameObject getPrefab(float idx)
+    {
+        int choice = (int)idx;
+        switch (choice)
+        {
+            case (int)prefabs.path40:
+                return path40Prefab;
+            case (int)prefabs.path80:
+                return path80Prefab;
+            case (int)prefabs.turn:
+                return turnPrefab;
+            case (int)prefabs.t_junct:
+                return tPrefab;
+            case (int)prefabs.dead_end:
+                return deadendPrefab;
+            default:
+                Debug.Log("Prefab index Out of Bounds");
+                return path40Prefab; // Default prefab
+        }
+    }
 
     void generateLevel(int currentLevel)
     {
         Debug.Log("Generating Level..." + currentLevel);
         List<List<float>> level = levelPrefab.array[currentLevel];
+        float min_x = 0, min_z = 0, max_x = 0, max_z = 0;
 
-        // prefab1 = {which_prefab, x_coordinate, z_coordinate, y_rotation, index_of_prefab}
         foreach (List<float> prefab1 in level)
         {
-            if (prefab1[4] == -1f)
+            if ((int)prefab1[(int)atr.prefab_name] != (int)prefabs.coin)
             {
                 Debug.Log("Instantiate prefab");
-
-                //Instantiating Path40
-                if ((int)prefab1[0] == 0)
-                {
-                    Instantiate(path40Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-                }
-
-                //Instantiating Path80
-                else if ((int)prefab1[0] == 1)
-                {
-                    Instantiate(path80Prefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-                }
-
-                //Instantiating Turn 
-                else if ((int)prefab1[0] == 2)
-                {
-                    Instantiate(turnPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-                }
-
-                //Instantiating T Junction
-                else if ((int)prefab1[0] == 3)
-                {
-                    Instantiate(tPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-                }
-
-                //Instantiating Dead End
-                else if ((int)prefab1[0] == 4)
-                {
-                    Instantiate(deadendPrefab, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
-                }
+                Instantiate(getPrefab(prefab1[(int)atr.prefab_name]), new Vector3(prefab1[(int)atr.x_coordinate], 0, prefab1[(int)atr.z_coordinate]), transform.rotation * Quaternion.Euler(0, prefab1[(int)atr.y_rotation], 0));
+                min_x = Mathf.Min(min_x, prefab1[(int)atr.x_coordinate]);
+                min_z = Mathf.Min(min_z, prefab1[(int)atr.z_coordinate]);
+                max_x = Mathf.Max(max_x, prefab1[(int)atr.x_coordinate]);
+                max_z = Mathf.Max(max_z, prefab1[(int)atr.z_coordinate]);
             }
             else
             {
-                Debug.Log("Generating Coins!");
-                // It's a coin!
-                string coinName = prefab1[4].ToString();
-                GameObject coinObject = Instantiate(coin, new Vector3(prefab1[1], 0, prefab1[2]), transform.rotation * Quaternion.Euler(0, prefab1[3], 0));
+                Debug.Log("Generating Coin!");
+                string coinName = prefab1[(int)atr.index_of_prefab].ToString();
+                GameObject coinObject = Instantiate(coin, new Vector3(prefab1[(int)atr.x_coordinate], 0, prefab1[(int)atr.z_coordinate]), transform.rotation * Quaternion.Euler(0, prefab1[(int)atr.y_rotation], 0));
                 coinObject.name = coinName;
-                if (prefab1[4] > maxCoinIdx)
+                if (prefab1[(int)atr.index_of_prefab] > maxCoinIdx)
                 {
                     maxCoinIdx = (int)prefab1[4];
                 }
             }
         }
+        Debug.Log("MIN X:Z " + min_x + " : " + min_z);
+        Debug.Log("MAX X:Z " + max_x + " : " + max_z);
+        map_x = (min_x + max_x) / 2.0f;
+        map_z = (min_z + max_z) / 2.0f;
+        map_y = Mathf.Max(((max_x - map_x) / Mathf.Tan(angle_x)), ((max_z - map_z) / Mathf.Tan(angle_z)));
+    }
+
+    void showMap()
+    {
+        // Disable max
+        MAX.SetActive(false);
+        // Enable Map canvas
+        MapCanvas.SetActive(true);
+        // Disable canvas
+        GameCanvas.SetActive(false);
+        // Position camera
+        MapCamera.SetActive(true);
+        MapCamera.transform.position = new Vector3(map_x, map_y, map_z);
+        return;
+    }
+
+    public void destroyMap()
+    {
+        Debug.Log("in destroyMap()");
+        // Enable max
+        MAX.SetActive(true);
+        // Disable  map canvas
+        MapCanvas.SetActive(false);
+        // Disable camera
+        MapCamera.SetActive(false);
+        // Enable Canvas
+        GameCanvas.SetActive(true);
+        Time.timeScale = 1f;
     }
 
     void Init()
@@ -96,19 +105,17 @@ public class GameScript : MonoBehaviour
         Debug.Log("INIT");
         maxCoinIdx = -1;
         targetIdx = 1;
-        Time.timeScale = 1f;
-        //Instantiating Max
-        //GameObject maxInstance =  Instantiate(maxPrefab, new Vector3(0, 0, 4), transform.rotation * Quaternion.Euler(0, 0, 0));
-        //maxInstance.AddComponent<Collisions>();
-
-
-
+        Time.timeScale = 0f;
+        MAX = GameObject.FindGameObjectWithTag("myMax");
+        MapCanvas = GameObject.FindGameObjectWithTag("mapCanvas");
+        GameCanvas = GameObject.FindGameObjectWithTag("gameCanvas");
+        MapCamera = GameObject.FindGameObjectWithTag("mapCamera");
+        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
+        showMap();
     }
     void Start()
     {
         Init();
-
-        generateLevel(PlayerPrefs.GetInt("currentLevel", 1));
         Levelno.text = "LEVEL: " + PlayerPrefs.GetInt("currentLevel");
         Debug.Log(PlayerPrefs.GetInt("currentLevel"));
     }

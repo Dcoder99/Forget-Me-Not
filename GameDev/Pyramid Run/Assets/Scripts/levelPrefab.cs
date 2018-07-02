@@ -46,6 +46,8 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.path40, -(2 * p_len2 + 2 * t_len), p_len2 * 2 + 2 * t_len + p_len, 0, -1f };
         level.Add(prefab1);
+        prefab1 = new List<float>() { (float)prefabs.dead_end, -(2 * p_len2 + 2 * t_len), p_len2 * 2 + 2 * (t_len + p_len), 90, -1f };
+        level.Add(prefab1);
         array.Add(level);
 
 
@@ -324,7 +326,7 @@ public class levelPrefab : MonoBehaviour
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.coin, (2 * p_len + p_len2 * 2 + t_len * 3 - p_len / 2), -(t_len), 90, 4 };
         level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.dead_end, (2 * p_len + p_len2 * 2 + t_len * 3 + 0.5f), -(t_len), 90, -1f };
+        prefab1 = new List<float>() { (float)prefabs.dead_end, (2 * p_len + p_len2 * 2 + t_len * 3 + 0.5f), -(t_len), 0, -1f };
         level.Add(prefab1);
 
         array.Add(level);
@@ -418,8 +420,6 @@ public class levelPrefab : MonoBehaviour
         //LEVEL 13: K
         level = new List<List<float>>();
         prefab1 = new List<float>() { (float)prefabs.path80, 0, p_len2, 0, -1f };
-        level.Add(prefab1);
-        prefab1 = new List<float>() { (float)prefabs.dead_end, 0, 0, 90, -1f };
         level.Add(prefab1);
         prefab1 = new List<float>() { (float)prefabs.coin, 0, p_len2, 0, 2 };
         level.Add(prefab1);
