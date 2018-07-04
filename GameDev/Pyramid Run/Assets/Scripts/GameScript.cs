@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameScript : MonoBehaviour
 {
 
-    public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin;
+    public GameObject maxPrefab, path40Prefab, path80Prefab, turnPrefab, tPrefab, deadendPrefab, coin, checkpoint;
     GameObject MAX, MapCamera, MapCanvas, GameCanvas;
     enum prefabs { path40, path80, turn, t_junct, dead_end, coin };
     enum atr { prefab_name, x_coordinate, z_coordinate, y_rotation, index_of_prefab };
@@ -58,7 +59,11 @@ public class GameScript : MonoBehaviour
                 Debug.Log("Generating Coin!");
                 string coinName = prefab1[(int)atr.index_of_prefab].ToString();
                 GameObject coinObject = Instantiate(coin, new Vector3(prefab1[(int)atr.x_coordinate], 0, prefab1[(int)atr.z_coordinate]), transform.rotation * Quaternion.Euler(0, prefab1[(int)atr.y_rotation], 0));
+                GameObject checkpointObject = Instantiate(checkpoint, new Vector3(prefab1[(int)atr.x_coordinate], 10, prefab1[(int)atr.z_coordinate]), transform.rotation * Quaternion.Euler(0, 0, 0));
+                TextMeshPro mText = checkpointObject.GetComponentInChildren<TextMeshPro>();
                 coinObject.name = coinName;
+                mText.text = coinName;
+
                 if (prefab1[(int)atr.index_of_prefab] > maxCoinIdx)
                 {
                     maxCoinIdx = (int)prefab1[4];

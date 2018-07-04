@@ -377,6 +377,7 @@ MonoBehaviour:
   deadendPrefab: {fileID: 1405871772604834, guid: 09a184c7ccf14054e9c441d80b3f4b5b,
     type: 2}
   coin: {fileID: 1182240253616934, guid: 602f8d91837ebc740a9d7804e33d31ec, type: 2}
+  checkpoint: {fileID: 1388531270297946, guid: e531f757f1aaefd4f8359a3a987cc8be, type: 2}
   Levelno: {fileID: 468246913}
 --- !u!4 &95380229
 Transform:
