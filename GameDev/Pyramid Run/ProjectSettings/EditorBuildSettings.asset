@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/FB_GameScene.unity
+    guid: 5af288b631485454294460e13d180aee
+  - enabled: 1
+    path: Assets/Scenes/FB_GameOverScene.unity
+    guid: f57cb88363399e04c8f4ab1341aa61a4
   m_configObjects: {}
