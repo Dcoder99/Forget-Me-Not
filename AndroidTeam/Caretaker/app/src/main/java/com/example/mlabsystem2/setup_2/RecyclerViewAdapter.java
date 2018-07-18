@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -22,15 +24,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> taskNames = new ArrayList<>();
     private ArrayList<String> taskDates = new ArrayList<>();
     private ArrayList<String> taskTimes = new ArrayList<>();
+    private ArrayList<String> taskFID = new ArrayList<>();
+
     private Context mContext;
     private RecyclerViewAdapter adapter = this;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public RecyclerViewAdapter(ArrayList<String> taskNames,ArrayList<String> taskDates,ArrayList<String> taskTimes, Context mContext) {
+
+    public RecyclerViewAdapter(ArrayList<String> taskNames,ArrayList<String> taskDates,ArrayList<String> taskTimes,ArrayList<String> taskFID, Context mContext) {
         DbHelper dbHelper = new DbHelper(mContext);
-        this.taskNames = dbHelper.getTaskList() ;
-        this.taskDates = dbHelper.getDateList();
-        this.taskTimes = dbHelper.getTimeList();
+        this.taskNames = taskNames;
+        this.taskDates = taskDates;
+        this.taskTimes = taskTimes;
+        this.taskFID = taskFID;
         this.mContext = mContext;
     }
 
@@ -48,16 +55,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.taskname.setText(taskNames.get(position));
         holder.date.setText(taskDates.get(position));
         holder.time.setText(taskTimes.get(position));
+
+
+        //Task Deletion
+
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String removable = taskNames.get(position);
+                String FID = taskFID.get(position);
                 adapter.notifyDataSetChanged();
                 taskNames.remove(position);
                 taskDates.remove(position);
                 taskTimes.remove(position);
+                taskFID.remove(position);
                 DbHelper dbHelper = new DbHelper(mContext);
-                dbHelper.deleteTask(removable);
+                dbHelper.deleteTask(removable,FID);
             }
         });
     }

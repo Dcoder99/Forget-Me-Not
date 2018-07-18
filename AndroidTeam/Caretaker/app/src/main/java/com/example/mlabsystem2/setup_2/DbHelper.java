@@ -5,10 +5,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+
 public class DbHelper extends SQLiteOpenHelper {
+
+    private static final String TAG = "DbHelper";
 
 
     public static final String DB_NAME = "Todo";
@@ -17,14 +30,18 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DB_COLUMN = "TaskName";
     public static final String DB_COLUMN1 = "Dates";
     public static final String DB_COLUMN2 = "Times";
+    public static final String DB_COLUMN3 = "firebase_id";
+
+    FirebaseFirestore db1 = FirebaseFirestore.getInstance();
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VER);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL,%s TEXT NOT NULL,%s TEXT NOT NULL);",DB_TABLE,DB_COLUMN,DB_COLUMN1,DB_COLUMN2);
+        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL,%s TEXT NOT NULL,%s TEXT NOT NULL,%s TEXT NOT NULL);",DB_TABLE,DB_COLUMN,DB_COLUMN1,DB_COLUMN2,DB_COLUMN3);
         db.execSQL(query);
 
     }
@@ -38,19 +55,39 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertnewTask(String task,String date,String time){
+    public void insertnewTask(String task,String date,String time,String firebase_id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DB_COLUMN,task);
         values.put(DB_COLUMN1,date);
         values.put(DB_COLUMN2,time);
+        values.put(DB_COLUMN3,firebase_id);
+
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
 
-        public void deleteTask(String task){
+        public void deleteTask(String task,String DB_COLUMN3){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_TABLE,DB_COLUMN + " = ?",new String[]{task});
+
+            db1.collection("Tasks").document(DB_COLUMN3 )
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error deleting document", e);
+                        }
+                    });
+
+
+
         db.close();
     }
 
@@ -92,6 +129,19 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return timeList;
+    }
+
+    public ArrayList<String> getFirebaseIDList(){
+        ArrayList<String>firebaseIDList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE,new String[]{DB_COLUMN3},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index = cursor.getColumnIndex(DB_COLUMN3);
+            firebaseIDList.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return firebaseIDList;
     }
 
 

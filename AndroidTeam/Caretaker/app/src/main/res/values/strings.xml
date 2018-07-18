@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">setup-2</string>
+    <string name="app_name">Caretaker</string>
     <string name="person_icon">ProfileIcon</string>
     <string name="phone_icon">PhoneIcon</string>
     <string name="home_icon">HomeIcon</string>
