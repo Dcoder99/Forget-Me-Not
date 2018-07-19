@@ -28,10 +28,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.Source;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,22 +41,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Schedulemain extends AppCompatActivity {
 
     private static final String TAG = "Schedulemain";
 
-    private ArrayList<String> tasks = new ArrayList<>();
-    private ArrayList<String> dates = new ArrayList<>();
-    private ArrayList<String> times = new ArrayList<>();
-    private ArrayList<String> ids = new ArrayList<>();
-    private ArrayList<String> taskList = new ArrayList<>();
-    private ArrayList<String> dateList = new ArrayList<>();
-    private ArrayList<String> timeList = new ArrayList<>();
-    private ArrayList<String> firebaseIDList = new ArrayList<>();
-
-    DbHelper dbHelper;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -65,48 +56,62 @@ public class Schedulemain extends AppCompatActivity {
     private static int notificationId = 0;
     private static int reqcode = 0;
 
+    private ArrayList<String> taskNames = new ArrayList<>();
+    private ArrayList<String> taskDates = new ArrayList<>();
+    private ArrayList<String> taskTimes = new ArrayList<>();
+    private ArrayList<String> taskFID = new ArrayList<>();
+
+    public String formatedDate, formatedTime;
 
     FloatingActionButton fab;
     public static String firebase_id;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemain);
 
-        dbHelper = new DbHelper(this);
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
 
-        getFBdata();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecyclerViewAdapter(taskNames, taskDates, taskTimes, taskFID, this);
+        recyclerView.setAdapter(adapter);
 
         loadTaskList();
 
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Schedulemain.this);
-                View mView = getLayoutInflater().inflate(R.layout.customdialog,null);
-                final EditText addtask = (EditText)mView.findViewById(R.id.Addtask);
-                Button setdate = (Button)mView.findViewById(R.id.setdate);
-                Button settime = (Button)mView.findViewById(R.id.settime);
-                final TextView display = (TextView)mView.findViewById(R.id.display);
-                final Spinner myspinner = (Spinner)mView.findViewById(R.id.spinner);
+                View mView = getLayoutInflater().inflate(R.layout.customdialog, null);
+                final EditText addtask = (EditText) mView.findViewById(R.id.Addtask);
+                Button setdate = (Button) mView.findViewById(R.id.setdate);
+                Button settime = (Button) mView.findViewById(R.id.settime);
+                final TextView display = (TextView) mView.findViewById(R.id.display);
+                final Spinner myspinner = (Spinner) mView.findViewById(R.id.spinner);
 
                 ArrayAdapter<String> myadapter = new ArrayAdapter<String>(Schedulemain.this,
-                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinnernames));
+                        android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinnernames));
                 myadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 myspinner.setAdapter(myadapter);
-
-
-                //final String text = myspinner.getSelectedItem().toString();
 
 
                 setdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                      updateDate();
+                        updateDate();
                     }
                 });
 
@@ -133,37 +138,32 @@ public class Schedulemain extends AppCompatActivity {
 
                 display.setText(formatDateTime.format(dateTime.getTime()));
 
-//Add a Task
+                //Add a Task
                 mBuilder.setView(mView);
                 mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
 
-                        if(addtask.getText().toString().isEmpty()){
-                            Toast.makeText(Schedulemain.this, "Insert Something", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        if (addtask.getText().toString().isEmpty()) {
+                            Toast.makeText(Schedulemain.this, "Task Name cannot be empty.", Toast.LENGTH_SHORT).show();
+                        } else {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                            String formatedDate = sdf.format(dateTime.getTime());
+                            formatedDate = sdf.format(dateTime.getTime());
                             SimpleDateFormat sdft = new SimpleDateFormat("HH:mm a");
-                            String formatedTime = sdft.format(dateTime.getTime());
+                            formatedTime = sdft.format(dateTime.getTime());
                             String task = String.valueOf(addtask.getText());
-                            tasks.add(task);
-                            dates.add(formatedDate);
-                            times.add(formatedTime);
 
-//-----------------------
-// Storing Task information on Firebase
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("Task",task);
-                            user.put("Date",formatedDate);
-                            user.put("Time",formatedTime);
 
+                            // Storing Task information on Firebase
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("Task", task);
+                            user.put("Date", formatedDate);
+                            user.put("Time", formatedTime);
+                            // TODO: Change this to uuid or firebase generated id
                             firebase_id = String.valueOf(System.currentTimeMillis());
-                            user.put("ID",firebase_id);
+//                            user.put("ID", firebase_id);
 
-                            //getFBdata();
 
                             // Add a new document with a generated ID
                             db.collection("Tasks")
@@ -172,22 +172,19 @@ public class Schedulemain extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-                                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                                            Log.d("MEEEEEEEEEEEEEEE", "DocumentSnapshot successfully written!");
+                                            loadTaskList();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.w(TAG, "Error adding document", e);
+                                            Log.d("MEEE", "Error adding document", e);
                                         }
                                     });
-//End of Updating Info on FireBase
-// ------------------
 
-
-                            dbHelper.insertnewTask(task,formatedDate,formatedTime,firebase_id);
-                            adapter = new RecyclerViewAdapter(tasks,dates,times,firebaseIDList, Schedulemain.this);
-                            recyclerView.setAdapter(adapter);
+                            loadTaskList();
+                            //End of Updating Info on FireBase
 
 
 
@@ -198,20 +195,17 @@ public class Schedulemain extends AppCompatActivity {
                             PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                             AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                            if(myspinner.getSelectedItem().toString().equals("Every minute")) {
+                            if (myspinner.getSelectedItem().toString().equals("Every minute")) {
 
                                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 1 * 60, alarmintent);
 
                                 Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            if(myspinner.getSelectedItem().toString().equals("Every two minutes") ){
-                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(), 1000 * 2 * 60, alarmintent);
+                            } else if (myspinner.getSelectedItem().toString().equals("Every two minutes")) {
+                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 2 * 60, alarmintent);
 
                                 Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                alarm.set(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),alarmintent);
+                            } else {
+                                alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
 
                                 Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
                             }
@@ -220,66 +214,83 @@ public class Schedulemain extends AppCompatActivity {
                             notificationId++;
 
 
-
                         }
                     }
                 });
 
-                mBuilder.setNegativeButton("Cancel",null);
+                mBuilder.setNegativeButton("Cancel", null);
 
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
             }
         });
-}
-    
-
-
-    private void loadTaskList() {
-
-
-        taskList = dbHelper.getTaskList();
-        dateList = dbHelper.getDateList();
-        timeList = dbHelper.getTimeList();
-        firebaseIDList = dbHelper.getFirebaseIDList();
-
-
-        if (adapter == null) {
-            recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-            layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(layoutManager);
-            adapter = new RecyclerViewAdapter(taskList,dateList,timeList,firebaseIDList,this);
-            recyclerView.setAdapter(adapter);
-            }
-            else{
-            tasks.addAll(taskList);
-            dates.addAll(dateList);
-            times.addAll(timeList);
-            ids.addAll(firebaseIDList);
-
-            adapter.notifyDataSetChanged();
-
-        }
     }
 
-    private void updateDate(){
-        new DatePickerDialog(this,d,dateTime.get(Calendar.YEAR),dateTime.get(Calendar.MONTH),dateTime.get(Calendar.DAY_OF_MONTH))
+    private void loadTaskList() {
+        loadTaskList(true);
+
+    }
+
+    public void loadTaskList(final boolean fromCache) {
+
+        Log.d("MEEE", "Before loading");
+
+        taskNames = new ArrayList<>();
+        taskDates = new ArrayList<>();
+        taskTimes = new ArrayList<>();
+        taskFID = new ArrayList<>();
+
+        final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
+
+        // TODO: Add "where patient_id = patientID" to the query
+        db.collection("Tasks")
+                .get(source)
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                taskNames.add(document.getString("Task"));
+                                taskDates.add(document.getString("Date"));
+                                taskTimes.add(document.getString("Time"));
+                                taskFID.add(document.getId());
+                            }
+
+                            Log.d("MEEEE", "Loaded data");
+
+                            if (taskNames.size() == 0 && fromCache) {
+                                loadTaskList(false);
+
+                            }
+                            adapter.setItems(taskNames, taskDates, taskTimes, taskFID);
+                            adapter.notifyDataSetChanged();
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void updateDate() {
+        new DatePickerDialog(this, d, dateTime.get(Calendar.YEAR), dateTime.get(Calendar.MONTH), dateTime.get(Calendar.DAY_OF_MONTH))
                 .show();
 
     }
 
-    private void updateTime(){
-        new TimePickerDialog(this,t,dateTime.get(Calendar.HOUR_OF_DAY),dateTime.get(Calendar.MINUTE),
+    private void updateTime() {
+        new TimePickerDialog(this, t, dateTime.get(Calendar.HOUR_OF_DAY), dateTime.get(Calendar.MINUTE),
                 false).show();
     }
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            dateTime.set(Calendar.YEAR,year);
-            dateTime.set(Calendar.MONTH,month);
-            dateTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+            dateTime.set(Calendar.YEAR, year);
+            dateTime.set(Calendar.MONTH, month);
+            dateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         }
     };
 
@@ -292,30 +303,4 @@ public class Schedulemain extends AppCompatActivity {
         }
     };
 
-
-//Reading Data From FireBase (On Start)
-
-    public void getFBdata(){
-        //Reading from Firebase
-        db.collection("Tasks")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-
-                                taskList.add(document.getString("Task"));
-                                dateList.add(document.getString("Date"));
-                                timeList.add(document.getString("Time"));
-                                firebaseIDList.add(document.getString("ID"));
-
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
 }

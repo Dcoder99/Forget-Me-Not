@@ -13,13 +13,15 @@
 
     <TextView
         android:id="@+id/task_name"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:text="Task"
+        android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/image"
+        android:text="Task"
         android:textColor="#000"
-        android:textSize="27dp"
-        android:layout_marginLeft="15dp"/>
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="27dp" />
 
     <TextView
         android:id="@+id/date"

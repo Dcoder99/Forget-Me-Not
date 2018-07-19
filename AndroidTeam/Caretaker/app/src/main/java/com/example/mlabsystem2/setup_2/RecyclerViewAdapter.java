@@ -13,11 +13,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -25,27 +33,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> taskDates = new ArrayList<>();
     private ArrayList<String> taskTimes = new ArrayList<>();
     private ArrayList<String> taskFID = new ArrayList<>();
-
     private Context mContext;
     private RecyclerViewAdapter adapter = this;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
 
+    public RecyclerViewAdapter(ArrayList<String> taskNames, ArrayList<String> taskDates, ArrayList<String> taskTimes, ArrayList<String> taskFID, Context mContext) {
 
-    public RecyclerViewAdapter(ArrayList<String> taskNames,ArrayList<String> taskDates,ArrayList<String> taskTimes,ArrayList<String> taskFID, Context mContext) {
-        DbHelper dbHelper = new DbHelper(mContext);
-        this.taskNames = taskNames;
-        this.taskDates = taskDates;
-        this.taskTimes = taskTimes;
-        this.taskFID = taskFID;
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
+        setItems(taskNames, taskDates, taskTimes, taskFID);
+
         this.mContext = mContext;
     }
 
+    private void deleteTask(String firebase_id) {
+
+        Log.d("MEEEE", "firebase id" + firebase_id+ "...");
+        db.collection("Tasks").document(firebase_id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("MEEEEEEEEEEEEE", "DocumentSnapshot successfully deleted!");
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("MEEEEEEEEEEEEE", "Error deleting document", e);
+                    }
+                });
+
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
         ViewHolder vh = new ViewHolder(view);
         return vh;
     }
@@ -62,26 +91,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String removable = taskNames.get(position);
-                String FID = taskFID.get(position);
-                adapter.notifyDataSetChanged();
+
+
+                deleteTask(taskFID.get(position));
+
                 taskNames.remove(position);
                 taskDates.remove(position);
                 taskTimes.remove(position);
                 taskFID.remove(position);
-                DbHelper dbHelper = new DbHelper(mContext);
-                dbHelper.deleteTask(removable,FID);
+
+                setItems(taskNames, taskDates, taskTimes, taskFID);
+                adapter.notifyDataSetChanged();
             }
         });
     }
 
+    public void setItems(ArrayList<String> taskNames, ArrayList<String> taskDates, ArrayList<String> taskTimes, ArrayList<String> taskFID) {
+        this.taskNames = taskNames;
+        this.taskDates = taskDates;
+        this.taskTimes = taskTimes;
+        this.taskFID = taskFID;
+    }
 
     @Override
     public int getItemCount() {
         return taskNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView image;
         TextView taskname;
@@ -97,7 +134,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             taskname = itemView.findViewById(R.id.task_name);
             date = itemView.findViewById(R.id.date);
             time = itemView.findViewById(R.id.time);
-            button  = itemView.findViewById(R.id.delete);
+            button = itemView.findViewById(R.id.delete);
             parentlayout = itemView.findViewById(R.id.parent_layout);
             int pos = getAdapterPosition();
 

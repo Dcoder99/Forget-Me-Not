@@ -11,6 +11,8 @@ public class PatientMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientmenu);
+
+
     }
 
     public void SelectProfile(View view) {
