@@ -12,30 +12,29 @@ import android.widget.Toast;
 
 public class PatientProfileActivity extends AppCompatActivity {
 
-    private TextView txt_location,txt_customize, txt_schedule; //clickables
+    private TextView txt_location, txt_customize, txt_schedule; //clickables
     private FloatingActionButton fabEdit;
-    private TextView tvname,tvphnumber,tvaddress;
-    public static String DEFAULT_NAME= "N/A",DEFAULT_PHNUMBER="N/A",DEFAULT_ADDRESS="N/A";
+    private TextView tvname, tvphnumber, tvaddress;
+    public static String DEFAULT_NAME = "N/A", DEFAULT_PHNUMBER = "N/A", DEFAULT_ADDRESS = "N/A";
 
     @Override
     protected void onStart() {
         super.onStart();
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String name=prefs.getString("name",DEFAULT_NAME);
-        String phnumber=prefs.getString("phnumber",DEFAULT_PHNUMBER);
-        String address=prefs.getString("address",DEFAULT_ADDRESS);
+        String name = prefs.getString("name", DEFAULT_NAME);
+        String phnumber = prefs.getString("phnumber", DEFAULT_PHNUMBER);
+        String address = prefs.getString("address", DEFAULT_ADDRESS);
 
-        if(name.equals(DEFAULT_NAME)&&phnumber.equals(DEFAULT_PHNUMBER)&&address.equals(DEFAULT_ADDRESS)){
-            Toast.makeText(getApplicationContext(),"No data found",Toast.LENGTH_LONG).show();
+        if (name.equals(DEFAULT_NAME) && phnumber.equals(DEFAULT_PHNUMBER) && address.equals(DEFAULT_ADDRESS)) {
+            Toast.makeText(getApplicationContext(), "No data found", Toast.LENGTH_LONG).show();
 
-        }
-        else{
+        } else {
             tvname.setText(name);
             tvphnumber.setText(phnumber);
             tvaddress.setText(address);
-            DEFAULT_NAME=name;
-            DEFAULT_PHNUMBER=phnumber;
-            DEFAULT_ADDRESS=address;
+            DEFAULT_NAME = name;
+            DEFAULT_PHNUMBER = phnumber;
+            DEFAULT_ADDRESS = address;
         }
 
 
@@ -46,14 +45,14 @@ public class PatientProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientprofile);
 
-        txt_location=(TextView)findViewById(R.id.location);
-        txt_schedule=(TextView)findViewById(R.id.schedule);
-        txt_customize=(TextView)findViewById(R.id.customize);
-        fabEdit=(FloatingActionButton)findViewById(R.id.fabEdit);
+        txt_location = (TextView) findViewById(R.id.location);
+        txt_schedule = (TextView) findViewById(R.id.schedule);
+        txt_customize = (TextView) findViewById(R.id.customize);
+        fabEdit = (FloatingActionButton) findViewById(R.id.fabEdit);
 
-        tvname=(TextView)findViewById(R.id.tvName);
-        tvphnumber=(TextView)findViewById(R.id.tvPhNumber);
-        tvaddress=(TextView)findViewById(R.id.tvAddress);
+        tvname = (TextView) findViewById(R.id.tvName);
+        tvphnumber = (TextView) findViewById(R.id.tvPhNumber);
+        tvaddress = (TextView) findViewById(R.id.tvAddress);
 
         //tvname.setText(EditDetailsActivity.Name);
 
@@ -63,7 +62,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(PatientProfileActivity.this, EditDetailsActivity.class);
+                Intent intent = new Intent(PatientProfileActivity.this, EditDetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +70,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(PatientProfileActivity.this, LocationActivity.class);
+                Intent intent = new Intent(PatientProfileActivity.this, LocationActivity.class);
                 startActivity(intent);
             }
         });
@@ -79,7 +78,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(PatientProfileActivity.this, Schedulemain.class);
+                Intent intent = new Intent(PatientProfileActivity.this, Schedulemain.class);
                 startActivity(intent);
 
             }
@@ -88,7 +87,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_customize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(PatientProfileActivity.this, CustomizeActivity.class);
+                Intent intent = new Intent(PatientProfileActivity.this, CustomizeActivity.class);
                 startActivity(intent);
 
             }
@@ -96,11 +95,6 @@ public class PatientProfileActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
 
 
 }

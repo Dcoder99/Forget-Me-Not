@@ -29,10 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> taskNames = new ArrayList<>();
-    private ArrayList<String> taskDates = new ArrayList<>();
-    private ArrayList<String> taskTimes = new ArrayList<>();
-    private ArrayList<String> taskFID = new ArrayList<>();
+    public ArrayList<String> taskNames = new ArrayList<>(), taskDates = new ArrayList<>(), taskTimes = new ArrayList<>(), taskFID = new ArrayList<>();
     private Context mContext;
     private RecyclerViewAdapter adapter = this;
 
@@ -52,7 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private void deleteTask(String firebase_id) {
 
-        Log.d("MEEEE", "firebase id" + firebase_id+ "...");
+        Log.d("MEEEE", "firebase id" + firebase_id + "...");
         db.collection("Tasks").document(firebase_id)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -75,19 +72,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        ViewHolder vh = new ViewHolder(view);
+        ViewHolder vh = new ViewHolder(view, mContext);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.taskId = taskFID.get(position);
         holder.taskname.setText(taskNames.get(position));
         holder.date.setText(taskDates.get(position));
         holder.time.setText(taskTimes.get(position));
 
 
         //Task Deletion
-
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,17 +115,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return taskNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CircleImageView image;
         TextView taskname;
         TextView date;
         TextView time;
         Button button;
+        String taskId;
         RelativeLayout parentlayout;
+        Context ctx;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, Context ctx1) {
             super(itemView);
+            this.ctx = ctx1;
 
             image = itemView.findViewById(R.id.image);
             taskname = itemView.findViewById(R.id.task_name);
@@ -136,9 +136,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             time = itemView.findViewById(R.id.time);
             button = itemView.findViewById(R.id.delete);
             parentlayout = itemView.findViewById(R.id.parent_layout);
-            int pos = getAdapterPosition();
+
+            itemView.setOnClickListener(this);
 
         }
 
+
+        @Override
+        public void onClick(View v) {
+
+            Intent taskI = new Intent(this.ctx, taskDescription.class);
+            taskI.putExtra("id", taskId);
+            this.ctx.startActivity(taskI);
+        }
     }
 }

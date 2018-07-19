@@ -74,10 +74,10 @@ public class Schedulemain extends AppCompatActivity {
         setContentView(R.layout.activity_schedulemain);
 
         db = FirebaseFirestore.getInstance();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setPersistenceEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings);
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setPersistenceEnabled(true)
+                    .build();
+            db.setFirestoreSettings(settings);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -97,6 +97,7 @@ public class Schedulemain extends AppCompatActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Schedulemain.this);
                 View mView = getLayoutInflater().inflate(R.layout.customdialog, null);
                 final EditText addtask = (EditText) mView.findViewById(R.id.Addtask);
+                final EditText addDes = mView.findViewById(R.id.AddDescription);
                 Button setdate = (Button) mView.findViewById(R.id.setdate);
                 Button settime = (Button) mView.findViewById(R.id.settime);
                 final TextView display = (TextView) mView.findViewById(R.id.display);
@@ -153,6 +154,7 @@ public class Schedulemain extends AppCompatActivity {
                             SimpleDateFormat sdft = new SimpleDateFormat("HH:mm a");
                             formatedTime = sdft.format(dateTime.getTime());
                             String task = String.valueOf(addtask.getText());
+                            String descrption = String.valueOf(addDes.getText());
 
 
                             // Storing Task information on Firebase
@@ -160,6 +162,7 @@ public class Schedulemain extends AppCompatActivity {
                             user.put("Task", task);
                             user.put("Date", formatedDate);
                             user.put("Time", formatedTime);
+                            user.put("Description",descrption);
                             // TODO: Change this to uuid or firebase generated id
                             firebase_id = String.valueOf(System.currentTimeMillis());
 //                            user.put("ID", firebase_id);
@@ -251,7 +254,7 @@ public class Schedulemain extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d("MEEEE", document.getId() + " => " + document.getData());
                                 taskNames.add(document.getString("Task"));
                                 taskDates.add(document.getString("Date"));
                                 taskTimes.add(document.getString("Time"));

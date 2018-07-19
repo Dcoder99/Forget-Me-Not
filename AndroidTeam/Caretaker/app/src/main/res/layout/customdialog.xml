@@ -19,6 +19,14 @@
         android:hint="Enter Task"
         android:layout_marginTop="20sp"/>
 
+    <EditText
+        android:id="@+id/AddDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:hint="Enter Description"
+        android:layout_marginTop="20sp"/>
+
     <Button
         android:id="@+id/setdate"
         android:text="SET DATE"
