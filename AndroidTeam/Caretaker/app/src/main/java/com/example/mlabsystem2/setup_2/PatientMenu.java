@@ -1,7 +1,9 @@
 package com.example.mlabsystem2.setup_2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,20 +27,25 @@ public class PatientMenu extends AppCompatActivity {
         setContentView(R.layout.activity_patientmenu);
 
         //        Do this in the main activity for Sign-in
-        // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build(),
-                RC_SIGN_IN);
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String uid = prefs.getString("uid", "");
+        if (uid.equals("")) {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .build(),
+                    RC_SIGN_IN);
+        }
         //      ..........................
+
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -50,6 +57,13 @@ public class PatientMenu extends AppCompatActivity {
                 // Successfully signed in
                 Toast.makeText(this, "Signed In", Toast.LENGTH_SHORT).show();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                String uid = user.getUid();
+                SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("uid", uid);
+                editor.apply();
+
                 // ...
             } else {
                 Toast.makeText(this, "Couldn't sign you in. Please check your internet connectivity.", Toast.LENGTH_SHORT).show();
