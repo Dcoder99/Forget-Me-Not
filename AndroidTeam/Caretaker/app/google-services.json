@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "506062973569-30bhu64dev88tota4fql9hc4niqvq84n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mlabsystem2.setup_2",
+            "certificate_hash": "6cb9b68e829f77bc0b2e5d453ba88e62a000b165"
+          }
+        },
+        {
           "client_id": "506062973569-io96di4f1frrg0a5t1ad8n109neenecf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -59,7 +67,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "506062973569-lvr9ck03jfktj5n687jf9qtkbtmn1k19.apps.googleusercontent.com",
+          "client_id": "506062973569-48vinbkntm3hq9ua2sbtt04fkk1pqp2q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.who.gives.fireballs",

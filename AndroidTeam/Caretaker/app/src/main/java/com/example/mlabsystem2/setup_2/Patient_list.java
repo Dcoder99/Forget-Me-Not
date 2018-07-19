@@ -8,8 +8,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Patient_list extends AppCompatActivity {
 
@@ -19,6 +27,8 @@ public class Patient_list extends AppCompatActivity {
     private PatientViewAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+
+
 
     FloatingActionButton add;
 
@@ -36,7 +46,7 @@ public class Patient_list extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), patient_add.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -44,10 +54,12 @@ public class Patient_list extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
 
         if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("Name");
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("Name");
             }
         }
     }
@@ -61,8 +73,7 @@ public class Patient_list extends AppCompatActivity {
             recyclerView.setLayoutManager(layoutManager);
             adapter = new PatientViewAdapter(patientNames, this);
             recyclerView.setAdapter(adapter);
-        }
-        else{
+        } else {
             Names.addAll(patientNames);
             adapter.notifyDataSetChanged();
 
