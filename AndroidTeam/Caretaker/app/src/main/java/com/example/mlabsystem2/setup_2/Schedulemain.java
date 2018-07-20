@@ -81,7 +81,8 @@ public class Schedulemain extends AppCompatActivity {
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerViewAdapter(taskNames, taskDates, taskTimes, taskFID, this);

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -121,9 +123,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView taskname;
         TextView date;
         TextView time;
-        Button button;
+        ImageButton button;
         String taskId;
-        RelativeLayout parentlayout;
+        LinearLayout parentlayout;
         Context ctx;
 
         public ViewHolder(View itemView, Context ctx1) {
