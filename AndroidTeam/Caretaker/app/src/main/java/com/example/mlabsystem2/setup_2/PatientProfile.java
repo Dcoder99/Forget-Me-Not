@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PatientProfileActivity extends AppCompatActivity {
+public class PatientProfile extends AppCompatActivity {
 
     private TextView txt_location, txt_customize, txt_schedule; //clickables
     private FloatingActionButton fabEdit;
@@ -62,7 +62,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfileActivity.this, EditDetailsActivity.class);
+                Intent intent = new Intent(PatientProfile.this, EditDetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +70,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfileActivity.this, LocationActivity.class);
+                Intent intent = new Intent(PatientProfile.this, LocationActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfileActivity.this, ScheduleMain.class);
+                Intent intent = new Intent(PatientProfile.this, Schedulemain.class);
                 startActivity(intent);
 
             }
@@ -87,7 +87,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_customize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfileActivity.this, CustomizeActivity.class);
+                Intent intent = new Intent(PatientProfile.this, CustomizeMenu.class);
                 startActivity(intent);
 
             }

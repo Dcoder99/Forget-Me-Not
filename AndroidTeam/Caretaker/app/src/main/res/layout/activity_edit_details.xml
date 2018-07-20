@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".EditDetailsActivity"
     android:background="@color/greyLight"
     android:orientation="vertical">
 
@@ -71,12 +71,6 @@
                         android:textColor="@color/startblue"
                         android:textSize="23sp"
                         android:textStyle="bold" />
-
-
-
-                    "
-
-                    >
                 </LinearLayout>
 
                 <LinearLayout
@@ -95,12 +89,7 @@
                         android:text="Patient Schedule"
                         android:textColor="@color/startblue"
                         android:textSize="23sp"
-
                         android:textStyle="bold" />
-
-                    "
-
-                    >
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,12 +108,8 @@
                         android:text="Customize"
                         android:textColor="@color/startblue"
                         android:textSize="23sp"
-
                         android:textStyle="bold" />
 
-                    "
-
-                    >
                 </LinearLayout>
             </LinearLayout>
 

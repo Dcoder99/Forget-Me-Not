@@ -52,7 +52,7 @@ public class EditDetailsActivity extends AppCompatActivity {
                 editor.putString("phnumber", getphnumber);
                 editor.putString("address",getaddress);
                 editor.commit();
-//                Intent intent= new Intent(getApplicationContext(),PatientProfileActivity.class);
+//                Intent intent= new Intent(getApplicationContext(),PatientProfile.class);
 //                startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Saved Changes",Toast.LENGTH_LONG).show();
             }
