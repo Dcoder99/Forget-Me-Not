@@ -1,64 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/task_name"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/line"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Task"
+        android:padding="8dp"
+        android:text="Task Name"
         android:textColor="#000"
-        android:textSize="30dp" />
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/task_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="40dp"
-        android:text="Date"
-        android:textColor="#000"
-        android:textSize="18dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/task_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="60dp"
-        android:text="time"
-        android:textColor="#000"
-        android:textSize="18dp" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:text="Date: 22-07-2018"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="330dp"
-        android:layout_centerVertical="true"
-        android:background="@drawable/ic_delete" />
 
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="250dp"
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date"
+            android:paddingLeft="8dp"
+            android:paddingBottom="8dp"
+            android:text="time: 2:40 PM"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@color/White"
+            android:contentDescription="@string/delete_task"
+            android:padding="8dp"
+            android:src="@drawable/ic_delete_forever_black_24dp" />
+
+    </RelativeLayout>
+    <View
+        android:padding="8dp"
+        android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:background="@color/black"
-        android:padding="5sp"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center" />
-
-
-</RelativeLayout>
+        android:background="@color/grey" />
+</LinearLayout>

@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".LocationActivity" />
-        <activity android:name=".ScheduleActivity" />
         <activity android:name=".EditDetailsActivity" />
         <activity android:name=".PatientProfileActivity" />
         <activity
