@@ -12,7 +12,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="8dp"
-        android:text="Task Name"
+        android:text=""
         android:textColor="#000"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
-            android:text="Date: 22-07-2018"
+            android:text="22-07-2018"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -39,7 +39,7 @@
             android:layout_below="@+id/date"
             android:paddingLeft="8dp"
             android:paddingBottom="8dp"
-            android:text="time: 2:40 PM"
+            android:text="2:40 PM"
             android:textColor="#000"
             android:textSize="15sp" />
 

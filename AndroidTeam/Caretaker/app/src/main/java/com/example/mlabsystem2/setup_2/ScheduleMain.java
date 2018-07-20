@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScheduleMain extends AppCompatActivity {
@@ -55,9 +60,6 @@ public class ScheduleMain extends AppCompatActivity {
     private static int notificationId = 0;
     private static int reqcode = 0;
 
-    private ArrayList<String> taskNames = new ArrayList<>();
-    private ArrayList<String> taskDates = new ArrayList<>();
-    private ArrayList<String> taskTimes = new ArrayList<>();
     private ArrayList<String> taskFID = new ArrayList<>();
 
     public String formatedDate, formatedTime;
@@ -73,17 +75,17 @@ public class ScheduleMain extends AppCompatActivity {
         setContentView(R.layout.activity_schedulemain);
 
         db = FirebaseFirestore.getInstance();
-            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                    .setPersistenceEnabled(true)
-                    .build();
-            db.setFirestoreSettings(settings);
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewAdapter(taskNames, taskDates, taskTimes, taskFID, this);
+        adapter = new RecyclerViewAdapter(taskFID, this);
         recyclerView.setAdapter(adapter);
 
         loadTaskList();
@@ -161,7 +163,7 @@ public class ScheduleMain extends AppCompatActivity {
                             user.put("Task", task);
                             user.put("Date", formatedDate);
                             user.put("Time", formatedTime);
-                            user.put("Description",descrption);
+                            user.put("Description", descrption);
                             // TODO: Change this to uuid or firebase generated id
                             firebase_id = String.valueOf(System.currentTimeMillis());
 //                            user.put("ID", firebase_id);
@@ -175,7 +177,7 @@ public class ScheduleMain extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void avoid) {
                                             Log.d("MEEEEEEEEEEEEEEE", "DocumentSnapshot successfully written!");
-                                            loadTaskList();
+//                                            loadTaskList();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -185,9 +187,8 @@ public class ScheduleMain extends AppCompatActivity {
                                         }
                                     });
 
-                            loadTaskList();
+//                            loadTaskList();
                             //End of Updating Info on FireBase
-
 
 
                             Intent intent = new Intent(ScheduleMain.this, AlarmReceiver.class);
@@ -237,43 +238,76 @@ public class ScheduleMain extends AppCompatActivity {
 
         Log.d("MEEE", "Before loading");
 
-        taskNames = new ArrayList<>();
-        taskDates = new ArrayList<>();
-        taskTimes = new ArrayList<>();
         taskFID = new ArrayList<>();
 
         final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
-        // TODO: Add "where patient_id = patientID" to the query
+        // Refer to firebase docs for patient_id condition
         db.collection("Tasks")
-                .get(source)
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("MEEEE", document.getId() + " => " + document.getData());
-                                taskNames.add(document.getString("Task"));
-                                taskDates.add(document.getString("Date"));
-                                taskTimes.add(document.getString("Time"));
-                                taskFID.add(document.getId());
-                            }
-
-                            Log.d("MEEEE", "Loaded data");
-
-                            if (taskNames.size() == 0 && fromCache) {
-                                loadTaskList(false);
-
-                            }
-                            adapter.setItems(taskNames, taskDates, taskTimes, taskFID);
-                            adapter.notifyDataSetChanged();
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
+                    public void onEvent(@Nullable QuerySnapshot snapshots,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "listen:error", e);
+                            return;
                         }
+
+                        for (DocumentChange dc : snapshots.getDocumentChanges()) {
+                            QueryDocumentSnapshot document = dc.getDocument();
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    Log.d("MEEEE", "NEW " + dc.getDocument().getData());
+                                    taskFID.add(document.getId());
+                                    break;
+                                case MODIFIED:
+                                    Log.d("MEEE", "MODIFIED : " + dc.getDocument().getData());
+                                    break;
+                                case REMOVED:
+                                    Log.d("MEEE", "REMOVED : " + dc.getDocument().getData());
+                                    taskFID.remove(document.getId());
+                                    Log.d("MEEE", "REMOVED FID : " + taskFID);
+
+                                    break;
+                            }
+                            adapter.setItems(taskFID);
+                            adapter.notifyDataSetChanged();
+                        }
+
                     }
                 });
+
+//
+//        // TODO: Add "where patient_id = patientID" to the query
+//        db.collection("Tasks")
+//                .get(source)
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+////                                Log.d("MEEEE", document.getId() + " => " + document.getData());
+//                                taskNames.add(document.getString("Task"));
+//                                taskDates.add(document.getString("Date"));
+//                                taskTimes.add(document.getString("Time"));
+//                                taskFID.add(document.getId());
+//                            }
+//
+////                            Log.d("MEEEE", "Loaded data");
+//
+//                            if (taskNames.size() == 0 && fromCache) {
+//                                loadTaskList(false);
+//
+//                            }
+//                            adapter.setItems(taskNames, taskDates, taskTimes, taskFID);
+//                            adapter.notifyDataSetChanged();
+//
+//                        } else {
+//                            Log.d(TAG, "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
     }
 
     private void updateDate() {
