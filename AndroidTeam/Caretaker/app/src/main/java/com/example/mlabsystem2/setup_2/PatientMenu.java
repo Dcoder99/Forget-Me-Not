@@ -78,10 +78,11 @@ public class PatientMenu extends AppCompatActivity {
     }
 
     public void SelectProfile(View view) {
-        //func is executed on clicking the layout
-        //this works only for one patient as of 28th June 2018
-        Intent intent = new Intent(getApplicationContext(), PatientProfileActivity.class);
+
+        Intent intent = new Intent(getApplicationContext(), PatientProfile.class);
         startActivity(intent);
 
     }
+
+
 }
