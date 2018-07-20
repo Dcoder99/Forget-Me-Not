@@ -78,7 +78,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         txt_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfileActivity.this, Schedulemain.class);
+                Intent intent = new Intent(PatientProfileActivity.this, ScheduleMain.class);
                 startActivity(intent);
 
             }

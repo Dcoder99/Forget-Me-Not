@@ -24,7 +24,7 @@
         <activity android:name=".EditDetailsActivity" />
         <activity android:name=".PatientProfileActivity" />
         <activity
-            android:name=".Schedulemain"
+            android:name=".ScheduleMain"
             android:exported="true" />
 
         <receiver android:name=".AlarmReceiver" />

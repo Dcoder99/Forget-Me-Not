@@ -32,7 +32,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.Source;
 
 import java.text.DateFormat;
@@ -42,9 +41,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Schedulemain extends AppCompatActivity {
+public class ScheduleMain extends AppCompatActivity {
 
-    private static final String TAG = "Schedulemain";
+    private static final String TAG = "ScheduleMain";
 
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
@@ -81,7 +80,6 @@ public class Schedulemain extends AppCompatActivity {
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -95,7 +93,7 @@ public class Schedulemain extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Schedulemain.this);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(ScheduleMain.this);
                 View mView = getLayoutInflater().inflate(R.layout.customdialog, null);
                 final EditText addtask = (EditText) mView.findViewById(R.id.Addtask);
                 final EditText addDes = mView.findViewById(R.id.AddDescription);
@@ -104,7 +102,7 @@ public class Schedulemain extends AppCompatActivity {
                 final TextView display = (TextView) mView.findViewById(R.id.display);
                 final Spinner myspinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                ArrayAdapter<String> myadapter = new ArrayAdapter<String>(Schedulemain.this,
+                ArrayAdapter<String> myadapter = new ArrayAdapter<String>(ScheduleMain.this,
                         android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinnernames));
                 myadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 myspinner.setAdapter(myadapter);
@@ -129,7 +127,7 @@ public class Schedulemain extends AppCompatActivity {
                     public void onClick(View v) {
                         display.setText(formatDateTime.format(dateTime.getTime()));
                         if(addtask.getText().toString().isEmpty()) {
-                            Toast.makeText(Schedulemain.this, "Insert Something", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ScheduleMain.this, "Insert Something", Toast.LENGTH_SHORT).show();
                         }else {
 
 
@@ -148,7 +146,7 @@ public class Schedulemain extends AppCompatActivity {
 
 
                         if (addtask.getText().toString().isEmpty()) {
-                            Toast.makeText(Schedulemain.this, "Task Name cannot be empty.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ScheduleMain.this, "Task Name cannot be empty.", Toast.LENGTH_SHORT).show();
                         } else {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             formatedDate = sdf.format(dateTime.getTime());
@@ -192,26 +190,26 @@ public class Schedulemain extends AppCompatActivity {
 
 
 
-                            Intent intent = new Intent(Schedulemain.this, AlarmReceiver.class);
+                            Intent intent = new Intent(ScheduleMain.this, AlarmReceiver.class);
                             intent.putExtra("task", addtask.getText().toString());
                             intent.putExtra("notificationId", notificationId);
 
-                            PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                            PendingIntent alarmintent = PendingIntent.getBroadcast(ScheduleMain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                             AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                             if (myspinner.getSelectedItem().toString().equals("Every minute")) {
 
                                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 1 * 60, alarmintent);
 
-                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
                             } else if (myspinner.getSelectedItem().toString().equals("Every two minutes")) {
                                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 2 * 60, alarmintent);
 
-                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
                             } else {
                                 alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
 
-                                Toast.makeText(Schedulemain.this, "Done!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
                             }
 
                             reqcode++;
