@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Caretaker</string>
+    <string name="person_icon">ProfileIcon</string>
+    <string name="phone_icon">PhoneIcon</string>
+    <string name="home_icon">HomeIcon</string>
+
+    <string-array name="spinnernames">
+        <item>No repeat</item>
+        <item>Every minute</item>
+        <item>Every two minutes</item>
+        <item>Every Day</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "259864572782",
+    "firebase_url": "https://facedetection-fd8c6.firebaseio.com",
+    "project_id": "facedetection-fd8c6",
+    "storage_bucket": "facedetection-fd8c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259864572782:android:2e589f9fba2b4d31",
+        "android_client_info": {
+          "package_name": "com.example.vishnusmurali.facedetection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259864572782-2pa17qspnpkqq2vl2h4slqappic8eslh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vishnusmurali.facedetection",
+            "certificate_hash": "c427973ca8b602b59871ad9099b2797721bade34"
+          }
+        },
+        {
+          "client_id": "259864572782-6vb3atffev47vv82p49l8j51srps3lq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCimwjdNg4XKFGdXIKexE_mapXkr8wfmso"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259864572782-6vb3atffev47vv82p49l8j51srps3lq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
