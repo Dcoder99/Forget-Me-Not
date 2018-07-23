@@ -22,7 +22,7 @@
         android:id="@+id/RL1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/heading"
+        android:layout_below="@+id/heading"
         android:padding="5sp">
         <TextView
             android:id="@+id/Contact1"
@@ -31,6 +31,7 @@
             android:text="Contact 1:"
             android:textSize="25sp"
             android:padding="5sp"
+            android:background="#D3D3D3"
             android:textColor="@color/black"
             />
         <EditText
@@ -41,8 +42,6 @@
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Name"
-            android:focusable="false"
-            android:cursorVisible="false"
             />
         <EditText
             android:id="@+id/Phone_number1"
@@ -52,8 +51,7 @@
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Phone Number"
-            android:focusable="false"
-            android:cursorVisible="false"
+            android:inputType="phone"
             />
     </RelativeLayout>
 
@@ -71,6 +69,7 @@
             android:textSize="25sp"
             android:padding="5sp"
             android:textColor="@color/black"
+            android:background="#D3D3D3"
             />
         <EditText
             android:id="@+id/Name2"
@@ -80,19 +79,16 @@
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Name"
-            android:focusable="false"
-            android:cursorVisible="false"
             />
         <EditText
             android:id="@+id/Phone_number2"
-            android:cursorVisible="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Name2"
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Phone Number"
-            android:focusable="false"
+            android:inputType="phone"
             />
     </RelativeLayout>
 
@@ -110,9 +106,9 @@
             android:textSize="25sp"
             android:padding="5sp"
             android:textColor="@color/black"
+            android:background="#D3D3D3"
             />
         <EditText
-            android:cursorVisible="false"
             android:id="@+id/Name3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,10 +116,9 @@
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Name"
-            android:focusable="false"
+             
             />
         <EditText
-            android:cursorVisible="false"
             android:id="@+id/Phone_number3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,7 +126,7 @@
             android:padding="10sp"
             android:textSize="20sp"
             android:hint="Phone Number"
-            android:focusable="false"
+            android:inputType="phone"
             />
     </RelativeLayout>
 
@@ -142,26 +137,29 @@
         android:layout_below="@+id/RL3">
 
         <ImageButton
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15sp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@color/White"
-            android:src="@drawable/ic_check_circle_black"
-            />
-
-        <ImageButton
             android:id="@+id/edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:padding="15sp"
-            android:background="@color/White"
+            android:background="#D3D3D3"
             android:src="@drawable/ic_edit_black"
             android:onClick="editContacts"/>
+
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#D3D3D3"
+            android:src="@drawable/ic_check_circle_black"
+            android:onClick="saveContacts"
+            />
+
+
     </RelativeLayout>
 
 </android.widget.RelativeLayout>
