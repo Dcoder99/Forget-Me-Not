@@ -14,8 +14,7 @@
         android:padding="8dp"
         android:text=""
         android:textColor="#000"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textSize="25sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +27,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:text="22-07-2018"
-            android:textColor="@color/black"
+            android:textColor="@color/greyDarker"
             android:textSize="15sp" />
 
 
@@ -40,7 +39,7 @@
             android:paddingLeft="8dp"
             android:paddingBottom="8dp"
             android:text="2:40 PM"
-            android:textColor="#000"
+            android:textColor="@color/greyDarker"
             android:textSize="15sp" />
 
         <ImageButton
