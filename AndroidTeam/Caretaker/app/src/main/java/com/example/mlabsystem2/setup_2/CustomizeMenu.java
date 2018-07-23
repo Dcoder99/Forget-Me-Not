@@ -14,7 +14,12 @@ public class CustomizeMenu extends AppCompatActivity {
     }
 
     public void editEmergencyContacts(View view) {
-        Intent intent = new Intent(getApplicationContext(),EditContacts.class);
+        Intent intent = new Intent(getApplicationContext(), EditContacts.class);
         startActivity(intent);
+    }
+
+    public void newsFeedInterests(View view) {
+        Intent newfeedi = new Intent(this, EditInterests.class);
+        startActivity(newfeedi);
     }
 }

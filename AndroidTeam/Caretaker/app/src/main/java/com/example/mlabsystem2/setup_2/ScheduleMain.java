@@ -81,7 +81,7 @@ public class ScheduleMain extends AppCompatActivity {
         db.setFirestoreSettings(settings);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView =  findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -90,8 +90,7 @@ public class ScheduleMain extends AppCompatActivity {
 
         loadTaskList();
 
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +165,7 @@ public class ScheduleMain extends AppCompatActivity {
                             user.put("Description", descrption);
                             // TODO: Change this to uuid or firebase generated id
                             firebase_id = String.valueOf(System.currentTimeMillis());
-//                            user.put("ID", firebase_id);
+//                            interestsMap.put("ID", firebase_id);
 
 
                             // Add a new document with a generated ID
@@ -239,8 +238,6 @@ public class ScheduleMain extends AppCompatActivity {
         Log.d("MEEE", "Before loading");
 
         taskFID = new ArrayList<>();
-
-        final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
         // Refer to firebase docs for patient_id condition
         db.collection("Tasks")

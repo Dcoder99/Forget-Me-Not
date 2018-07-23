@@ -82,7 +82,7 @@ public class SignInActivity extends AppCompatActivity {
 
             } else {
                 Toast.makeText(this, "Couldn't sign you in. Please check your internet connectivity.", Toast.LENGTH_SHORT).show();
-                // Sign in failed. If response is null the user canceled the
+                // Sign in failed. If response is null the interestsMap canceled the
                 // sign-in flow using the back button. Otherwise check
                 // response.getError().getErrorCode() and handle the error.
                 // ...

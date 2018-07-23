@@ -34,6 +34,7 @@ public class EditContacts extends AppCompatActivity {
     private EditText num1, num2, num3, name1, name2, name3;
     private ImageButton edit, save;
     public String uid;
+    String TAG = "MEEEEEE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class EditContacts extends AppCompatActivity {
 
         loadContacts();
 
-        }
+    }
 
     public void editContacts(View view) {
         num1.setEnabled(true);
@@ -95,9 +96,11 @@ public class EditContacts extends AppCompatActivity {
 
         edit.setVisibility(edit.GONE);
         save.setVisibility(save.VISIBLE);
+        Log.d(TAG, "after editContacts: ");
     }
 
     public void saveContacts(View view) {
+        Log.d("MEEEE", "saveContacts: ");
         num1.setEnabled(false);
         num1.setCursorVisible(false);
         num2.setEnabled(false);
@@ -116,18 +119,21 @@ public class EditContacts extends AppCompatActivity {
 
 
         //Updating emergency contacts on Firebase
-        Map<String, Object> user = new HashMap<>();
-        user.put("name1", String.valueOf(name1.getText()));
-        user.put("num1", String.valueOf(num1.getText()));
-        user.put("name2", String.valueOf(name2.getText()));
-        user.put("num2", String.valueOf(num2.getText()));
-        user.put("name3", String.valueOf(name3.getText()));
-        user.put("num3", String.valueOf(num3.getText()));
+        Map<String, Object> contacts = new HashMap<String, Object>();
+        contacts.put("name1", String.valueOf(name1.getText()));
+        contacts.put("num1", String.valueOf(num1.getText()));
+        contacts.put("name2", String.valueOf(name2.getText()));
+        contacts.put("num2", String.valueOf(num2.getText()));
+        contacts.put("name3", String.valueOf(name3.getText()));
+        contacts.put("num3", String.valueOf(num3.getText()));
+
+        Map<String, Object> EmergencyContacts = new HashMap<String, Object>();
+        EmergencyContacts.put("EmergencyContacts", contacts);
 
         // Add a new document with a generated ID
         db.collection("Users")
                 .document(uid)
-                .set(user)
+                .update(EmergencyContacts)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
@@ -143,15 +149,15 @@ public class EditContacts extends AppCompatActivity {
     }
 
 
-    public void loadContacts(){
+    public void loadContacts() {
         loadContacts(true);
     }
 
-    public void loadContacts(final boolean fromCache){
+    public void loadContacts(final boolean fromCache) {
 
         final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
-        DocumentReference docRef = db.collection("Users").document(uid);
+        final DocumentReference docRef = db.collection("Users").document(uid);
 
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -160,15 +166,19 @@ public class EditContacts extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d("MEEEEEE", "DocumentSnapshot data: " + document.getData());
-                        name1.setText(document.getString("name1"));
-                        num1.setText(document.getString("num1"));
-                        name2.setText(document.getString("name2"));
-                        num2.setText(document.getString("num2"));
-                        name3.setText(document.getString("name3"));
-                        num3.setText(document.getString("num3"));
+
+                        Map<String, Object> contacts = (Map<String, Object>) document.get("EmergencyContacts");
+                        Log.d("MEEEE", "onComplete: " + contacts);
+                        if (contacts != null) {
+                        name1.setText(String.valueOf(contacts.get("name1")));
+                        num1.setText( contacts.get("num1").toString());
+                        name2.setText( contacts.get("name2").toString());
+                        num2.setText( contacts.get("num2").toString());
+                        name3.setText( contacts.get("name3").toString());
+                        num3.setText( contacts.get("num3").toString());
+                        }
                     } else {
-                        if(fromCache)
-                        {
+                        if (fromCache) {
                             loadContacts(false);
                         }
                         Log.d("MEEEEEE", "No such document");

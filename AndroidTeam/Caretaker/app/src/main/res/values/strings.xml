@@ -6,6 +6,7 @@
     <string name="schedule">Schedule</string>
     <string name="delete_task">Delete Task</string>
     <string name="not_authenticated_yet">Not Authenticated yet.</string>
+    <string name="interested_topics">Interested topics</string>
 
     <string-array name="spinnernames">
         <item>No repeat</item>

@@ -71,7 +71,8 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/customize_layout_border"
         android:elevation="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="newsFeedInterests">
 
         <ImageView
             android:layout_width="60dp"
@@ -86,7 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/p2"

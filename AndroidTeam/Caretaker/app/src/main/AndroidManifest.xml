@@ -30,7 +30,7 @@
         <activity
             android:name=".ScheduleMain"
             android:exported="true" />
-
+        <activity android:name=".EditInterests"/>
         <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".AlarmCancel" />
         <activity android:name=".patient_add" />
