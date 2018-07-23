@@ -13,25 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PatientMenu">
+
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PatientMenu"/>
         <activity android:name=".LocationActivity" />
         <activity android:name=".EditDetailsActivity" />
         <activity android:name=".PatientProfile" />
-        <activity android:name=".CustomizeMenu"/>
-        <activity android:name=".EditContacts"/>
+        <activity android:name=".CustomizeMenu" />
+        <activity android:name=".EditContacts" />
         <activity
             android:name=".ScheduleMain"
             android:exported="true" />
 
         <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".AlarmCancel" />
-
         <activity android:name=".patient_add" />
         <activity android:name=".taskDescription" />
     </application>
