@@ -86,9 +86,9 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
                                 Map<String, Object> contacts = (Map<String, Object>) document.get("EmergencyContacts");
                                 Log.d("MEEEE", "onComplete: " + contacts);
                                 //if (contacts != null) {
-                                    emNumbers.add(contacts.get("num1").toString());
-                                    emNumbers.add(contacts.get("num2").toString());
-                                    emNumbers.add(contacts.get("num3").toString());
+                                emNumbers.add(contacts.get("num1").toString());
+                                emNumbers.add(contacts.get("num2").toString());
+                                emNumbers.add(contacts.get("num3").toString());
                                 //}
                             } else {
                                 if (fromCache) {
@@ -104,28 +104,34 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
+        Log.d(TAG, "onClick: " + emNumbers + "..." + v.getId());
         switch (v.getId()) {
             case R.id.em1: {
                 Log.d(TAG, emNumbers.get(0));
-                Intent call1 = new Intent();
-                call1.setAction(ACTION_CALL);
+                Intent call1 = new Intent(Intent.ACTION_CALL);
+                //call1.setAction(ACTION_CALL);
                 call1.setData(Uri.parse("tel:" + emNumbers.get(0)));
                 startActivity(call1);
             }
+            break;
             case R.id.em2: {
-                Intent call1 = new Intent();
-                call1.setAction(ACTION_CALL);
-                call1.setData(Uri.parse("tel:" + emNumbers.get(1)));
-                startActivity(call1);
+                Log.d(TAG, emNumbers.get(1));
+                Intent call2 = new Intent(Intent.ACTION_CALL);
+                //Intent call1 = new Intent();
+                call2.setAction(ACTION_CALL);
+                call2.setData(Uri.parse("tel:" + emNumbers.get(1)));
+                startActivity(call2);
             }
+            break;
             case R.id.em3: {
-                Intent call1 = new Intent();
-                call1.setAction(ACTION_CALL);
-                call1.setData(Uri.parse("tel:" + emNumbers.get(2)));
-                startActivity(call1);
-
+                Log.d(TAG, emNumbers.get(2));
+                Intent call3 = new Intent(Intent.ACTION_CALL);
+                //Intent call1 = new Intent();
+                call3.setAction(ACTION_CALL);
+                call3.setData(Uri.parse("tel:" + emNumbers.get(2)));
+                startActivity(call3);
             }
+            break;
         }
 
     }

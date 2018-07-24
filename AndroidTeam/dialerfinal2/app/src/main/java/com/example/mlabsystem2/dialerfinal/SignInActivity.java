@@ -118,6 +118,9 @@ public class SignInActivity extends AppCompatActivity {
                                     Log.d("MEEE", "Error adding document", e);
                                 }
                             });
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
                 }
                 else {
                     callQRcode();
