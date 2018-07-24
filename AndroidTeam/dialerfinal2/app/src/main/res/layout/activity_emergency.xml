@@ -10,21 +10,21 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/em1"
+        android:id="@+id/emn1"
         android:layout_marginTop="30dp"
         android:text="Emergency number 1"
         android:background="@drawable/logscall"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/em2"
+        android:id="@+id/emn2"
         android:layout_marginTop="30dp"
         android:text="Emergency number 2"
         android:background="@drawable/logscall"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/em3"
+        android:id="@+id/emn3"
         android:layout_marginTop="30dp"
         android:text="Emergency number 3"
         android:background="@drawable/logscall"/>
