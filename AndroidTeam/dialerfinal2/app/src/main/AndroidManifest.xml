@@ -17,13 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Dialerfinal" />
-        <activity android:name=".MainActivity">
+
+
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".QRcode"/>
+        <activity android:name=".PatientHome"/>
         <activity android:name=".Main2Activity" />
         <activity android:name=".Contacts" />
         <activity android:name=".Logs" />
@@ -37,7 +42,6 @@
             android:exported="true" />
 
         <receiver android:name=".AlarmReceiver" />
-
         <activity android:name=".Game1" />
         <activity android:name=".Games" />
         <activity android:name=".Game2" />

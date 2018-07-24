@@ -122,13 +122,13 @@ public class Newsfeed extends AppCompatActivity {
                 listNews.setLayoutManager(layoutManager);
                 adapter=new RecyclerAdapterfeed(dataList,Newsfeed.this);
                 listNews.setAdapter(adapter);
-              //  RecyclerAdapterfeed adapter = new RecyclerAdapterfeed(dataList,MainActivity.this);
+              //  RecyclerAdapterfeed adapter = new RecyclerAdapterfeed(dataList,PatientHome.this);
                 //listNews.setAdapter(adapter);
 
 //                listNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                    public void onItemClick(AdapterView<?> parent, View view,
 //                                            int position, long id) {
-//                        Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+//                        Intent i = new Intent(PatientHome.this, DetailsActivity.class);
 //                        i.putExtra("url", dataList.get(+position).get(KEY_URL));
 //                        startActivity(i);
 //                    }

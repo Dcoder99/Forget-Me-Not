@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class PatientHome extends AppCompatActivity implements View.OnClickListener {
     CardView cd, callcard;
 
     @Override

@@ -119,7 +119,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
         @Override
         public void onBackPressed () {
             super.onBackPressed();
-            Intent back = new Intent(this, MainActivity.class);
+            Intent back = new Intent(this, PatientHome.class);
             startActivity(back);
         }
 
