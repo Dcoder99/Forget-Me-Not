@@ -101,7 +101,6 @@ public class SignInActivity extends AppCompatActivity {
                 if(!findPatient(uid)){
                     Map<String, Object> patient = new HashMap<>();
                     patient.put("uid",uid);
-                    patient.put("name","Did not have time for that shit");
 
                     db.collection("Patients")
                             .document(uid)
@@ -121,9 +120,8 @@ public class SignInActivity extends AppCompatActivity {
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
-                }
-                else {
                     callQRcode();
+
                 }
 
             } else {

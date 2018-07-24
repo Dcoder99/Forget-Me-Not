@@ -70,11 +70,11 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
 
     private void loadContacts(final boolean fromCache) {
 
-        //final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
+        final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
-        final DocumentReference docRef = db.collection("Users").document("na30eHlGYodk0qPUK56tCh1Pq5s2");
+        final DocumentReference docRef = db.collection("Users").document(uid);
 
-        docRef.get(Source.DEFAULT)
+        docRef.get(source)
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
