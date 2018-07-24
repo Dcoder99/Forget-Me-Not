@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,13 +35,14 @@ import java.util.Map;
 import static android.content.Intent.ACTION_CALL;
 import static android.content.Intent.ACTION_DIAL;
 
-public class Emergency extends AppCompatActivity implements View.OnClickListener {
+public class Emergency extends AppCompatActivity  {
 
 
     String TAG = "MEEEE";
     FirebaseFirestore db;
     String uid;
     public static ArrayList<String> emNumbers = new ArrayList<>();
+    TextView N1, N2, N3;
     Button em1, em2, em3;
 
     @Override
@@ -54,6 +57,11 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
         em2 = findViewById(R.id.em2);
         em3 = findViewById(R.id.em3);
 
+        N1 = findViewById(R.id.name1);
+        N2 = findViewById(R.id.name2);
+        N3 = findViewById(R.id.name3);
+
+
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
@@ -67,14 +75,10 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
         Log.d(TAG, "Uid: " + uid);
 
         loadContactList();
-
-        em1.setOnClickListener(this);
-        em2.setOnClickListener(this);
-        em3.setOnClickListener(this);
     }
 
     private void loadContactList() {
-        final DocumentReference docRef = db.collection("Patients").document(uid);
+        final DocumentReference docRef = db.collection("Patients").document("Ho9KRVzwRZMEO0lss1eMzDk4hFY2");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -93,6 +97,9 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
                         emNumbers.add(contacts.get("num1").toString());
                         emNumbers.add(contacts.get("num2").toString());
                         emNumbers.add(contacts.get("num3").toString());
+                        N1.setText(contacts.get("name1").toString());
+                        N2.setText(contacts.get("name2").toString());
+                        N3.setText(contacts.get("name3").toString());
                     }
 
                 } else {
@@ -140,47 +147,80 @@ public class Emergency extends AppCompatActivity implements View.OnClickListener
 //                });
 //    }
 
-    @Override
-    public void onClick(View v) {
-        Log.d(TAG, "onClick: " + emNumbers + "..." + v.getId());
-        switch (v.getId()) {
-            case R.id.em1: {
-                Log.d(TAG, emNumbers.get(0));
-                Intent call1 = new Intent(Intent.ACTION_CALL);
-                //call1.setAction(ACTION_CALL);
-                call1.setData(Uri.parse("tel:" + emNumbers.get(0)));
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                }
-                startActivity(call1);
-            }
-            break;
-            case R.id.em2: {
-                Log.d(TAG, emNumbers.get(1));
-                Intent call2 = new Intent(Intent.ACTION_CALL);
-                //Intent call1 = new Intent();
-                call2.setAction(ACTION_CALL);
-                call2.setData(Uri.parse("tel:" + emNumbers.get(1)));
-                startActivity(call2);
-            }
-            break;
-            case R.id.em3: {
-                Log.d(TAG, emNumbers.get(2));
-                Intent call3 = new Intent(Intent.ACTION_CALL);
-                //Intent call1 = new Intent();
-                call3.setAction(ACTION_CALL);
-                call3.setData(Uri.parse("tel:" + emNumbers.get(2)));
-                startActivity(call3);
-            }
-            break;
-        }
+//    @Override
+//    public void onClick(View v) {
+//
+//        switch (v.getId()) {
+//            case R.id.em1: {
+//
+//            }
+//            break;
+//            case R.id.em2: {
+//
+//            }
+//            break;
+//            case R.id.em3: {
+//
+//            }
+//            break;
+//        }
+//
+//    }
 
+    public void call1(View view) {
+        Log.d(TAG, emNumbers.get(0));
+        Intent call1 = new Intent(Intent.ACTION_CALL);
+        //call1.setAction(ACTION_CALL);
+        call1.setData(Uri.parse("tel:" + emNumbers.get(0)));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+        }
+        startActivity(call1);
     }
+
+    public void call2(View view) {
+        Log.d(TAG, emNumbers.get(1));
+        Intent call2 = new Intent(Intent.ACTION_CALL);
+        //Intent call1 = new Intent();
+        call2.setAction(ACTION_CALL);
+        call2.setData(Uri.parse("tel:" + emNumbers.get(1)));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(call2);
+    }
+
+    public void call3(View view) {
+        Log.d(TAG, emNumbers.get(2));
+        Intent call3 = new Intent(Intent.ACTION_CALL);
+        //Intent call1 = new Intent();
+        call3.setAction(ACTION_CALL);
+        call3.setData(Uri.parse("tel:" + emNumbers.get(2)));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(call3);
+    }
+
 }
