@@ -7,6 +7,11 @@
     <string name="delete_task">Delete Task</string>
     <string name="not_authenticated_yet">Not Authenticated yet.</string>
     <string name="interested_topics">Interested topics</string>
+    <string name="patient_dp">patient_dp</string>
+    <string name="patient_list">Patient List</string>
+    <string name="change_patient">Change Patient</string>
+    <string name="add_patient">Add Patient</string>
+    <string name="try_again">Try Again</string>
 
     <string-array name="spinnernames">
         <item>No repeat</item>

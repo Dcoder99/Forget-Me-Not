@@ -31,7 +31,7 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
     String singleInterest;
     FirebaseFirestore db;
     Button submit;
-    String uid;
+    String patient_uid;
 
     String TAG = "MEEEEEEEEEEE";
 
@@ -66,11 +66,11 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
 
 
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        uid = prefs.getString("uid", "");
+        patient_uid = prefs.getString("patient_uid", "");
 
         loadInterests();
 
-        Log.d("MEEEEEEEE", uid);
+        Log.d("MEEEEEEEE", patient_uid);
     }
 
     public void loadInterests(){
@@ -81,7 +81,7 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
 
         final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
-        DocumentReference docRef = db.collection("Users").document(uid);
+        DocumentReference docRef = db.collection("Patients").document(patient_uid);
 
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -126,8 +126,8 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
 
                 interestsMap.put("Interests", interests);
 
-                db.collection("Users")
-                        .document(uid)
+                db.collection("Patients")
+                        .document(patient_uid)
                         .update(interestsMap);
             }
         }

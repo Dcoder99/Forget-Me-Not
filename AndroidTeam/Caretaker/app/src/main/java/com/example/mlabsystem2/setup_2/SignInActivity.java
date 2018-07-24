@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -38,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // Create and launch sign-in intent
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String uid = prefs.getString("uid", "");
+        String uid = prefs.getString("patient_uid", "");
 
         Log.d("MEEEEE", uid);
 
@@ -75,7 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                 String uid = user.getUid();
                 SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("uid", uid);
+                editor.putString("patient_uid", uid);
                 editor.apply();
 
                 callPatientMenu();
@@ -86,9 +87,6 @@ public class SignInActivity extends AppCompatActivity {
                 // sign-in flow using the back button. Otherwise check
                 // response.getError().getErrorCode() and handle the error.
                 // ...
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         }
     }
@@ -98,4 +96,14 @@ public class SignInActivity extends AppCompatActivity {
         startActivity(in);
     }
 
+
+    private void reLaunchActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+    public void reLaunchActivity(View view) {
+        reLaunchActivity();
+    }
 }

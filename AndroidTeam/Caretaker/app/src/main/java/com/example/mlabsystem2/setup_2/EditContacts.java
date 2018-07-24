@@ -7,10 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,8 +18,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
 import java.util.HashMap;
@@ -33,7 +29,7 @@ public class EditContacts extends AppCompatActivity {
 
     private EditText num1, num2, num3, name1, name2, name3;
     private ImageButton edit, save;
-    public String uid;
+    public String patient_uid;
     String TAG = "MEEEEEE";
 
     @Override
@@ -73,8 +69,8 @@ public class EditContacts extends AppCompatActivity {
         save.setVisibility(save.GONE);
 
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        uid = prefs.getString("uid", "");
-        Log.d("MEEEEEEEE", uid);
+        patient_uid = prefs.getString("patient_uid", "");
+        Log.d("MEEEEEEEE", patient_uid);
 
         loadContacts();
 
@@ -131,8 +127,8 @@ public class EditContacts extends AppCompatActivity {
         EmergencyContacts.put("EmergencyContacts", contacts);
 
         // Add a new document with a generated ID
-        db.collection("Users")
-                .document(uid)
+        db.collection("Patients")
+                .document(patient_uid)
                 .update(EmergencyContacts)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -157,7 +153,7 @@ public class EditContacts extends AppCompatActivity {
 
         final Source source = (fromCache) ? Source.CACHE : Source.DEFAULT;
 
-        final DocumentReference docRef = db.collection("Users").document(uid);
+        final DocumentReference docRef = db.collection("Patients").document(patient_uid);
 
         docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -168,7 +164,6 @@ public class EditContacts extends AppCompatActivity {
                         Log.d("MEEEEEE", "DocumentSnapshot data: " + document.getData());
 
                         Map<String, Object> contacts = (Map<String, Object>) document.get("EmergencyContacts");
-                        Log.d("MEEEE", "onComplete: " + contacts);
                         if (contacts != null) {
                         name1.setText(String.valueOf(contacts.get("name1")));
                         num1.setText( contacts.get("num1").toString());

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PatientMenu"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".PatientMenu">
 
 
     <TextView
@@ -13,15 +13,15 @@
         android:layout_height="80dp"
         android:layout_margin="16dp"
         android:background="@color/startblue"
-        android:text="Patient List"
+        android:gravity="bottom"
         android:padding="10dp"
+        android:text="@string/patient_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/White"
-        android:textSize="30sp"
-        android:gravity="bottom"
-        style="bold"/>
+        android:textSize="30sp" />
 
     <LinearLayout
+        android:id="@+id/patient_1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
@@ -31,124 +31,130 @@
         android:clickable="true"
         android:elevation="10dp"
         android:onClick="SelectProfile"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true">
 
         <ImageView
+            android:contentDescription="@string/patient_dp"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/icon_person_blue" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <TextView
-                android:id="@+id/p1"
+                android:id="@+id/patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ABC"
-                android:textColor="#4a4a4a"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="xyz"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:layout_centerVertical="true"
+                android:padding="8sp"
+                android:text="Patient Name"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </RelativeLayout>
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="xyz"-->
+        <!--android:textSize="14sp" />-->
 
     </LinearLayout>
-
-    <LinearLayout
+    <Button
+        android:onClick="addPatient"
+        android:id="@+id/add_patient"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/customize_layout_border"
-        android:elevation="10dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:text="@string/change_patient"
+        android:layout_margin="10dp"
+        />
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_person_green" />
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="80dp"-->
+    <!--android:layout_marginBottom="16dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:background="@drawable/customize_layout_border"-->
+    <!--android:elevation="10dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:src="@drawable/icon_person_green" />-->
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/p2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ABC"
-                android:textColor="#4a4a4a"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <!--<TextView-->
+    <!--android:id="@+id/p2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="ABC"-->
+    <!--android:textColor="#4a4a4a"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="xyz"
-                android:textSize="14sp" />
-        </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="xyz"-->
+    <!--android:textSize="14sp" />-->
+    <!--</LinearLayout>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/customize_layout_border"
-        android:elevation="10dp"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="80dp"-->
+    <!--android:layout_marginBottom="16dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginRight="16dp"-->
+    <!--android:background="@drawable/customize_layout_border"-->
+    <!--android:elevation="10dp"-->
+    <!--android:orientation="horizontal">-->
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_person_purple" />
+    <!--<ImageView-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:src="@drawable/icon_person_purple" />-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/p3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ABC"
-                android:textColor="#4a4a4a"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <!--<TextView-->
+    <!--android:id="@+id/p3"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="ABC"-->
+    <!--android:textColor="#4a4a4a"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="xyz"
-                android:textSize="14sp" />
-        </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="xyz"-->
+    <!--android:textSize="14sp" />-->
+    <!--</LinearLayout>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </LinearLayout>
 
 
