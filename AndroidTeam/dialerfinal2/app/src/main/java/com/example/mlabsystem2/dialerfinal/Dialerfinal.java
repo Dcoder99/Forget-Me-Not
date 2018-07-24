@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Dialerfinal extends AppCompatActivity  implements View.OnClickListener {
+public class Dialerfinal extends AppCompatActivity implements View.OnClickListener {
     FloatingActionButton bt;
     Button contacts;
     Cursor cursor;
@@ -23,6 +23,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
     Button logs;
     Button emerge;
     EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,26 +33,25 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
         }
 
-        bt=findViewById(R.id.bt);
-        emerge=findViewById(R.id.emerge);
-        contacts=findViewById(R.id.contacts);
-        editText=findViewById(R.id.et);
+        bt = findViewById(R.id.bt);
+        emerge = findViewById(R.id.emerge);
+        contacts = findViewById(R.id.contacts);
+        editText = findViewById(R.id.et);
         bt.setOnClickListener(this);
         contacts.setOnClickListener(this);
         emerge.setOnClickListener(this);
-        logs=findViewById(R.id.logs);
-      if(getIntent().getStringExtra("number")!=null) {
-          editText.setText(getIntent().getStringExtra("number"));
-      }
+        logs = findViewById(R.id.logs);
+        if (getIntent().getStringExtra("number") != null) {
+            editText.setText(getIntent().getStringExtra("number"));
+        }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
         }
-      number=editText.getText().toString();
+        number = editText.getText().toString();
 
         logs.setOnClickListener(this);
 
     }
-
 
 
     @Override
@@ -64,39 +64,50 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
         number = editText.getText().toString();
 
 
-            switch (view.getId()) {
-                case R.id.bt: {
+        switch (view.getId()) {
+            case R.id.bt: {
 
 
-                    cursor.moveToFirst();
-                    String number1;
-                    int i = 0;
-                    long logtime;
-                    long time;
-                    String date;
-                    for (i = 0; i <= 4; i++) {
-                        time = System.currentTimeMillis();
-                        number1 = cursor.getString(cursor.getColumnIndex(CallLog.Calls.NUMBER));
-                        date = cursor.getString(cursor.getColumnIndex(CallLog.Calls.DATE));
-                        logtime = time - (Long.parseLong(date) + Long.parseLong(cursor.getString(cursor.getColumnIndex(CallLog.Calls.DURATION))));
-                        String type = cursor.getString(cursor.getColumnIndex(CallLog.Calls.TYPE));
-                        if ((number.equals(number1) || ("+91" + number).equals(number1) || ("+91" + number1).equals(number)) && logtime < 300000 && type.equals("2")) {
-                            break;
-                        } else {
-                            cursor.moveToNext();
-                        }
-                    }
-
-
-                    if (i < 5) {
-                        Intent intent = new Intent(this, Pop.class);
-                        intent.putExtra("number", number);
-                        startActivity(intent);
-
+                cursor.moveToFirst();
+                String number1;
+                int i = 0;
+                long logtime;
+                long time;
+                String date;
+                for (i = 0; i <= 4; i++) {
+                    time = System.currentTimeMillis();
+                    number1 = cursor.getString(cursor.getColumnIndex(CallLog.Calls.NUMBER));
+                    date = cursor.getString(cursor.getColumnIndex(CallLog.Calls.DATE));
+                    logtime = time - (Long.parseLong(date) + Long.parseLong(cursor.getString(cursor.getColumnIndex(CallLog.Calls.DURATION))));
+                    String type = cursor.getString(cursor.getColumnIndex(CallLog.Calls.TYPE));
+                    if ((number.equals(number1) || ("+91" + number).equals(number1) || ("+91" + number1).equals(number)) && logtime < 300000 && type.equals("2")) {
+                        break;
                     } else {
-                        Intent call = new Intent(Intent.ACTION_CALL);
-                        call.setData(Uri.parse("tel:" + number));
-                        startActivity(call);
+                        cursor.moveToNext();
+                    }
+                }
+
+
+                if (i < 5) {
+                    Intent intent = new Intent(this, Pop.class);
+                    intent.putExtra("number", number);
+                    startActivity(intent);
+
+                } else {
+                    Intent call = new Intent(Intent.ACTION_CALL);
+                    call.setData(Uri.parse("tel:" + number));
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+
+                    }
+                    startActivity(call);
                         editText.setText(null);
                     }
 
