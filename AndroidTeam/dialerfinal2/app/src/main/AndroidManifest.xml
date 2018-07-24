@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +38,8 @@
         <activity android:name=".Newsfeed" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".FeedActivity" />
-        <activity android:name=".Emergency" />
+        <activity android:name=".Emergency"
+            android:exported="true"/>
         <activity
             android:name=".Schedulemain"
             android:exported="true" />

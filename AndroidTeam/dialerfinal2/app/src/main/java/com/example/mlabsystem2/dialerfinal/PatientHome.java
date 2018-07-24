@@ -52,4 +52,9 @@ public class PatientHome extends AppCompatActivity implements View.OnClickListen
         startActivity(intent);
         finish();
     }
+
+    public void generateQRcode(View view) {
+        Intent intent = new Intent(this,QRcode.class);
+        startActivity(intent);
+    }
 }
