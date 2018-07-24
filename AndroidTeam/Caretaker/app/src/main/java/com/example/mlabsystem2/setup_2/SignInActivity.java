@@ -76,7 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                 String uid = user.getUid();
                 SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("patient_uid", uid);
+                editor.putString("uid", uid);
                 editor.apply();
 
                 callPatientMenu();

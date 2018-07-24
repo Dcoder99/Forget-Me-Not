@@ -22,8 +22,7 @@ public class RecyclerViewAdapterInterests extends RecyclerView.Adapter<RecyclerV
     ArrayList<String> interests = new ArrayList<>();
     Context mContext;
 
-    public RecyclerViewAdapterInterests(ArrayList<String> interests, Context mContext)
-    {
+    public RecyclerViewAdapterInterests(ArrayList<String> interests, Context mContext) {
         this.interests = interests;
         this.mContext = mContext;
     }
@@ -31,7 +30,7 @@ public class RecyclerViewAdapterInterests extends RecyclerView.Adapter<RecyclerV
     @Override
     public RecyclerViewAdapterInterests.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.interest_layout, parent, false);
-        RecyclerViewAdapterInterests.ViewHolder vh = new RecyclerViewAdapterInterests.ViewHolder(view, mContext , interests);
+        RecyclerViewAdapterInterests.ViewHolder vh = new RecyclerViewAdapterInterests.ViewHolder(view, mContext, interests);
         return vh;
     }
 
@@ -41,7 +40,6 @@ public class RecyclerViewAdapterInterests extends RecyclerView.Adapter<RecyclerV
         holder.interest1.setText(interests.get(position));
 
     }
-
 
 
     @Override
@@ -60,13 +58,13 @@ public class RecyclerViewAdapterInterests extends RecyclerView.Adapter<RecyclerV
         ArrayList<String> interests;
         Button Delete;
 
-        public ViewHolder(View itemView, Context ctx1 , ArrayList<String> mInterests) {
+        public ViewHolder(View itemView, Context ctx1, ArrayList<String> mInterests) {
             super(itemView);
             this.ctx = ctx1;
 
             this.interests = mInterests;
 
-            interest1 =(TextView)itemView.findViewById(R.id.interest_name);
+            interest1 = (TextView) itemView.findViewById(R.id.interest_name);
 
             Delete = itemView.findViewById(R.id.delete);
 
@@ -76,8 +74,6 @@ public class RecyclerViewAdapterInterests extends RecyclerView.Adapter<RecyclerV
 
         @Override
         public void onClick(View v) {
-
-
             int position = getAdapterPosition();
             interests.remove(position);
 

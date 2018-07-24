@@ -68,7 +68,7 @@ public class PatientMenu extends AppCompatActivity {
         if (patient_uid.equals("")) {
             ll.setVisibility(ll.GONE);
             add_patient.setText(R.string.add_patient);
-            addPatient();
+//            addPatient();
         } else {
             ll.setVisibility(ll.VISIBLE);
             patient_name.setText(p_name);

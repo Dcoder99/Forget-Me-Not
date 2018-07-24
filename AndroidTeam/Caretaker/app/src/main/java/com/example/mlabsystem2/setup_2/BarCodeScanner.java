@@ -51,6 +51,7 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
     public void onScanned(Barcode barcode) {
         // play beep sound
         barcodeReader.playBeep();
+        Toast.makeText(this, "Please wait while we find the patient.", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onScanned: " + barcode.displayValue);
         PatientFound(barcode.displayValue);
     }
