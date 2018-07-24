@@ -1,11 +1,16 @@
 package com.example.mlabsystem2.setup_2;
 
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -69,14 +74,19 @@ public class ScheduleMain extends AppCompatActivity {
     public static String firebase_id;
 
     FirebaseFirestore db;
+    String patient_uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemain);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+        myToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
 
 
         db = FirebaseFirestore.getInstance();
@@ -86,7 +96,10 @@ public class ScheduleMain extends AppCompatActivity {
         db.setFirestoreSettings(settings);
 
 
-        recyclerView =  findViewById(R.id.recycler_view);
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        patient_uid = prefs.getString("patient_uid", "");
+
+        recyclerView = findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -164,6 +177,7 @@ public class ScheduleMain extends AppCompatActivity {
 
                             // Storing Task information on Firebase
                             Map<String, Object> user = new HashMap<>();
+                            user.put("patient_uid", patient_uid);
                             user.put("Task", task);
                             user.put("Date", formatedDate);
                             user.put("Time", formatedTime);
@@ -232,6 +246,13 @@ public class ScheduleMain extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
 
     private void loadTaskList() {
         loadTaskList(true);

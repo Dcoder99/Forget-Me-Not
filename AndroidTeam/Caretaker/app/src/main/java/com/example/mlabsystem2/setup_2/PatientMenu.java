@@ -61,7 +61,7 @@ public class PatientMenu extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        uid = prefs.getString("patient_uid", "");
+        uid = prefs.getString("uid", "");
         patient_uid = prefs.getString("patient_uid", "");
         p_name = prefs.getString("patient_name", "");
 
