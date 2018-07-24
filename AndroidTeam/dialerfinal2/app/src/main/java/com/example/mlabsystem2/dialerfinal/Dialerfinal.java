@@ -27,6 +27,11 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialerfinal);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
+        }
+
         bt=findViewById(R.id.bt);
         emerge=findViewById(R.id.emerge);
         contacts=findViewById(R.id.contacts);
@@ -38,6 +43,9 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
       if(getIntent().getStringExtra("number")!=null) {
           editText.setText(getIntent().getStringExtra("number"));
       }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
+        }
       number=editText.getText().toString();
 
         logs.setOnClickListener(this);
@@ -48,9 +56,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
-        }
+
         cursor = getContentResolver().query(CallLog.Calls.CONTENT_URI, null, null, null,
                 CallLog.Calls.DEFAULT_SORT_ORDER);
         startManagingCursor(cursor);
@@ -119,7 +125,7 @@ public class Dialerfinal extends AppCompatActivity  implements View.OnClickListe
         @Override
         public void onBackPressed () {
             super.onBackPressed();
-            Intent back = new Intent(this, MainActivity.class);
+            Intent back = new Intent(this, PatientHome.class);
             startActivity(back);
         }
 
