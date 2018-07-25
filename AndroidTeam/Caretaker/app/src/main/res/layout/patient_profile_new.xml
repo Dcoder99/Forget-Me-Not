@@ -97,7 +97,6 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/darkBlue"
         android:contentDescription="@string/edit"
-        android:onClick="editDetails"
         android:src="@drawable/ic_edit_white_36dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"

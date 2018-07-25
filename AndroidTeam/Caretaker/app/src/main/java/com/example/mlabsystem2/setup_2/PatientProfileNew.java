@@ -54,6 +54,7 @@ public class PatientProfileNew extends AppCompatActivity {
     }
 
     public void editDetails(View view) {
-        Intent intent = new Intent(this, EditDetailsActivity.class);
+        Intent intent = new Intent(this, EditPatientDetails.class);
+        startActivity(intent);
     }
 }

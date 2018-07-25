@@ -261,6 +261,7 @@ public class ScheduleMain extends AppCompatActivity {
 
         // Refer to firebase docs for patient_id condition
         db.collection("Tasks")
+                .whereEqualTo("patient_uid", patient_uid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot snapshots,

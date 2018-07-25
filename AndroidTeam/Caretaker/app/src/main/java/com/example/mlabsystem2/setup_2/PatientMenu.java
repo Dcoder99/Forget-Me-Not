@@ -97,5 +97,9 @@ public class PatientMenu extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
+
+        Intent intent = new Intent(this,EditPatientDetails.class);
+        startActivity(intent);
+
     }
 }

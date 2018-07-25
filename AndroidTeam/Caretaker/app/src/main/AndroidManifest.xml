@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".PatientMenu" />
         <activity android:name=".LocationActivity" />
-        <activity android:name=".EditDetailsActivity" />
+        <activity android:name=".EditPatientDetails" />
         <activity android:name=".PatientProfile" />
         <activity android:name=".CustomizeMenu" />
         <activity android:name=".EditContacts" />
