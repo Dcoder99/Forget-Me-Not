@@ -23,17 +23,6 @@
         app:title="@string/patient_profile"
         app:titleTextColor="@color/White" />
 
-    <ImageView
-        android:id="@+id/profile_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/profile_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
-
 
     <ImageView
         android:id="@+id/imageView"
@@ -42,8 +31,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/icon_person_blue"
-        app:layout_constraintStart_toEndOf="@+id/profile_photo"
-        app:layout_constraintTop_toTopOf="@+id/profile_photo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <TextView
         android:id="@+id/textView2"
@@ -53,9 +42,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
-        android:maxEms="5"
+        android:maxEms="8"
         android:maxLines="1"
-        android:text="Erlich Lorecdscdna"
+        android:text="Erlich Lorecdnksldnflknlfdlsnfdsscdna"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -70,7 +59,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
-        android:maxEms="5"
+        android:maxEms="10"
         android:maxLines="1"
         android:text="9934599337"
         android:textSize="18sp"
@@ -82,51 +71,45 @@
         android:id="@+id/imageView2"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_call_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_photo"
-        app:layout_constraintStart_toEndOf="@+id/profile_photo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageButton
+    <Button
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/darkBlue"
         android:contentDescription="@string/edit"
-        android:src="@drawable/ic_edit_white_36dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
+        android:drawableStart="@drawable/ic_edit_white_36dp"
+        android:onClick="editDetails"
         android:text="@string/view_edit"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        android:textColor="@color/White"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="240dp" />
+        app:layout_constraintGuide_begin="200dp" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="imageView2,profile_photo,imageView,my_toolbar,textView2,textView4"
-        app:layout_constraintRight_toLeftOf="@id/imageButton"
-        tools:layout_editor_absoluteX="360dp" />
+        app:constraint_referenced_ids="imageView2,imageView,my_toolbar,textView2,textView4"
+        app:layout_constraintRight_toLeftOf="@id/imageButton" />
 
 
     <android.support.constraint.Barrier
@@ -134,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="guideline,textView,imageView2,profile_photo,imageView,my_toolbar,textView2,textView4,imageButton"
+        app:constraint_referenced_ids="guideline,imageView2,imageView,my_toolbar,textView2,textView4,imageButton"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <View
@@ -143,7 +126,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/barrier6" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <TextView
         android:id="@+id/textView5"
@@ -253,9 +236,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:layout_constraintTop_toBottomOf="@id/view5"
         app:constraint_referenced_ids="button4,button5,button7,textView5,textView6,button6,view5,button3,view6,view"
-        />
+        app:layout_constraintTop_toBottomOf="@id/view5" />
 </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
