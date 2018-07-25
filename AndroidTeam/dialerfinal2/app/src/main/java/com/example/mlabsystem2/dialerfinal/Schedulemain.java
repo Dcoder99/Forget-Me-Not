@@ -4,8 +4,10 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -68,12 +70,15 @@ public class Schedulemain extends AppCompatActivity {
     Calendar dateTime = Calendar.getInstance();
 
     private int notificationId = 1;
-
+String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemain);
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        uid = prefs.getString("uid", "");
+
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
@@ -113,6 +118,7 @@ public class Schedulemain extends AppCompatActivity {
 
         // Refer to firebase docs for patient_id condition
         db.collection("Tasks")
+                .whereEqualTo("patient_uid", uid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot snapshots,
