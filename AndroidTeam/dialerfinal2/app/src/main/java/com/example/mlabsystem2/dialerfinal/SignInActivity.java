@@ -33,6 +33,7 @@ public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "MEEEE";
     FirebaseFirestore db;
     boolean isFound = false;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,39 +91,13 @@ public class SignInActivity extends AppCompatActivity {
                 Toast.makeText(this, "Signed In", Toast.LENGTH_SHORT).show();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                String uid = user.getUid();
+                uid = user.getUid();
                 SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("uid", uid);
                 editor.apply();
 
-
-
-                if(!findPatient(uid)){
-                    Map<String, Object> patient = new HashMap<>();
-                    patient.put("uid",uid);
-
-                    db.collection("Patients")
-                            .document(uid)
-                            .set(patient)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void avoid) {
-                                    Log.d("MEEEEEEEEEEEEEEE", "DocumentSnapshot successfully written!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("MEEE", "Error adding document", e);
-                                }
-                            });
-                    Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
-                    callQRcode();
-
-                }
+                findPatient(uid);
 
             } else {
                 Toast.makeText(this, "Couldn't sign you in. Please check your internet connectivity.", Toast.LENGTH_SHORT).show();
@@ -146,9 +121,32 @@ public class SignInActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
                         isFound = true;
                     } else {
                         Log.d(TAG, "No such document");
+
+                        Map<String, Object> patient = new HashMap<>();
+                        patient.put("uid",uid);
+
+                        db.collection("Patients")
+                                .document(uid)
+                                .set(patient)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void avoid) {
+                                        Log.d("MEEEEEEEEEEEEEEE", "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("MEEE", "Error adding document", e);
+                                    }
+                                });
+                        callQRcode();
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
