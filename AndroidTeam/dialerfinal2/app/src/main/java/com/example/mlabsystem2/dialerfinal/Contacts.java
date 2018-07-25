@@ -28,6 +28,7 @@ public class Contacts extends AppCompatActivity {
 
 
 
+
         cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
         startManagingCursor(cursor);
         while (cursor.moveToNext()){

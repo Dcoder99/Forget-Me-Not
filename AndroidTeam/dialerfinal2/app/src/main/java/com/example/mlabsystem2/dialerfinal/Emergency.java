@@ -78,7 +78,7 @@ public class Emergency extends AppCompatActivity  {
     }
 
     private void loadContactList() {
-        final DocumentReference docRef = db.collection("Patients").document("Ho9KRVzwRZMEO0lss1eMzDk4hFY2");
+        final DocumentReference docRef = db.collection("Patients").document(uid);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
