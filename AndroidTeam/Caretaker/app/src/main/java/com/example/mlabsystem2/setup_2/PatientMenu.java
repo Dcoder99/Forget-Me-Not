@@ -93,13 +93,14 @@ public class PatientMenu extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data.getBooleanExtra("isModified", false)) {
-            Intent intent = getIntent();
-            finish();
+//            Intent intent = getIntent();
+//            finish();
+//            startActivity(intent);
+
+            Intent intent = new Intent(this,EditPatientDetails.class);
+            intent.putExtra("isFromScanner",true);
             startActivity(intent);
         }
-
-        Intent intent = new Intent(this,EditPatientDetails.class);
-        startActivity(intent);
 
     }
 }

@@ -155,6 +155,11 @@ public class EditContacts extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
 
     public void loadContacts() {
         loadContacts(true);
