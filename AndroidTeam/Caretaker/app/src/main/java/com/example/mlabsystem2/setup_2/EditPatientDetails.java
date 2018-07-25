@@ -184,8 +184,17 @@ public class EditPatientDetails extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, PatientProfileNew.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
         return true;
     }
 

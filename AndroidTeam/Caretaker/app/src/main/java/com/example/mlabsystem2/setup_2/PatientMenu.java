@@ -54,7 +54,7 @@ public class PatientMenu extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         uid = prefs.getString("uid", "");
         patient_uid = prefs.getString("patient_uid", "");
-        p_name = prefs.getString("patient_name", "");
+        p_name = prefs.getString("patient_name", "undefined");
 
         if (patient_uid.equals("")) {
             ll.setVisibility(ll.GONE);
