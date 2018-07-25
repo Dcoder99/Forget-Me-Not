@@ -2,26 +2,26 @@ package com.example.mlabsystem2.setup_2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,6 @@ import java.util.Map;
 
 public class EditInterests extends AppCompatActivity implements View.OnClickListener {
     EditText interest;
-    Button setIntersts;
     ArrayList<String> interests = new ArrayList<String>();
     String singleInterest;
     FirebaseFirestore db;
@@ -38,21 +37,29 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
 
     String TAG = "MEEEEEEEEEEE";
 
-    private RecyclerViewAdapterInterests adapter;
+    private RcvInterests adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
-    Map<String, Object> interestsMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_interests);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        myToolbar.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+        myToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        patient_uid = prefs.getString("patient_uid", "");
+
         interest = findViewById(R.id.interest);
-        setIntersts = findViewById(R.id.setinterests);
-        setIntersts.setOnClickListener(this);
         submit = findViewById(R.id.submit);
+        submit.setOnClickListener(this);
 
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -60,20 +67,23 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
                 .build();
         db.setFirestoreSettings(settings);
 
-        submit.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.recycler_view1);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
-
-        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        patient_uid = prefs.getString("patient_uid", "");
+        adapter = new RcvInterests(interests, this, patient_uid);
+        recyclerView.setAdapter(adapter);
 
         loadInterests();
 
         Log.d("MEEEEEEEE", patient_uid);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     public void loadInterests() {
@@ -105,24 +115,25 @@ public class EditInterests extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.setinterests: {
-                singleInterest = interest.getText().toString();
+            case R.id.submit:
+                singleInterest = interest.getText().toString().trim();
+                if (singleInterest.equals("")) {
+                    Toast toast = Toast.makeText(this, "Please enter some text.", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.show();
+                    break;
+                }
                 interests.add(singleInterest);
                 interest.setText(null);
 
-                adapter = new RecyclerViewAdapterInterests(interests, this);
-                recyclerView.setAdapter(adapter);
-
-            }
-            break;
-            case R.id.submit: {
-
+                Map<String, Object> interestsMap = new HashMap<>();
                 interestsMap.put("Interests", interests);
 
                 db.collection("Patients")
                         .document(patient_uid)
                         .update(interestsMap);
-            }
+                break;
         }
     }
 }
+

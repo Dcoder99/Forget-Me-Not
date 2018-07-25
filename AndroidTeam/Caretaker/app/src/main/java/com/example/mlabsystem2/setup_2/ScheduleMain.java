@@ -50,7 +50,7 @@ public class ScheduleMain extends AppCompatActivity {
 
     private static final String TAG = "ScheduleMain";
 
-    private RecyclerViewAdapter adapter;
+    private RcvSchedule adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -97,7 +97,7 @@ public class ScheduleMain extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewAdapter(taskFID, this);
+        adapter = new RcvSchedule(taskFID, this);
         recyclerView.setAdapter(adapter);
 
         loadTaskList();

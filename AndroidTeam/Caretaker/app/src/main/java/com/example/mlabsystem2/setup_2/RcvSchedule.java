@@ -27,15 +27,15 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RcvSchedule extends RecyclerView.Adapter<RcvSchedule.ViewHolder> {
 
     public ArrayList<String> taskFID = new ArrayList<>();
     private Context mContext;
-    private RecyclerViewAdapter adapter = this;
+    private RcvSchedule adapter = this;
 
     private FirebaseFirestore db;
 
-    public RecyclerViewAdapter(ArrayList<String> taskFID, Context mContext) {
+    public RcvSchedule(ArrayList<String> taskFID, Context mContext) {
 
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
