@@ -29,7 +29,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Newsfeed extends AppCompatActivity {
     FirebaseFirestore db;
@@ -67,32 +69,19 @@ public class Newsfeed extends AppCompatActivity {
 
         listNews = (RecyclerView) findViewById(R.id.listNews);
         loader = (ProgressBar) findViewById(R.id.loader);
-        final DocumentReference docRef = db.collection("Patients").document(uid);
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e);
-                    return;
-                }
-
-                if (snapshot != null && snapshot.exists()) {
-                    Log.d(TAG, "Current data: " + snapshot.getData());
-                    interests = new ArrayList<>();
-                    ArrayList<String> interests = (ArrayList<String>)snapshot.get("Interests");
-                    Log.d("MEEEE", "onComplete: " + interests);
-
-                } else {
-                    Log.d(TAG, "Current data: null");
-                }
-            }
-        });
+        loadInterests();
 
 
 
 
 
+
+
+
+
+
+    }
+    public void loadNews(){
         for(int i=0;i<NEWS_SOURCE.length;i++) {
             String m = String.valueOf(i);
             DownloadNews newsTask = new DownloadNews();
@@ -107,9 +96,41 @@ public class Newsfeed extends AppCompatActivity {
                 }
             }
         }
+    }
+    public void loadInterests(){
+        final DocumentReference docRef = db.collection("Patients").document(uid);
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
 
+                if (snapshot != null && snapshot.exists()) {
+                    Log.d(TAG, "Current data: " + snapshot.getData());
+                    interests = new ArrayList<>();
+                    interests = (ArrayList<String>)snapshot.get("Interests");
+                    Log.d("MEEEE", "onComplete: " + interests);
+                    share(interests);
+                    loadNews();
+                } else {
+                    Log.d(TAG, "Current data: null");
+                }
+            }
+        });
+    }
+    public void share(ArrayList<String>interests){
+        //Set<String> set = .getStringSet("key", null);
+        SharedPreferences prefs1 = getSharedPreferences("MyData1", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = prefs1.edit();
 
-
+//Set the values
+        Set<String> set = new HashSet<String>();
+        set.addAll(interests);
+        editor1.putStringSet("interests", set);
+        editor1.commit();
     }
 
 
@@ -135,6 +156,11 @@ public class Newsfeed extends AppCompatActivity {
         @Override
         protected void onPostExecute(String xml) {
 
+            Set<String> interest1 = new HashSet<String>();
+            ArrayList<String> interests=new ArrayList();
+            SharedPreferences prefs1 = getSharedPreferences("MyData1", Context.MODE_PRIVATE);
+            interest1=prefs1.getStringSet("interests",null);
+            interests.addAll(interest1);
 
             if (xml.length() > 10) { // Just checking if not empty
 
@@ -152,7 +178,7 @@ public class Newsfeed extends AppCompatActivity {
                         map.put(KEY_URLTOIMAGE, jsonObject.optString(KEY_URLTOIMAGE).toString());
                         map.put(KEY_PUBLISHEDAT, jsonObject.optString(KEY_PUBLISHEDAT).toString());
                         for(int l=0;l<interests.size();l++) {
-                            if (((jsonObject.optString(KEY_TITLE).toString()).indexOf(interests.get(l)) != -1) || ((jsonObject.optString(KEY_DESCRIPTION).toString()).indexOf(interests.get(l)) != -1)) {
+                            if (((jsonObject.optString(KEY_TITLE).toString().toLowerCase()).indexOf(interests.get(l)) != -1) || ((jsonObject.optString(KEY_DESCRIPTION).toString().toLowerCase()).indexOf(interests.get(l)) != -1)) {
                                 dataList.add(map);
                             }
                         }
