@@ -113,8 +113,10 @@ public class Newsfeed extends AppCompatActivity {
                     interests = new ArrayList<>();
                     interests = (ArrayList<String>)snapshot.get("Interests");
                     Log.d("MEEEE", "onComplete: " + interests);
-                    share(interests);
-                    loadNews();
+                    if(interests.size()!=0) {
+                        share(interests);
+                        loadNews();
+                    }
                 } else {
                     Log.d(TAG, "Current data: null");
                 }
@@ -123,14 +125,14 @@ public class Newsfeed extends AppCompatActivity {
     }
     public void share(ArrayList<String>interests){
         //Set<String> set = .getStringSet("key", null);
-        SharedPreferences prefs1 = getSharedPreferences("MyData1", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor1 = prefs1.edit();
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
 
 //Set the values
         Set<String> set = new HashSet<String>();
         set.addAll(interests);
-        editor1.putStringSet("interests", set);
-        editor1.commit();
+        editor.putStringSet("interests", set);
+        editor.commit();
     }
 
 
@@ -158,8 +160,8 @@ public class Newsfeed extends AppCompatActivity {
 
             Set<String> interest1 = new HashSet<String>();
             ArrayList<String> interests=new ArrayList();
-            SharedPreferences prefs1 = getSharedPreferences("MyData1", Context.MODE_PRIVATE);
-            interest1=prefs1.getStringSet("interests",null);
+            SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+            interest1=prefs.getStringSet("interests",null);
             interests.addAll(interest1);
 
             if (xml.length() > 10) { // Just checking if not empty

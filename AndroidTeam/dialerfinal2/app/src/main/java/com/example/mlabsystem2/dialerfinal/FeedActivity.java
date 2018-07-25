@@ -5,19 +5,18 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 
 public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
-CardView news,music;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        news=(CardView) findViewById(R.id.news);
-        music=(CardView) findViewById(R.id.music);
-        news.setOnClickListener(this);
-        music.setOnClickListener(this);
+
+
     }
 
     @Override
