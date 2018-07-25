@@ -52,4 +52,8 @@ public class PatientProfileNew extends AppCompatActivity {
 //        Intent newfeedi = new Intent(this, MusicPreferences.class);
 //        startActivity(newfeedi);
     }
+
+    public void editDetails(View view) {
+        Intent intent = new Intent(this, EditDetailsActivity.class);
+    }
 }
