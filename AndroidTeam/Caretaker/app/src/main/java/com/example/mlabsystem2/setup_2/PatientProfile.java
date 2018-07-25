@@ -62,7 +62,7 @@ public class PatientProfile extends AppCompatActivity {
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PatientProfile.this, EditDetailsActivity.class);
+                Intent intent = new Intent(PatientProfile.this, PatientProfileNew.class);
                 startActivity(intent);
             }
         });

@@ -26,7 +26,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.sign_in);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // Create and launch sign-in intent
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String uid = prefs.getString("patient_uid", "");
+        String uid = prefs.getString("uid", "");
 
         Log.d("MEEEEE", uid);
 

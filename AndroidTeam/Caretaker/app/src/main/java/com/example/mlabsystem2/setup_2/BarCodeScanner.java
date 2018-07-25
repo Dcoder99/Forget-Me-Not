@@ -42,17 +42,17 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
                 .setPersistenceEnabled(true)
                 .build();
         db.setFirestoreSettings(settings);
-
+        Log.d(TAG, "onCreate: BarCodeScanner");
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_fragment);
     }
 
 
     @Override
     public void onScanned(Barcode barcode) {
+        Log.d(TAG, "onScanned: " + barcode.displayValue);
         // play beep sound
         barcodeReader.playBeep();
-        Toast.makeText(this, "Please wait while we find the patient.", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onScanned: " + barcode.displayValue);
+//        Toast.makeText(this, "Please wait while we find the patient.", Toast.LENGTH_SHORT).show();
         PatientFound(barcode.displayValue);
     }
 

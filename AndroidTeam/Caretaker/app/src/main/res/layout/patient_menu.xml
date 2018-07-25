@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,20 +8,42 @@
     tools:context=".PatientMenu">
 
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_margin="16dp"
-        android:background="@color/startblue"
-        android:gravity="bottom"
-        android:padding="10dp"
-        android:text="@string/patient_list"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/White"
-        android:textSize="30sp" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="@string/patient_list"
+        app:titleTextColor="@color/White"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:background="@color/startblue"-->
+        <!--android:gravity="bottom"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="@string/patient_list"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+        <!--android:textColor="@color/White"-->
+        <!--android:textSize="30sp" />-->
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_toolbar"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:text="@string/select_a_patient"
+        android:textStyle="bold"
+        />
 
     <LinearLayout
         android:id="@+id/patient_1"
+        android:layout_below="@+id/hint"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
@@ -29,9 +51,10 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/customize_layout_border"
         android:clickable="true"
-        android:elevation="10dp"
+        android:elevation="4dp"
         android:onClick="SelectProfile"
         android:orientation="horizontal"
+        android:layout_margin="@dimen/activity_vertical_margin"
         android:focusable="true">
 
         <ImageView
@@ -68,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/change_patient"
-        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         />
 
     <!--<LinearLayout-->
@@ -155,7 +179,7 @@
     <!--</LinearLayout>-->
 
     <!--</LinearLayout>-->
-</LinearLayout>
+</RelativeLayout>
 
 
 

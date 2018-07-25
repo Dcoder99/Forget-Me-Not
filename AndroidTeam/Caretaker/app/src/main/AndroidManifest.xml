@@ -36,7 +36,8 @@
 
         <activity android:name=".patient_add" />
         <activity android:name=".taskDescription" />
-        <activity android:name=".BarCodeScanner"/>
+        <activity android:name=".BarCodeScanner" />
+        <activity android:name=".PatientProfileNew" />
     </application>
 
 </manifest>

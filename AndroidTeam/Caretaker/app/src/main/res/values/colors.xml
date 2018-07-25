@@ -12,5 +12,6 @@
     <color name="grey">#D3D3D3</color>
     <color name="greyDarker">#808080</color>
     <color name="red">#FF0000</color>
+    <color name="darkerBlue">#0000A0</color>
 
 </resources>
