@@ -119,6 +119,7 @@ public class Newsfeed extends AppCompatActivity {
                     }
                 } else {
                     Log.d(TAG, "Current data: null");
+                    Toast.makeText(getApplicationContext(),"No interests or no news",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -187,6 +188,9 @@ public class Newsfeed extends AppCompatActivity {
                         if(dataList.size()!=0){
                             loader.setVisibility(View.GONE);
                         }
+                    }
+                    if (dataList.size()==0){
+                        Toast.makeText(getApplicationContext(),"No news found of interests",Toast.LENGTH_LONG);
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
