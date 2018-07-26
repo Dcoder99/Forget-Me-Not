@@ -12,7 +12,6 @@
     <string name="change_patient">Change Patient</string>
     <string name="add_patient">Add Patient</string>
     <string name="try_again">Try Again</string>
-    <string name="select_a_patient">SELECT A PATIENT</string>
     <string name="patient_profile">Patient Profile</string>
     <string name="click_to_view_edit_profile">CLICK TO VIEW/EDIT PROFILE</string>
     <string name="edit">Edit</string>
@@ -125,6 +124,8 @@
     <string name="action_settings">Settings</string>
     <string name="set_interest">Set Interest</string>
     <string name="enter_an_interest">Enter an interest</string>
+    <string name="edit_patient_profile">Edit Patient Profile</string>
+    <string name="select_a_patient">SELECT A PATIENT</string>
 
 
 </resources>

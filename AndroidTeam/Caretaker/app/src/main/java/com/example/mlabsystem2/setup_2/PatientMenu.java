@@ -54,7 +54,7 @@ public class PatientMenu extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         uid = prefs.getString("uid", "");
         patient_uid = prefs.getString("patient_uid", "");
-        p_name = prefs.getString("patient_name", "");
+        p_name = prefs.getString("patient_name", "undefined");
 
         if (patient_uid.equals("")) {
             ll.setVisibility(ll.GONE);
@@ -93,13 +93,14 @@ public class PatientMenu extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data.getBooleanExtra("isModified", false)) {
-            Intent intent = getIntent();
-            finish();
+//            Intent intent = getIntent();
+//            finish();
+//            startActivity(intent);
+
+            Intent intent = new Intent(this,EditPatientDetails.class);
+            intent.putExtra("isFromScanner",true);
             startActivity(intent);
         }
-
-        Intent intent = new Intent(this,EditPatientDetails.class);
-        startActivity(intent);
 
     }
 }

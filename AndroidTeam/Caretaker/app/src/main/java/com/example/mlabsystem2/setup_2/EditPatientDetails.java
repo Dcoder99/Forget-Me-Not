@@ -3,6 +3,7 @@ package com.example.mlabsystem2.setup_2;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +51,14 @@ public class EditPatientDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_details);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+        myToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+
+
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
@@ -77,6 +87,8 @@ public class EditPatientDetails extends AppCompatActivity {
         l1 = findViewById(R.id.layout1);
         l2 = findViewById(R.id.layout2);
 
+        l2.setVisibility(l2.GONE);
+        l1.setVisibility(l1.VISIBLE);
         loadDetails();
     }
 
@@ -106,8 +118,13 @@ public class EditPatientDetails extends AppCompatActivity {
                         add1.setText(pDetails.get("addrLine1").toString());
                         add2.setText(pDetails.get("addrLine2").toString());
                         add3.setText(pDetails.get("addrLine3").toString());
-                    }
-                    else {
+
+                        editName1.setText(pDetails.get("Name").toString());
+                        editPhone1.setText(pDetails.get("phNumber").toString());
+                        editAdd1.setText(pDetails.get("addrLine1").toString());
+                        editAdd2.setText(pDetails.get("addrLine2").toString());
+                        editAdd3.setText(pDetails.get("addrLine3").toString());
+                    } else {
                         l1.setVisibility(l1.GONE);
                         l2.setVisibility(l2.VISIBLE);
                     }
@@ -148,6 +165,13 @@ public class EditPatientDetails extends AppCompatActivity {
                     }
                 });
 
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra("isFromScanner", false)) {
+            Intent in = new Intent(this, PatientProfileNew.class);
+            startActivity(in);
+            return;
+        }
+
         l2.setVisibility(l2.GONE);
         l1.setVisibility(l1.VISIBLE);
     }
@@ -158,4 +182,20 @@ public class EditPatientDetails extends AppCompatActivity {
         l2.setVisibility(l2.VISIBLE);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, PatientProfileNew.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }
