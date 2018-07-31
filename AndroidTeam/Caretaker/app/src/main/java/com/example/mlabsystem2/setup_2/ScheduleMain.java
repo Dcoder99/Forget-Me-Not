@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class ScheduleMain extends AppCompatActivity {
 
-    private static final String TAG = "ScheduleMain";
+    private static final String TAG = "MEEEEEEEEEE";
 
     private RcvSchedule adapter;
     private RecyclerView recyclerView;
@@ -202,27 +202,29 @@ public class ScheduleMain extends AppCompatActivity {
 //                            loadTaskList();
                             //End of Updating Info on FireBase
 
-
+                            Log.d(TAG, "onClick: Setting alarm");
                             Intent intent = new Intent(ScheduleMain.this, AlarmReceiver.class);
                             intent.putExtra("task", addtask.getText().toString());
                             intent.putExtra("notificationId", notificationId);
 
                             PendingIntent alarmintent = PendingIntent.getBroadcast(ScheduleMain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                            AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                            AlarmManager alarm = (AlarmManager)ScheduleMain.this.getSystemService(Context.ALARM_SERVICE);
+                            alarm.cancel(alarmintent);
 
                             if (myspinner.getSelectedItem().toString().equals("Every minute")) {
 
-                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 1 * 60, alarmintent);
-
+                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 60, alarmintent);
                                 Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
+
                             } else if (myspinner.getSelectedItem().toString().equals("Every two minutes")) {
                                 alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 2 * 60, alarmintent);
-
                                 Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
+
                             } else {
+                                Log.d(TAG, "onClick: datTIme"+dateTime.getTimeInMillis());
                                 alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
+                                Toast.makeText(ScheduleMain.this, "Doneee!", Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
                             }
 
                             reqcode++;
