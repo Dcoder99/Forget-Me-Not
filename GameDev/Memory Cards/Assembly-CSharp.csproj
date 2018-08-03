@@ -65,10 +65,10 @@
     <Compile Include="Assets\Scripts\Start_Game.cs" />
     <Compile Include="Assets\Scripts\Time.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/UNITY/projects/Memory Cards/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Dhruv/Documents/GitHub/Forget-me-not/GameDev/Memory Cards/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/UNITY/projects/Memory Cards/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Dhruv/Documents/GitHub/Forget-me-not/GameDev/Memory Cards/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/UNITY/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

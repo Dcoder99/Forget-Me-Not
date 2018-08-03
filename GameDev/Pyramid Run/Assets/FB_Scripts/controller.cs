@@ -195,6 +195,10 @@ public class controller : MonoBehaviour {
 			UpdateScore(dir, UP);
 			assignDirection();
 		}
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Game_Selector");
+        }
+    }
+
 }

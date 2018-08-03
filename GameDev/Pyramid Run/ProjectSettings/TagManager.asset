@@ -8,6 +8,9 @@ TagManager:
   - mapCanvas
   - gameCanvas
   - mapCamera
+  - Same_Button
+  - Different_Button
+  - Main_Image
   layers:
   - Default
   - TransparentFX
