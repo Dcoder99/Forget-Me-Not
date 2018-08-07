@@ -27,7 +27,7 @@ public class Collisions : MonoBehaviour
         Destroy(ExplodeObj);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnControllerColliderHit(ControllerColliderHit collision)
     {
         if (int.TryParse((collision.gameObject.name).Trim(), out v))
         {
