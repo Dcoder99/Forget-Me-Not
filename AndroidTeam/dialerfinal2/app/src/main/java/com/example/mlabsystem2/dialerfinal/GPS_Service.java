@@ -190,7 +190,7 @@ public class GPS_Service extends Service {
 
     private void sendAlertSMS(double lat, double lng){
 
-        String smsTo = "9945846898"; // some phone number here
+        String smsTo = "8762557133"; // some phone number here
         String smsMessage = "Latitude:"+lat+"Longitude"+lng;
       //  Toast.makeText(getApplicationContext(),Integer.toString(count),Toast.LENGTH_SHORT).show();
         SmsManager.getDefault().sendTextMessage(smsTo, null,smsMessage , null,null);

@@ -115,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="1dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:onClick="change">
 
                 <ImageView
                     android:layout_width="wrap_content"
