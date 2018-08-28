@@ -180,6 +180,10 @@ public class PatientProfileNew extends AppCompatActivity implements View.OnClick
         Intent intent = new Intent(this, EditPatientDetails.class);
         startActivity(intent);
     }
+    public void quiz(View v){
+        Intent intent01 = new Intent(this, Quiz.class);
+        startActivity(intent01);
+    }
 
     @Override
     public void onClick(View v) {

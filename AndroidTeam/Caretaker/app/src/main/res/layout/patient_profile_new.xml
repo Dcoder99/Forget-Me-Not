@@ -96,6 +96,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         />
 
+    <Button
+        android:id="@+id/butto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Quiz"
+        android:onClick="quiz"
+        android:textColor="@color/White"
+        android:backgroundTint="@color/darkBlue"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/patient_number"/>
+
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
