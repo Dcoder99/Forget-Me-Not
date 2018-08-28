@@ -111,7 +111,7 @@ public class SignInActivity extends AppCompatActivity {
                 // sign-in flow using the back button. Otherwise check
                 // response.getError().getErrorCode() and handle the error.
                 // ...
-                Intent intent = new Intent(this,PatientHome.class);
+                Intent intent = new Intent(this,Main4Activity.class);
                 startActivity(intent);
             }
         }
@@ -168,7 +168,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
     private void callPatientHome() {
-        Intent in = new Intent(this, PatientHome.class);
+        Intent in = new Intent(this, Main4Activity.class);
         startActivity(in);
     }
 
