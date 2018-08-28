@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,10 +26,11 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:text="22-07-2018"
             android:textColor="@color/greyDarker"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:ignore="RtlSymmetry" />
 
 
         <TextView
@@ -36,11 +38,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:paddingBottom="8dp"
             android:text="2:40 PM"
             android:textColor="@color/greyDarker"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:ignore="RtlSymmetry" />
 
         <ImageButton
             android:id="@+id/delete"
