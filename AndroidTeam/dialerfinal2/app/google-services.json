@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "506062973569-ncsh49o8lcmbnuufptjnqneg2uhmnrni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mlabsystem2.dialerfinal",
+            "certificate_hash": "6cb9b68e829f77bc0b2e5d453ba88e62a000b165"
+          }
+        },
+        {
           "client_id": "506062973569-io96di4f1frrg0a5t1ad8n109neenecf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -80,6 +88,14 @@
           "android_info": {
             "package_name": "com.example.mlabsystem2.setup_2",
             "certificate_hash": "6cb9b68e829f77bc0b2e5d453ba88e62a000b165"
+          }
+        },
+        {
+          "client_id": "506062973569-mq89lh2od42im9n078aa5njp3is7uac8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mlabsystem2.setup_2",
+            "certificate_hash": "c523d2730b47d5da4da11210cf5723a38dda3067"
           }
         },
         {

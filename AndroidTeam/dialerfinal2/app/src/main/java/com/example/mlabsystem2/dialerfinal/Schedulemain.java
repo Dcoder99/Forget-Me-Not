@@ -1,65 +1,44 @@
 package com.example.mlabsystem2.dialerfinal;
 
 import android.app.AlarmManager;
-import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.HashMap;
 
 public class Schedulemain extends AppCompatActivity {
 
-    private static final String TAG = "Schedulemain";
+    private static final String TAG = "MEEEE";
 
     private ArrayList<String> taskNames = new ArrayList<>();
     private ArrayList<String> taskDates = new ArrayList<>();
     private ArrayList<String> taskTimes = new ArrayList<>();
     private ArrayList<String> taskFID = new ArrayList<>();
+
+    private static HashMap<String, PendingIntent> intents = new HashMap<>();
+
     public FirebaseFirestore db;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
@@ -70,7 +49,7 @@ public class Schedulemain extends AppCompatActivity {
     Calendar dateTime = Calendar.getInstance();
 
     private int notificationId = 1;
-String uid;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +74,12 @@ String uid;
         loadTaskList();
     }
 
-         private void loadTaskList() {
-              loadTaskList(true);
+    private void loadTaskList() {
+        loadTaskList(true);
 
-        }
+    }
 
-         public void loadTaskList(Boolean fromCache) {
+    public void loadTaskList(Boolean fromCache) {
 
         Log.d("MEEE", "Before loading");
 
@@ -108,13 +87,6 @@ String uid;
         taskDates = new ArrayList<>();
         taskTimes = new ArrayList<>();
         taskFID = new ArrayList<>();
-
-
-//
-//        // TODO: Add "where patient_id = patientID" to the query
-
-
-
 
         // Refer to firebase docs for patient_id condition
         db.collection("Tasks")
@@ -137,14 +109,38 @@ String uid;
                                     taskNames.add(document.getString("Task"));
                                     taskDates.add(document.getString("Date"));
                                     taskTimes.add(document.getString("Time"));
-                                    Intent intent = new Intent(Schedulemain.this, AlarmReceiver.class);
-                                    intent.putExtra("task",document.getString("Task"));
-                                    intent.putExtra("notificationId", notificationId);
 
-                                    PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                                    AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-                                    String d=String.valueOf(dateTime.getTimeInMillis());
-                                    alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
+                                    if (document.getBoolean("isSet") != null && document.getBoolean("isSet")) {
+                                        Log.d(TAG, "onEvent: Alarm already set.");
+                                    } else {
+                                        HashMap<String, Object> obj = new HashMap<>();
+                                        obj.put("isSet", true);
+                                        db.collection("Tasks").document(document.getId()).update(obj);
+
+                                        Intent intent = new Intent(Schedulemain.this, AlarmReceiver.class);
+                                        intent.putExtra("Task", document.getString("Task"));
+                                        intent.putExtra("Description", document.getString("Description"));
+                                        int p = (int) System.currentTimeMillis();
+                                        intent.putExtra("notificationId", p);
+
+                                        PendingIntent alarmintent = PendingIntent.getBroadcast(Schedulemain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                                        intents.put(document.getId(), alarmintent);
+
+                                        File file = new File(getDir("data", MODE_PRIVATE), "map");
+//                                        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+//                                        outputStream.writeObject(intents);
+//                                        outputStream.flush();
+//                                        outputStream.close();
+
+                                        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                                        assert alarm != null;
+                                        if (document.getLong("repeatFrequency") == -1) {
+                                            alarm.set(AlarmManager.RTC_WAKEUP, document.getLong("TimeMillis"), alarmintent);
+                                        } else {
+                                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, document.getLong("TimeMillis"), document.getLong("repeatFrequency"), alarmintent);
+                                        }
+                                        Log.d(TAG, "onEvent: Alarm set.");
+                                    }
 
                                     //adapter.setItems(taskNames,taskDates,taskTimes,taskFID);
 
@@ -154,14 +150,20 @@ String uid;
                                     break;
                                 case REMOVED: {
                                     Log.d("MEEE", "REMOVED : " + dc.getDocument().getData());
-                                    int x=taskFID.indexOf(document.getId());
+                                    int x = taskFID.indexOf(document.getId());
+                                    AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                                    if (intents.get(document.getId()) != null) {
+                                        alarm.cancel(intents.get(document.getId()));
+                                        Log.d("MEEE", "onEvent: Alarm cancelled");
+                                    }
+                                    Log.d(TAG, "onEvent: " + intents); //DON'T REMOVE THIS LINE
 
                                     deleteTask(x);
                                     Log.d("MEEE", "REMOVED FID : " + taskFID);
                                 }
 
                             }
-                            adapter.setItems(taskNames,taskDates,taskTimes,taskFID);
+                            adapter.setItems(taskNames, taskDates, taskTimes, taskFID);
                             adapter.notifyDataSetChanged();
                         }
 
@@ -169,36 +171,9 @@ String uid;
                 });
 
 
-
     }
 
 
-
-
-
-
-
-
-
-    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            dateTime.set(Calendar.YEAR,year);
-            dateTime.set(Calendar.MONTH,month);
-            dateTime.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-
-        }
-    };
-
-    TimePickerDialog.OnTimeSetListener t =new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateTime.set(Calendar.HOUR_OF_DAY,hourOfDay);
-            dateTime.set(Calendar.MINUTE,minute);
-            dateTime.set(Calendar.SECOND,0);
-
-        }
-    };
     private void deleteTask(final int firebase_id) {
 
         Log.d("MEEEE", "firebase id" + firebase_id + "...");
@@ -206,15 +181,15 @@ String uid;
                 .delete();
 
 
-                        Log.d("MEEEEEEEEEEEEE", "DocumentSnapshot successfully deleted!");
-                        taskNames.remove(firebase_id);
-                        taskFID.remove(firebase_id);
-                        taskTimes.remove(firebase_id);
-                        taskDates.remove(firebase_id);
-                        adapter.setItems(taskNames,taskDates,taskTimes,taskFID);
+        Log.d("MEEEEEEEEEEEEE", "DocumentSnapshot successfully deleted!");
+        taskNames.remove(firebase_id);
+        taskFID.remove(firebase_id);
+        taskTimes.remove(firebase_id);
+        taskDates.remove(firebase_id);
+        adapter.setItems(taskNames, taskDates, taskTimes, taskFID);
 
 
-                    }
+    }
 
 }
 
