@@ -26,7 +26,7 @@ public class Main4Activity extends AppCompatActivity {
 
                 }
             };
-            
+
             timer.start();
         }
         Intent inte=new Intent(this,Main3Activity.class);

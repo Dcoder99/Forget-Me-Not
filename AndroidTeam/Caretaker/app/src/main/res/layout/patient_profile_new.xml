@@ -252,6 +252,19 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="button4,button5,button7,textView5,textView6,button6,view5,button3,view6,view"
         app:layout_constraintTop_toBottomOf="@id/view5" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:onClick="detect"
+        android:textColor="@color/White"
+        android:backgroundTint="@color/darkBlue"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toRightOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/butto"/> />
 </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

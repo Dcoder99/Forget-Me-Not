@@ -54,9 +54,9 @@ public class GPS_Service extends Service {
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         uid = prefs.getString("uid", "");
         final Location location=new Location(LocationManager.GPS_PROVIDER);
-        location.setLatitude(13.02768015d);
+        location.setLatitude(12.9345d);
         Log.d("Meee", "changed");
-        location.setLongitude(77.6478632d);
+        location.setLongitude(77.5345d);
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
@@ -144,7 +144,7 @@ public class GPS_Service extends Service {
 
 
 
-   //   showForegroundNotification("GPS SERVICE IS RUNNING");
+     showForegroundNotification("GPS SERVICE IS RUNNING");
 
         //ALERT IS SHOWN IF PATIENT IS 4m AWAY FROM CURRENT LOCATION(HOME COORDINATES)
 

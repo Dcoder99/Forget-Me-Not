@@ -46,7 +46,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.StringReader;
 
 public class MainActivity_aws extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,7 +60,7 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
 
     private TextView tvFileName;
     private ImageView imageView;
-    private EditText edtFileName;
+    private TextView personname;
 
     private Uri fileUri;
     private Bitmap bitmap;
@@ -73,6 +72,8 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
 
         imageView = findViewById(R.id.img_file);
         tvFileName = findViewById(R.id.tv_file_name);
+        personname = findViewById(R.id.Personname);
+        personname.setText("");
         tvFileName.setText("");
 
         findViewById(R.id.btn_choose_file).setOnClickListener(this);
@@ -90,7 +91,6 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
 
         if (fileUri != null){
 
-            String foldersize;
             int finalsize = 0;
             int SDK_INT = android.os.Build.VERSION.SDK_INT;
             if (SDK_INT > 8)
@@ -183,7 +183,7 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
 
             try {
                 final File localFile = File.createTempFile("images", getFileExtension(fileUri));
-               // final File localtext = File.createTempFile("text",".txt");
+           //     final File localtext = File.createTempFile("text",".txt");
 
                 TransferUtility transferUtility =
                         TransferUtility.builder()
@@ -195,13 +195,14 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
                 TransferObserver downloadObserver =
                         transferUtility.download("Recognized/" + fileName + "." + getFileExtension(fileUri), localFile);
 
-              //  TransferObserver FileDownloadObserver = transferUtility.download("TextFile/text.txt",localtext);
+            //    TransferObserver FileDownloadObserver = transferUtility.download("TextFile/text.txt",localtext);
 
-    /*            FileDownloadObserver.setTransferListener(new TransferListener() {
+                final String finalNewkey = newkey1;
+           /*     downloadObserver.setTransferListener(new TransferListener() {
                     @Override
                     public void onStateChanged(int id, TransferState state) {
                         if(TransferState.COMPLETED == state){
-                            String path = localtext.getPath();
+                           String path = localtext.getPath();
 
                             try {
 
@@ -222,6 +223,8 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+
+
                         }
                     }
 
@@ -234,9 +237,9 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
                     public void onError(int id, Exception ex) {
 
                     }
-                });
-*/
-                final String finalNewkey = newkey1;
+                });    */
+
+
                 downloadObserver.setTransferListener(new TransferListener() {
 
                     @Override
@@ -247,7 +250,7 @@ public class MainActivity_aws extends AppCompatActivity implements View.OnClickL
                          //   tvFileName.setText(fileName + "." + getFileExtension(fileUri));
                             Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                             imageView.setImageBitmap(bmp);
-                            tvFileName.setText(finalNewkey);
+                            personname.setText(finalNewkey);
                         }
                     }
 
