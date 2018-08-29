@@ -46,6 +46,8 @@ public class PatientHome extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent i =new Intent(getApplicationContext(),GPS_Service.class);
+        startService(i);
         handler = new Handler();
         r = new Runnable() {
 

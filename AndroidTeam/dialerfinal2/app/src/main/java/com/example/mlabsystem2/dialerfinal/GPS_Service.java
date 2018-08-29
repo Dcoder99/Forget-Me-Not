@@ -144,7 +144,7 @@ public class GPS_Service extends Service {
 
 
 
-        showForegroundNotification("GPS SERVICE IS RUNNING");
+   //   showForegroundNotification("GPS SERVICE IS RUNNING");
 
         //ALERT IS SHOWN IF PATIENT IS 4m AWAY FROM CURRENT LOCATION(HOME COORDINATES)
 

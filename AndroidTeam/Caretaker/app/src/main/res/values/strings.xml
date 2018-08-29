@@ -24,6 +24,29 @@
     <string name="music_preferences">Music Preferences</string>
     <string name="view_edit">VIEW/EDIT PROFILE</string>
     <string name="emergency_contacts">Emergency Contacts</string>
+    <string name="Intro"> Thank you for downloading the app</string>
+    <string name="Intro2">Before using the app please conduct the following test on your patient</string>
+    <string name="tutorial">Mark checkboxes if patient has answered correctly, otherwise leave it blank.</string>
+    <string name="q1">Ask the patient the following</string>
+    <string name="day">What Day is it?</string>
+    <string name="month"> What Month is it? </string>
+    <string name="year">What Year is it?</string>
+    <string name="date">What is today\'s Date?</string>
+    <string name="season">What Season is it?</string>
+    <string name="country">Which country are we in? </string>
+    <string name="state">Which state are we in? </string>
+    <string name="city">Which city are we in? </string>
+    <string name="place">Where are we?(e.g. home,clinic) </string>
+    <string name="floor">Which floor are we on?(e.g.1st) </string>
+    <string name="q3">Speak aloud three unrelated objects and ask the patient to name them all(repeat only 3 times if necessary)</string>
+    <string name="q4">Ask to spell the word \'PEARL\' backwards</string>
+    <string name='q5'>Ask to repeat previously said objects</string>
+    <string name="q6">Show patient two objects and ask them what it is</string>
+    <string name="q7">Ask the patient to say- \'No ifs ands or buts\'</string>
+    <string name="q8">Give the patient a piece of paper and ask them to</string>
+    <string name="q9">Ask the patient to read the instructions and perform the task</string>
+    <string name="q10">Ask the patient to write a sentence in a piece of paper</string>
+    <string name="q11">Ask the patient to draw the following figure</string>
 
     <string-array name="spinnernames">
         <item>No repeat</item>
