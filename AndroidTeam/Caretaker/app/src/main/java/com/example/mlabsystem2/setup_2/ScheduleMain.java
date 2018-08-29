@@ -168,6 +168,8 @@ public class ScheduleMain extends AppCompatActivity {
                             String task = String.valueOf(addtask.getText());
                             String descrption = String.valueOf(addDes.getText());
 
+                            long TimeMillis = dateTime.getTimeInMillis();
+                            long repeatFrequency = -1;
 
                             // Storing Task information on Firebase
                             Map<String, Object> user = new HashMap<>();
@@ -175,21 +177,36 @@ public class ScheduleMain extends AppCompatActivity {
                             user.put("Task", task);
                             user.put("Date", formatedDate);
                             user.put("Time", formatedTime);
+                            user.put("TimeMillis", TimeMillis);
                             user.put("Description", descrption);
+                            user.put("isSet", false);
                             // TODO: Change this to uuid or firebase generated id
-                            firebase_id = String.valueOf(System.currentTimeMillis());
+//                            firebase_id = String.valueOf(System.currentTimeMillis());
 //                            interestsMap.put("ID", firebase_id);
 
 
+                            switch (myspinner.getSelectedItem().toString()) {
+                                case "Every minute":
+                                    repeatFrequency = 60 * 1000;
+                                    break;
+                                case "Every two minutes":
+                                    repeatFrequency = 2 * 60 * 1000;
+                                    break;
+                                case "Every Day":
+                                    repeatFrequency = 24 * 60 * 60 * 1000;
+                                    break;
+                            }
+
+                            user.put("repeatFrequency", repeatFrequency);
+
                             // Add a new document with a generated ID
                             db.collection("Tasks")
-                                    .document(firebase_id)
+                                    .document()
                                     .set(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
                                             Log.d("MEEEEEEEEEEEEEEE", "DocumentSnapshot successfully written!");
-//                                            loadTaskList();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -201,31 +218,15 @@ public class ScheduleMain extends AppCompatActivity {
 
 //                            loadTaskList();
                             //End of Updating Info on FireBase
-
-                            Log.d(TAG, "onClick: Setting alarm");
-                            Intent intent = new Intent(ScheduleMain.this, AlarmReceiver.class);
-                            intent.putExtra("task", addtask.getText().toString());
-                            intent.putExtra("notificationId", notificationId);
-
-                            PendingIntent alarmintent = PendingIntent.getBroadcast(ScheduleMain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                            AlarmManager alarm = (AlarmManager)ScheduleMain.this.getSystemService(Context.ALARM_SERVICE);
-                            alarm.cancel(alarmintent);
-
-                            if (myspinner.getSelectedItem().toString().equals("Every minute")) {
-
-                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 60, alarmintent);
-                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
-
-                            } else if (myspinner.getSelectedItem().toString().equals("Every two minutes")) {
-                                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), 1000 * 2 * 60, alarmintent);
-                                Toast.makeText(ScheduleMain.this, "Done!", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                Log.d(TAG, "onClick: datTIme"+dateTime.getTimeInMillis());
-                                alarm.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis(), alarmintent);
-                                Toast.makeText(ScheduleMain.this, "Doneee!", Toast.LENGTH_SHORT).show();
-
-                            }
+//
+//                            Log.d(TAG, "onClick: Setting alarm");
+//                            Intent intent = new Intent(ScheduleMain.this, AlarmReceiver.class);
+//                            intent.putExtra("task", addtask.getText().toString());
+//                            intent.putExtra("notificationId", notificationId);
+//
+//                            PendingIntent alarmintent = PendingIntent.getBroadcast(ScheduleMain.this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+//                            AlarmManager alarm = (AlarmManager)ScheduleMain.this.getSystemService(Context.ALARM_SERVICE);
+//                            alarm.cancel(alarmintent)
 
                             reqcode++;
                             notificationId++;
@@ -244,7 +245,7 @@ public class ScheduleMain extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
