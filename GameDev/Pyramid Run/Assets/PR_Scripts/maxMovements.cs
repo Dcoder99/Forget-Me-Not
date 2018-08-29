@@ -59,28 +59,28 @@ public class maxMovements : MonoBehaviour {
             animator.SetBool("RUN", false);
         }
 
-        if (SwipeManager.IsSwipingLeft())
-        {
-            va.transform.Rotate(0, -1 * rotates, 0);
-            animator.SetBool("LEFT", true);
-            //animator.SetBool("RUN", );
-           // Invoke("stopMovingLeft", 2);
+        // if (SwipeManager.IsSwipingLeft())
+        // {
+        //     va.transform.Rotate(0, -1 * rotates, 0);
+        //     animator.SetBool("LEFT", true);
+        //     //animator.SetBool("RUN", );
+        //    // Invoke("stopMovingLeft", 2);
            
-        }
+        // }
     }
 
     public void TurnLeft()
     {
         Debug.Log("in left");
         toTurnLeft = true;
-        animator.SetBool("LEFT", toTurnLeft);
+        // animator.SetBool("LEFT", toTurnLeft);
     }
     
 
     public void stopMovingLeft()
     {
         toTurnLeft = false;
-        animator.SetBool("LEFT", toTurnLeft);
+        // animator.SetBool("LEFT", toTurnLeft);
 
     }
 
@@ -88,14 +88,14 @@ public class maxMovements : MonoBehaviour {
     {
         Debug.Log("in right");
         toTurnRight = true;
-        animator.SetBool("RIGHT", toTurnRight);
+        // animator.SetBool("RIGHT", toTurnRight);
     }
 
 
     public void stopMovingRight()
     {
         toTurnRight = false;
-        animator.SetBool("LEFT", toTurnRight);
+        // animator.SetBool("RIGHT", toTurnRight);
 
     }
 }

@@ -75,6 +75,7 @@
      <Compile Include="Assets\PR_Scripts\progressBar.cs" />
      <Compile Include="Assets\PR_Scripts\progressBarOld.cs" />
      <Compile Include="Assets\PR_Scripts\starScript.cs" />
+     <Compile Include="Assets\Scripts\BackButton.cs" />
      <Compile Include="Assets\Scripts\Game_Selector.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

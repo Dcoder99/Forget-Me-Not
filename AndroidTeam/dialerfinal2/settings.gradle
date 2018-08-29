@@ -1,1 +1,1 @@
-include ':app',':Pyramid Run-debug'
+include ':app',':AllGames-debug'

@@ -45,6 +45,6 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:backgroundTint="@color/darkBlue"
-        android:text="@string/update_schedule"
+        android:text="Update Interests"
         android:textColor="@color/White" />
 </RelativeLayout>
